@@ -21,6 +21,10 @@ public class Bodega implements Serializable {
 	private int id;
 	private String nombre;
 	private int stock;
+	
+	@ManyToOne
+	private Ciudad ciudad;
+	
 	@OneToMany(mappedBy = "bodega")
 	private List<Producto> producto;
 	@ManyToOne
