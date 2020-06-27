@@ -27,6 +27,10 @@ public class Producto implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
 	private Set<FacturaDetalle>facturaDetalle;
 	private FacturaDetalle producto;
+	
+	 @ManyToOne
+	 private Categoria categoria;
+	
 	public Producto() {
 		super();
 	}
