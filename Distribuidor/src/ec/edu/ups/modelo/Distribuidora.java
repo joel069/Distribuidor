@@ -21,7 +21,7 @@ public class Distribuidora implements Serializable {
 	private String nombre;
 	private String telefono;
 	private String correo;
-	@OneToMany(mappedBy = "distribuidora")
+	@OneToMany(mappedBy = "bodega")
 	private List<Bodega>bodega;
 	
 	public Distribuidora() {

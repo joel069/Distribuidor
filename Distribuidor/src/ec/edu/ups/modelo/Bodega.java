@@ -24,7 +24,7 @@ public class Bodega implements Serializable {
 	@OneToMany(mappedBy = "bodega")
 	private List<Producto> producto;
 	@ManyToOne
-	private Distribuidora distribuidora;
+	private Distribuidora bodega;
 	
 	
 	public Bodega() {
@@ -72,13 +72,13 @@ public class Bodega implements Serializable {
 	}
 
 
-	public Distribuidora getDistribuidora() {
-		return distribuidora;
+	public Distribuidora getBodega() {
+		return bodega;
 	}
 
 
-	public void setDistribuidora(Distribuidora distribuidora) {
-		this.distribuidora = distribuidora;
+	public void setBodega(Distribuidora bodega) {
+		this.bodega = bodega;
 	}
 
 
@@ -86,7 +86,7 @@ public class Bodega implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((distribuidora == null) ? 0 : distribuidora.hashCode());
+		result = prime * result + ((bodega == null) ? 0 : bodega.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((producto == null) ? 0 : producto.hashCode());
@@ -104,10 +104,10 @@ public class Bodega implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bodega other = (Bodega) obj;
-		if (distribuidora == null) {
-			if (other.distribuidora != null)
+		if (bodega == null) {
+			if (other.bodega != null)
 				return false;
-		} else if (!distribuidora.equals(other.distribuidora))
+		} else if (!bodega.equals(other.bodega))
 			return false;
 		if (id != other.id)
 			return false;
@@ -129,9 +129,12 @@ public class Bodega implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Bodega [id=" + id + ", nombre=" + nombre + ", stock=" + stock + ", producto=" + producto
-				+ ", distribuidora=" + distribuidora + "]";
+		return "Bodega [id=" + id + ", nombre=" + nombre + ", stock=" + stock + ", producto=" + producto + ", bodega="
+				+ bodega + "]";
 	}
+	
+	
+
 	
 	
    
