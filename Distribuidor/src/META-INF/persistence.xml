@@ -13,6 +13,8 @@
 		<class>ec.edu.ups.modelo.Persona</class>
 		<class>ec.edu.ups.modelo.FacturaCabecera</class>
 		<class>ec.edu.ups.modelo.FacturaDetalle</class>
+		<class>ec.edu.ups.modelo.Usuario</class>
+		<class>ec.edu.ups.modelo.Rol</class>
 		
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
