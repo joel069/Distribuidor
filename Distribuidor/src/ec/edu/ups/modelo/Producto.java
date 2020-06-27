@@ -1,6 +1,8 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -22,7 +24,9 @@ public class Producto implements Serializable {
 	private Float preciopublico;
 	@ManyToOne
 	private Bodega bodega;
-	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
+	private Set<FacturaDetalle>facturaDetalle;
+	private FacturaDetalle producto;
 	public Producto() {
 		super();
 	}
