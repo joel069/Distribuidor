@@ -72,7 +72,7 @@ public class Producto implements Serializable {
 		return preciounitario;
 	}
 
-	public void setPreciounitario(Float preciounitario) {
+	public void setPreciounitario(Double preciounitario) {
 		this.preciounitario = preciounitario;
 	}
 
@@ -80,7 +80,7 @@ public class Producto implements Serializable {
 		return preciopublico;
 	}
 
-	public void setPreciopublico(Float preciopublico) {
+	public void setPreciopublico(Double preciopublico) {
 		this.preciopublico = preciopublico;
 	}
 
