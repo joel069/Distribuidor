@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Productos</title>
+	<style>
+		.tabla {
+			border-collapse: collapse;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none repeat scroll 0 0 #E5E5E5;
+			border-bottom: 1px solid #BBBBBB;
+			padding: 8px;
+		}
+		
+		.filaPar {
+			text-align: center;
+			background: none repeat scroll 0 0 #FFFFFFF;
+			border-top: 1px solid #BBBBBB;
+		}
+		
+		.filaImpar {
+			text-align: center;
+			background: none repeat scroll 0 0 #F9F9F9;
+			border-top: 1px solid #BBBBBB;
+		}
+	</style>
+</h:head>
+<h:body>
+	<h3>Registro de Productos.</h3>
+	<h:form>
+		<h:dataTable value="#{productoBean.listaProductos}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+		<h:column>
+		<f:facet name="header">Codigo</f:facet>#{p.id}</h:column>
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			<h:inputText value="#{p.nombre}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			<h:inputText value="#{p.descripcion}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.descripcion}" rendered="#{not p.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">PrecioU</f:facet>
+			<h:inputText value="#{p.preciounitario}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.preciounitario}" rendered="#{not p.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">PrecioP</f:facet>
+			<h:inputText value="#{p.preciopublico}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.preciopublico}" rendered="#{not p.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Accion</f:facet>
+			<h:commandLink value="Remove" action="#{productoBean.remove(p)}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Accion</f:facet>
+			<h:commandLink value="Edit" action="#{productoBean.edit(p)}" rendered="#{not p.editable}"/>
+			<h:commandLink value="Save" action="#{productoBean.save(p)}" rendered="#{ p.editable}"/>
+		</h:column>
+		</h:dataTable>
+		<ul>
+			<li>Nombre: <h:inputText size="10" value="#{productoBean.nombre}"/></li>
+			<li>Descripcion: <h:inputText size="10" value="#{productoBean.descripcion}"/></li>
+			<li>PrecioU: <h:inputText size="10" value="#{productoBean.preciounitario}"/></li>
+			<li>PrecioP: <h:inputText size="10" value="#{productoBean.preciopublico}"/></li>
+		</ul>
+		<h:commandButton value="Registrar" action="#{productoBean.add}"/>
+	</h:form>
+</h:body>
+</html>
