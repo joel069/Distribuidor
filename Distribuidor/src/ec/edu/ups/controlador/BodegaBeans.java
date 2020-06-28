@@ -12,7 +12,6 @@ import javax.inject.Named;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Ciudad;
-import ec.edu.ups.modelo.Distribuidora;
 import ec.edu.ups.modelo.Producto;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -26,8 +25,7 @@ public class BodegaBeans implements Serializable {
 	private int stock;
 	private List<Producto> producto;
 	private Ciudad ciudad;
-	private Distribuidora bodega;
-
+	
 	public BodegaBeans() {
 		
 
@@ -37,8 +35,7 @@ public class BodegaBeans implements Serializable {
 
 	@PostConstruct
 	public void init() {		
-		ejbBodegaFacade.create(new Bodega("J&J", 10, ciudad, bodega));
-		listaBdoega = ejbBodegaFacade.findAll();
+		
 	}
 
 }

@@ -23,9 +23,9 @@ public class Pais implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
 	private List<Provincia> listaProvincias;
 	
-	public Pais(int id, String nombre) {
+	public Pais(String nombre) {
 		super();
-		this.id=id;
+	
 		this.nombre=nombre;
 	}
 	

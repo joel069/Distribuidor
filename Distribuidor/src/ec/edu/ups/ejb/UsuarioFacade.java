@@ -1,11 +1,12 @@
 package ec.edu.ups.ejb;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Usuario;
-
+@Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario>{
 
 	@PersistenceContext(unitName = "Distribuidor")

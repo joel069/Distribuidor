@@ -1,10 +1,12 @@
 package ec.edu.ups.controlador;
 
+import ec.edu.ups.ejb.PaisFacade;
+
 public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BodegaBeans bo= new BodegaBeans();
+		PaisBean bo= new PaisBean();
 
 		bo.init();
 	
