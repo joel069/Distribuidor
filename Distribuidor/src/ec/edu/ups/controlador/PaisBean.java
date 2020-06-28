@@ -26,6 +26,7 @@ public class PaisBean implements Serializable{
 	private PaisFacade ejbPaisFacade;
 	private List<Pais> listaPais;
 	private String nombre;
+	
 	public PaisBean() {
 
 	} 
@@ -50,6 +51,10 @@ public class PaisBean implements Serializable{
 	}
 	public void setListaPais(List<Pais> listaPais) {
 		this.listaPais = listaPais;
+	}
+
+	public List<Pais> getListaPais() {
+		return listaPais;
 	}
 
 	public String getNombre() {

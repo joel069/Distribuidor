@@ -8,7 +8,8 @@ public class main {
 		// TODO Auto-generated method stub
 		PaisBean bo= new PaisBean();
 
-		bo.init();
+		PaisFacade pais= new PaisFacade();
+		
 	
 	
 	

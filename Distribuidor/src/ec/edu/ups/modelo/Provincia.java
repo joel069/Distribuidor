@@ -26,12 +26,10 @@ public class Provincia implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "provincia")
 	private List<Ciudad> listaCiudades;
 	
-	public Provincia(int id,String nombre,Pais pais,List<Ciudad> listaCiudades) {
+	public Provincia(String nombre,Pais pais) {
 		super();
-		this.id=id;
-		this.nombre=nombre;
 		this.pais=pais;
-		this.listaCiudades=listaCiudades;
+		this.nombre=nombre;
 	}
 	
 	public Provincia() {
