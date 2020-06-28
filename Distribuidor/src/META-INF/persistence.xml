@@ -5,7 +5,6 @@
 	
 		<jta-data-source>jdbc/_distribuidora</jta-data-source>
 		<class>ec.edu.ups.modelo.Bodega</class>
-		<class>ec.edu.ups.modelo.Distribuidora</class>
 		<class>ec.edu.ups.modelo.Pais</class>
 		<class>ec.edu.ups.modelo.Producto</class>
 		<class>ec.edu.ups.modelo.Provincia</class>

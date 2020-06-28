@@ -20,19 +20,25 @@ public class Bodega implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nombre;
-	private int stock;
-	
+	private int stock;	
 	@ManyToOne
 	private Ciudad ciudad;
 	
 	@OneToMany(mappedBy = "bodega")
 	private List<Producto> producto;
-	@ManyToOne
-	private Distribuidora bodega;
-	
+		
 	
 	public Bodega() {
+		
+	}
+	
+
+	public Bodega(String nombre, int stock, Ciudad ciudad) {
 		super();
+		this.nombre = nombre;
+		this.stock = stock;
+		this.ciudad = ciudad;
+		
 	}
 
 
@@ -76,25 +82,11 @@ public class Bodega implements Serializable {
 	}
 
 
-	public Distribuidora getBodega() {
-		return bodega;
-	}
-
-
-	public void setBodega(Distribuidora bodega) {
-		this.bodega = bodega;
-	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bodega == null) ? 0 : bodega.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((producto == null) ? 0 : producto.hashCode());
-		result = prime * result + stock;
 		return result;
 	}
 
@@ -108,24 +100,7 @@ public class Bodega implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bodega other = (Bodega) obj;
-		if (bodega == null) {
-			if (other.bodega != null)
-				return false;
-		} else if (!bodega.equals(other.bodega))
-			return false;
 		if (id != other.id)
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (producto == null) {
-			if (other.producto != null)
-				return false;
-		} else if (!producto.equals(other.producto))
-			return false;
-		if (stock != other.stock)
 			return false;
 		return true;
 	}
@@ -133,11 +108,16 @@ public class Bodega implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Bodega [id=" + id + ", nombre=" + nombre + ", stock=" + stock + ", producto=" + producto + ", bodega="
-				+ bodega + "]";
+		return "Bodega [id=" + id + ", nombre=" + nombre + ", stock=" + stock + ", ciudad=" + ciudad + ", producto="
+				+ producto + "]";
 	}
+
+
 	
+
+
 	
+
 
 	
 	
