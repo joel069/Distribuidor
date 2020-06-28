@@ -31,8 +31,17 @@ public class Producto implements Serializable {
 	 @ManyToOne
 	 private Categoria categoria;
 	
-	public Producto() {
+	public Producto(int id, String nombre,String descripcion,float preciounitario, float preciopublico) {
 		super();
+		this.id=id;
+		this.nombre=nombre;
+		this.descripcion=descripcion;
+		this.preciounitario=preciounitario;
+		this.preciopublico=preciopublico;
+	}
+	
+	public Producto() {
+		
 	}
 
 	public int getId() {
@@ -83,16 +92,13 @@ public class Producto implements Serializable {
 		this.bodega = bodega;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bodega == null) ? 0 : bodega.hashCode());
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((preciopublico == null) ? 0 : preciopublico.hashCode());
-		result = prime * result + ((preciounitario == null) ? 0 : preciounitario.hashCode());
 		return result;
 	}
 
@@ -105,32 +111,7 @@ public class Producto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		if (bodega == null) {
-			if (other.bodega != null)
-				return false;
-		} else if (!bodega.equals(other.bodega))
-			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
-			return false;
 		if (id != other.id)
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (preciopublico == null) {
-			if (other.preciopublico != null)
-				return false;
-		} else if (!preciopublico.equals(other.preciopublico))
-			return false;
-		if (preciounitario == null) {
-			if (other.preciounitario != null)
-				return false;
-		} else if (!preciounitario.equals(other.preciounitario))
 			return false;
 		return true;
 	}
