@@ -20,8 +20,9 @@ public class Producto implements Serializable {
 	private int id;
 	private String nombre;
 	private String descripcion;
-	private Float preciounitario;
-	private Float preciopublico;
+	private double preciounitario;
+	private double preciopublico;
+	private boolean editable;
 	@ManyToOne
 	private Bodega bodega;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
@@ -30,20 +31,19 @@ public class Producto implements Serializable {
 	
 	 @ManyToOne
 	 private Categoria categoria;
-	
-	public Producto(int id, String nombre,String descripcion,float preciounitario, float preciopublico) {
+	 
+		public Producto() {
+			
+		}
+
+	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico) {
 		super();
-		this.id=id;
 		this.nombre=nombre;
 		this.descripcion=descripcion;
 		this.preciounitario=preciounitario;
 		this.preciopublico=preciopublico;
 	}
 	
-	public Producto() {
-		
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -68,7 +68,7 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Float getPreciounitario() {
+	public Double getPreciounitario() {
 		return preciounitario;
 	}
 
@@ -76,7 +76,7 @@ public class Producto implements Serializable {
 		this.preciounitario = preciounitario;
 	}
 
-	public Float getPreciopublico() {
+	public Double getPreciopublico() {
 		return preciopublico;
 	}
 
@@ -90,6 +90,14 @@ public class Producto implements Serializable {
 
 	public void setBodega(Bodega bodega) {
 		this.bodega = bodega;
+	}
+	
+	public boolean isEditable() {
+		return editable;
+	}
+	
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	
