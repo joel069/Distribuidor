@@ -9,7 +9,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
 
 
@@ -22,10 +24,12 @@ public class ProductoBean implements Serializable{
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
+	private CategoriaFacade ejbCategoriaFacade;
 	private String nombre;
 	private String descripcion;
 	private double preciounitario;
 	private double preciopublico;
+	private String categoria;
 	private List<Producto> listaProductos;
 	
 	public ProductoBean() {
@@ -34,8 +38,8 @@ public class ProductoBean implements Serializable{
 	
 	@PostConstruct
 	public void init() {
-		ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
-		ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
+		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
+		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
 		listaProductos = ejbProductoFacade.findAll();
 	}
 
@@ -80,10 +84,20 @@ public class ProductoBean implements Serializable{
 		this.listaProductos = listaProductos;
 	}
 	
-//Metodos para agregar, listar, modificar y Eliminar
+	
+public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	//Metodos para agregar, listar, modificar y Eliminar
 	public String add() {
-		ejbProductoFacade.create(new Producto(this.nombre,this.descripcion,this.preciounitario,this.preciopublico));
+		ejbProductoFacade.create(new Producto(this.nombre,this.descripcion,this.preciounitario,this.preciopublico,buscar()));
 		listaProductos = ejbProductoFacade.findAll();
+		
 		return null;
 	}
 	
@@ -102,5 +116,15 @@ public class ProductoBean implements Serializable{
 		ejbProductoFacade.edit(p);
 		p.setEditable(false);
 		return null;
+	}
+	
+	public Categoria buscar() {
+		System.out.println(categoria);
+		Categoria ca = new Categoria();
+		
+		ca=ejbProductoFacade.validar(categoria);
+		System.out.println("Estamos en el metodo buscar:---------");
+		System.out.println(ca.toString());
+		return ca;
 	}
 }

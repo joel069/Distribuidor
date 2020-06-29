@@ -36,12 +36,13 @@ public class Producto implements Serializable {
 			
 		}
 
-	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico) {
+	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico,Categoria categoria) {
 		super();
 		this.nombre=nombre;
 		this.descripcion=descripcion;
 		this.preciounitario=preciounitario;
 		this.preciopublico=preciopublico;
+		this.categoria=categoria;
 	}
 	
 	public int getId() {
@@ -99,7 +100,8 @@ public class Producto implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
-
+	
+	
 	
 
 	@Override
