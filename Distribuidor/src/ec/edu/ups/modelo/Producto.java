@@ -22,12 +22,12 @@ public class Producto implements Serializable {
 	private String descripcion;
 	private double preciounitario;
 	private double preciopublico;
+	@Transient
 	private boolean editable;
 	@ManyToOne
 	private Bodega bodega;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facdet")
 	private Set<FacturaDetalle>facturaDetalle;
-	private FacturaDetalle producto;
 	
 	 @ManyToOne
 	 private Categoria categoria;
@@ -128,8 +128,8 @@ public class Producto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", preciounitario="
-				+ preciounitario + ", preciopublico=" + preciopublico + ", bodega=" + bodega + "]";
+		return "Nombre=" + nombre + ", Descripcion=" + descripcion + ", Precio unitario="
+				+ preciounitario + ", Precio publico=" + preciopublico ;
 	}
 	
 	

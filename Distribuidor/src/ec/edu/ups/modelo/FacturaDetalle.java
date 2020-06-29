@@ -25,24 +25,39 @@ public class FacturaDetalle implements Serializable {
     private double descuento;
     @ManyToOne
     private FacturaCabecera facturadet;
+    //productoooooooooooooooooooo
     @ManyToOne
-    private Producto producto;
+    private Producto facdet;
    
 	public FacturaDetalle() {
 		
 	}
 	
 	
-	public FacturaDetalle(String cantidad, double subtotal, double total, double descuento,
-			FacturaCabecera facturadet, Producto producto) {
-		super();	
+	
+	public FacturaDetalle(String cantidad, double subtotal, double total, double descuento, FacturaCabecera facturadet,
+			Producto facdet) {
+		super();
 		this.cantidad = cantidad;
 		this.subtotal = subtotal;
 		this.total = total;
 		this.descuento = descuento;
 		this.facturadet = facturadet;
-		this.producto = producto;
+		this.facdet = facdet;
 	}
+
+
+
+	public Producto getFacdet() {
+		return facdet;
+	}
+
+
+
+	public void setFacdet(Producto facdet) {
+		this.facdet = facdet;
+	}
+
 
 
 	public int getId() {
@@ -93,15 +108,7 @@ public class FacturaDetalle implements Serializable {
 		this.facturadet = facturadet;
 	}
 
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,13 +132,7 @@ public class FacturaDetalle implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "FacturaDetalle [id=" + id + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", total=" + total
-				+ ", descuento=" + descuento + ", facturadet=" + facturadet + ", producto=" + producto + "]";
-	}
-
-
+	
 		
    
 }

@@ -77,21 +77,4 @@ public class CiudadBean  implements Serializable {
 		
 			return null;
 	}
-	 
-		
-	public Provincia retorno() {
-		Provincia pa=ejbCiudadFacade.validarpro(provincia);
-		System.out.println("Princciaia obejeto reccuperdao");
-		System.out.println(pa.toString());
-		return pa;
-		
-	}
-	
-	 public String add() {
-			ejbCiudadFacade.create(new Ciudad("Colta",retorno()));
-			
-			listaCiudad = ejbCiudadFacade.findAll();
-			return null;
-		    }
-
 }

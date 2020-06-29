@@ -92,11 +92,10 @@ public class Ciudad implements Serializable {
 		return true;
 	}
 
-//toString
 	@Override
 	public String toString() {
-		return "Ciudad [id=" + id + ", nombre=" + nombre + ", provincia=" + provincia + ", listaBodegas=" + listaBodegas
-				+ "]";
+		return  nombre;
 	}
-	
+
+
 }

@@ -26,7 +26,7 @@ public class PaisBean implements Serializable{
 	private PaisFacade ejbPaisFacade;
 	private List<Pais> listaPais;
 	private String nombre;
-	
+	private String provincia;
 	public PaisBean() {
 
 	} 
@@ -62,5 +62,15 @@ public class PaisBean implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+	
+	
 
 }

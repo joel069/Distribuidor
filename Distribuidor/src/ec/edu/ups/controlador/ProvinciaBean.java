@@ -72,22 +72,4 @@ public class ProvinciaBean implements Serializable {
 		
 			return null;
 	}
-	 
-		
-	public Pais retorno() {
-		Pais pa=ejbProvinciaFacade.validar(pais);
-		System.out.println("Princciaia obejeto reccuperdao");
-		System.out.println(pa.toString());
-		return pa;
-		
-	}
-	
-	 public String add() {
-			ejbProvinciaFacade.create(new Provincia("Chimborazo",retorno()));
-			
-			listaProvincia = ejbProvinciaFacade.findAll();
-			return null;
-		    }
-
-	
 }

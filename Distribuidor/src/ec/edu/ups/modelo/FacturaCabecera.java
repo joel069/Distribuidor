@@ -25,8 +25,7 @@ public class FacturaCabecera implements Serializable {
     @ManyToOne
     private Persona facturacab;
     @OneToMany(mappedBy = "facturadet")
-    private Set<FacturaDetalle> listFacturaDetalle;
-   
+    private Set<FacturaDetalle> listFacturaDetalle;   
 	public FacturaCabecera() {
 		
 	}
@@ -118,14 +117,9 @@ public class FacturaCabecera implements Serializable {
 			return false;
 		return true;
 	}
-
-
-
 	@Override
 	public String toString() {
 		return "FacturaCabecera [id=" + id + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado
 				+ ", facturacab=" + facturacab + ", listFacturaDetalle=" + listFacturaDetalle + "]";
 	}
-   
-	
 }
