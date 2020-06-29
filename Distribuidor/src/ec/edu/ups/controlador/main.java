@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.ejb.PaisFacade;
+import ec.edu.ups.ejb.ProvinciaFacade;
 
 public class main {
 
@@ -8,8 +9,8 @@ public class main {
 		// TODO Auto-generated method stub
 		PaisBean bo= new PaisBean();
 
-		PaisFacade pais= new PaisFacade();
-		
+		ProvinciaFacade pais= new ProvinciaFacade();
+		pais.validar("Ecuador");
 	
 	
 	

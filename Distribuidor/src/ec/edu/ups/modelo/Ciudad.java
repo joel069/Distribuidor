@@ -26,12 +26,10 @@ public class Ciudad implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
 	private List<Bodega> listaBodegas;
 	
-	public Ciudad(int id,String nombre,Provincia provincia,List<Bodega> listaBodegas) {
+	public Ciudad(String nombre,Provincia provincia) {
 		super();
-		this.id=id;
 		this.nombre=nombre;
 		this.provincia=provincia;
-		this.listaBodegas=listaBodegas;
 	}
    
 	public Ciudad() {

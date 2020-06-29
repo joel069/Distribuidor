@@ -24,13 +24,13 @@ public class ProvinciaFacade extends AbstractFacade<Provincia> {
 		return em;
 	}
 	
-	public Pais validar(String pais) {
+	public Pais validar(String pais ) {
 		Pais paiss=new Pais();
 		try {
 			String sql="SELECT u FROM Pais u where u.nombre='"+pais+"'";
 			System.out.println(sql);
 			Query query = em.createQuery(sql);
-			paiss=(Pais) query.getResultList();
+			paiss= (Pais) query.getSingleResult();
 			System.out.println("recupere"+pais);	
 		} catch (Exception e) {
 			System.out.println("Pais"+e.getMessage());

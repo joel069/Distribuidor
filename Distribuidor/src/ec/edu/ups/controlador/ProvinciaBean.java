@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -75,11 +76,18 @@ public class ProvinciaBean implements Serializable {
 		
 	public Pais retorno() {
 		Pais pa=ejbProvinciaFacade.validar(pais);
-		System.out.println("smsdbfsdfbmsdf");
-		System.out.println(pa);
+		System.out.println("Princciaia obejeto reccuperdao");
+		System.out.println(pa.toString());
 		return pa;
 		
 	}
 	
+	 public String add() {
+			ejbProvinciaFacade.create(new Provincia("Chimborazo",retorno()));
+			
+			listaProvincia = ejbProvinciaFacade.findAll();
+			return null;
+		    }
+
 	
 }

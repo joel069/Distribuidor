@@ -33,9 +33,7 @@ public class PaisBean implements Serializable{
 
 	@PostConstruct
 	public void init() {
-		ejbPaisFacade.create(new Pais("Ecuador"));
-		ejbPaisFacade.create(new Pais("Peru"));
-		ejbPaisFacade.create(new Pais("Colombia"));
+	
 		listaPais = ejbPaisFacade.findAll();
 	}
 	public Pais[] getList() {

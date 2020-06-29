@@ -95,8 +95,7 @@ public class Provincia implements Serializable {
 //toString
 	@Override
 	public String toString() {
-		return "Provincia [id=" + id + ", nombre=" + nombre + ", pais=" + pais + ", listaCiudades=" + listaCiudades
-				+ "]";
+		return  nombre ;
 	}
 	
    

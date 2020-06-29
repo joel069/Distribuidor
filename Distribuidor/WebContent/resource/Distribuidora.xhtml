@@ -6,29 +6,29 @@
 <h:head>
 	<title>Bodega</title>
 	<style>
-		.tabla {
-			border-collapse: collapse;
-		}
-		
-		.cabeceraTabla {
-			text-align: center;
-			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 1px solid #BBBBBB;
-			padding: 8px;
-		}
-		
-		.filaPar {
-			text-align: center;
-			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 1px solid #BBBBBB;
-		}
-		
-		.filaImpar {
-			text-align: center;
-			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 1px solid #BBBBBB;
-		}
-	</style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+</style>
 </h:head>
 <h:body>
 	<h3>Gestión de categorias</h3>
@@ -39,22 +39,20 @@
 				<f:facet name="header">Codigo</f:facet>#{c.id}</h:column>
 			<h:column>
 				<f:facet name="header">Descripción</f:facet>
-				<h:inputText value="#{c.nombre}" size="10"
-					 />
-				<h:outputText value="#{c.nombre}"  />
-			</h:column>			
-			
+				<h:inputText value="#{c.nombre}" size="10" />
+				<h:outputText value="#{c.nombre}" />
+			</h:column>
+
 		</h:dataTable>
 		<ul>
-			<li>Descripción:<h:inputText size="10" value="#{paisBean.nombre}"/></li>
+			<li>Descripción:<h:inputText size="10"
+					value="#{paisBean.nombre}" /></li>
 		</ul>
-		<p>h:selectOneMenuuuuuuuuuuuuuu:</p>
-			<h:selectOneMenu value="#{provinciaBean.pais}">
-				<f:selectItems value="#{paisBean.listaPais}" />
-			</h:selectOneMenu>
-		<p>h:commandLink:</p>
-			<h:commandLink value="submit" type="submit" action="#{provinciaBean.retorno}" />
-			<p>h:commandButton:</p>		
+		<p>Pais</p>
+		<h:selectOneMenu value="#{paisBean.provincia}">
+			<f:selectItems value="#{provinciaBean.listaProvincia}" />
+		</h:selectOneMenu>
+	
 	</h:form>
 </h:body>
 </html>
