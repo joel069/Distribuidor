@@ -117,6 +117,7 @@ public class FacturaCabecera implements Serializable {
 			return false;
 		return true;
 	}
+	///
 	@Override
 	public String toString() {
 		return "FacturaCabecera [id=" + id + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado
