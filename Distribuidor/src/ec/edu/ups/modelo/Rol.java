@@ -2,6 +2,7 @@ package ec.edu.ups.modelo;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,22 +23,28 @@ public class Rol implements Serializable {
     private String descripcion;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    Set<Usuario> usuarioRol = new HashSet<Usuario>();
+    private List<Usuario> rol;
+    
+    @Transient
+	private boolean editable;
     
 	public Rol() {
 		super();
 	}
 
 	
-	public Rol(String nombre, String descripcion, Set<Usuario> usuarioRol) {
+	public Rol(String nombre, String descripcion, List<Usuario> rol) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.usuarioRol = usuarioRol;
+		this.rol = rol;
 	}
 
 
-	
+
+
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -55,17 +62,32 @@ public class Rol implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Set<Usuario> getUsuarioRol() {
-		return usuarioRol;
+	
+	
+	public List<Usuario> getRol() {
+		return rol;
 	}
 
-	public void setUsuarioRol(Set<Usuario> usuarioRol) {
-		this.usuarioRol = usuarioRol;
+
+
+
+	public boolean isEditable() {
+		return editable;
 	}
-	
-	
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
+	public void setRol(List<Usuario> rol) {
+		this.rol = rol;
+	}
+
+
 	public boolean addUsuario(Usuario usuario) {
-		return this.usuarioRol.add(usuario);
+		return this.rol.add(usuario);
 	}
 
 
@@ -95,7 +117,7 @@ public class Rol implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Rol [nombre=" + nombre + ", descripcion=" + descripcion + ", usuarioRol=" + usuarioRol + "]";
+		return "Rol [nombre=" + nombre + ", descripcion=" + descripcion + ", rol=" + rol + "]";
 	}
 
 	

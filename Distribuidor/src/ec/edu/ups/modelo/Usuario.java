@@ -16,7 +16,8 @@ public class Usuario extends Persona implements Serializable {
     
 	private String correo;
 	private String contraseña;
-	
+	@Transient
+	private boolean editable;
 	 @ManyToOne
 	 private Rol roles;
 	 
@@ -25,14 +26,6 @@ public class Usuario extends Persona implements Serializable {
 	}
 	
 	
-
-	public Usuario(String correo, String contraseña, Rol roles) {
-		super();
-		this.correo = correo;
-		this.contraseña = contraseña;
-		this.roles = roles;
-	}
-
 
 	
 
@@ -73,6 +66,18 @@ public class Usuario extends Persona implements Serializable {
 
 
 	
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
 
 	@Override
 	public String toString() {
