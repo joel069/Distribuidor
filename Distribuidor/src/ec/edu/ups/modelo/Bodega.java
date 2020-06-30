@@ -1,6 +1,7 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.*;
@@ -24,7 +25,8 @@ public class Bodega implements Serializable {
 	@ManyToOne
 	private Ciudad ciudad;
 	
-	@OneToMany(mappedBy = "bodega")
+	@ManyToMany(mappedBy = "listaProducto")
+	@JoinColumn
 	private List<Producto> producto;
 		
 	
@@ -113,7 +115,14 @@ public class Bodega implements Serializable {
 	}
 
 
-	
+	public String process() {
+		System.out.println("Se procesa...");
+		System.out.println("nombre: " + this.nombre);
+		System.out.println("stock: " + this.stock);
+		
+		
+		return null;
+	    }
 
 
 	

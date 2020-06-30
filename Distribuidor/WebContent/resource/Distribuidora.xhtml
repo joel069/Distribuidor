@@ -10,10 +10,32 @@
 <h:body>
 
 	<h:form>
-	
+	<li>Nombre: <h:inputText size="10" value="#{bodegaBeans.nombre}"/></li>
+	<li>Stock: <h:inputText id="stock" value="#{bodegaBeans.stock}"
+				converterMessage="Debe ser un numero entero">
+				<f:validateLongRange minimum="1"/>
+			</h:inputText></li>
+			
+		
+		<p>Pais</p><h:selectOneMenu value="#{bodegaBeans.pais}">
+			<f:selectItems value="#{paisBean.listaPais}" />
+		</h:selectOneMenu>
 		
 		
-
+		
+		<p>Provincia</p><h:selectOneMenu value="#{bodegaBeans.provincia}">
+			<f:selectItems value="#{provinciaBean.listaProvincia}" />
+		</h:selectOneMenu>
+		
+		
+		<p>Ciudad</p><h:selectOneMenu value="#{bodegaBeans.ciudad}">
+			<f:selectItems value="#{ciudadBean.listaCiudad}" />
+		</h:selectOneMenu>
+		
+		<p>Producto</p><h:selectOneMenu value="#{bodegaBeans.producto}">
+			<f:selectItems value="#{productoBean.listaProductos}" />
+		</h:selectOneMenu>
+ 
 	</h:form>
 </h:body>
 </html>

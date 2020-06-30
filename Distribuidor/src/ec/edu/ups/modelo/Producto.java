@@ -23,14 +23,19 @@ public class Producto implements Serializable {
 	private double preciounitario;
 	private double preciopublico;
 	@Transient
-	private boolean editable;
-	@ManyToOne
-	private Bodega bodega;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facdet")
-	private Set<FacturaDetalle>facturaDetalle;
+	private boolean editable;	
+	@ManyToMany
+	@JoinColumn
+	private Set<Bodega>listaProducto;
 	
-	 @ManyToOne
-	 private Categoria categoria;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facdet")
+	private Set<FacturaDetalle>facturaDetalle;	
+	
+	
+	@ManyToOne
+	private Categoria categoria;
 	 
 		public Producto() {
 			
@@ -85,14 +90,40 @@ public class Producto implements Serializable {
 		this.preciopublico = preciopublico;
 	}
 
-	public Bodega getBodega() {
-		return bodega;
+	
+	
+	public Set<Bodega> getListaProducto() {
+		return listaProducto;
 	}
 
-	public void setBodega(Bodega bodega) {
-		this.bodega = bodega;
+	public void setListaProducto(Set<Bodega> listaProducto) {
+		this.listaProducto = listaProducto;
 	}
-	
+
+	public Set<FacturaDetalle> getFacturaDetalle() {
+		return facturaDetalle;
+	}
+
+	public void setFacturaDetalle(Set<FacturaDetalle> facturaDetalle) {
+		this.facturaDetalle = facturaDetalle;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public void setPreciounitario(double preciounitario) {
+		this.preciounitario = preciounitario;
+	}
+
+	public void setPreciopublico(double preciopublico) {
+		this.preciopublico = preciopublico;
+	}
+
 	public boolean isEditable() {
 		return editable;
 	}
