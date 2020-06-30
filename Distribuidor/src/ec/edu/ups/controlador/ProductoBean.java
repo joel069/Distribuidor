@@ -92,7 +92,7 @@ public String getCategoria() {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-
+	
 	//Metodos para agregar, listar, modificar y Eliminar
 	public String add() {
 		ejbProductoFacade.create(new Producto(this.nombre,this.descripcion,this.preciounitario,this.preciopublico,buscar()));
@@ -125,6 +125,21 @@ public String getCategoria() {
 		ca=ejbProductoFacade.validar(categoria);
 		System.out.println("Estamos en el metodo buscar:---------");
 		System.out.println(ca.toString());
+		System.out.println(" Id de la categoria es: "+ ca.getId());
 		return ca;
+	}
+	
+	public Categoria buscarProductos() {
+		System.out.println(categoria);
+		Categoria ca = new Categoria();
+		ca=ejbProductoFacade.validar(categoria);
+		System.out.println("Se busca el id de la categoria para los productos.");
+		System.out.println(ca.toString());
+		int id=ca.getId();
+		System.out.println(id);
+		listaProductos=ejbProductoFacade.buscarProductos(id);
+		System.out.println("La lista de Productos es:"+listaProductos);
+		return ca;
+		
 	}
 }

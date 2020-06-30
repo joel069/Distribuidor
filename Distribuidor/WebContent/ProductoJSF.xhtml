@@ -71,14 +71,15 @@
 			<li>Descripcion: <h:inputText size="10" value="#{productoBean.descripcion}"/></li>
 			<li>PrecioU: <h:inputText size="10" value="#{productoBean.preciounitario}"/></li>
 			<li>PrecioP: <h:inputText size="10" value="#{productoBean.preciopublico}"/></li>
+			<li>Categoria:
 		<h:selectOneMenu value="#{productoBean.categoria}">
 			<f:selectItems value="#{categoriaBeans.listaCategorias}" />
 		</h:selectOneMenu>
+		</li>
 		</ul>
 		
-		
-		<h:commandButton value="Listar" action="#{productoBean.buscar}"/>
 		<h:commandButton value="Registrar" action="#{productoBean.add}"/>
+		<h:commandButton value="Buscar Bodega" action="#{productoBean.buscarBr}"/>
 	</h:form>
 </h:body>
 </html>

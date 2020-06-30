@@ -1,5 +1,7 @@
 package ec.edu.ups.ejb;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,6 +38,13 @@ public class ProductoFacade extends AbstractFacade<Producto>{
 			}
 				
 			return cat;
+			
+		}
 		
+		public List<Producto> buscarProductos(int id){
+			System.out.println("El id que resivo es:"+ id);
+			String sql="SELECT p FROM Producto p where p.categoria.id='"+id+"'";
+			List<Producto> list = em.createQuery(sql).getResultList();
+			return list;
 		}
 }
