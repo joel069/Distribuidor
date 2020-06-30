@@ -35,7 +35,7 @@
 	<h:form>
 		<h:dataTable value="#{rolBean.list}" var="c" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-
+			<h:column>
 				<f:facet name="header">Nombre del Rol</f:facet>
 				<h:inputText value="#{c.nombre}"
 					rendered="#{c.editable}" />

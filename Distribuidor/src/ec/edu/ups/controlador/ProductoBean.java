@@ -31,6 +31,8 @@ public class ProductoBean implements Serializable{
 	private double preciopublico;
 	private String categoria;
 	private List<Producto> listaProductos;
+	//ariable para bodegas
+	private String bodega;
 	
 	public ProductoBean() {
 		
@@ -92,7 +94,15 @@ public String getCategoria() {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	
+//Getters and setters para bodega
+	public String getBodega() {
+		return bodega;
+	}
+
+	public void setBodega(String bodega) {
+		this.bodega = bodega;
+	}
+
 	//Metodos para agregar, listar, modificar y Eliminar
 	public String add() {
 		ejbProductoFacade.create(new Producto(this.nombre,this.descripcion,this.preciounitario,this.preciopublico,buscar()));

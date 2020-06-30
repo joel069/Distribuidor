@@ -76,6 +76,11 @@
 			<f:selectItems value="#{categoriaBeans.listaCategorias}" />
 		</h:selectOneMenu>
 		</li>
+		<li>Bodegas:
+		<h:selectOneMenu value="#{productoBean.bodega}">
+			<f:selectItems value="#{bodegaBeans.listaBdoega}" />
+		</h:selectOneMenu>
+		</li>
 		</ul>
 		
 		<h:commandButton value="Registrar" action="#{productoBean.add}"/>

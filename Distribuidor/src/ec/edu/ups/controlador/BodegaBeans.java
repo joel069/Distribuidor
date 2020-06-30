@@ -36,7 +36,8 @@ public class BodegaBeans implements Serializable {
 	}
 
 	@PostConstruct
-	public void init() {		
+	public void init() {
+		listaBdoega=ejbBodegaFacade.findAll();
 		
 	}
 	public BodegaFacade getEjbBodegaFacade() {
