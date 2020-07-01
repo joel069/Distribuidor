@@ -37,7 +37,7 @@ public class Rol implements Serializable {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.rol = rol;
+		
 	}
 
 
@@ -117,7 +117,7 @@ public class Rol implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Rol [nombre=" + nombre + ", descripcion=" + descripcion + ", rol=" + rol + "]";
+		return nombre;
 	}
 
 	

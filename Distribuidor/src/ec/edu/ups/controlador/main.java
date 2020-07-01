@@ -1,7 +1,10 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.ejb.PaisFacade;
+import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.ejb.ProvinciaFacade;
+import ec.edu.ups.modelo.Pais;
+import ec.edu.ups.modelo.Producto;
 
 public class main {
 
@@ -9,11 +12,11 @@ public class main {
 		// TODO Auto-generated method stub
 		PaisBean bo= new PaisBean();
 
-		ProvinciaFacade pais= new ProvinciaFacade();
-		pais.validar("Ecuador");
+		ProductoFacade pais= new ProductoFacade();
+		Producto pa=pais.find(1);
+		System.out.println(pa);
 	
-	
-	
+		
 	
 	}
 

@@ -1,6 +1,10 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -24,13 +28,9 @@ public class Producto implements Serializable {
 	private double preciopublico;
 	@Transient
 	private boolean editable;	
-	@ManyToMany
-	@JoinColumn
-	private Set<Bodega>listaProducto;
-	
-	
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facdet")
+	@ManyToMany(mappedBy = "producto")
+	private Collection<Bodega>bodegas;	
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "facdet")
 	private Set<FacturaDetalle>facturaDetalle;	
 	
 	
@@ -48,12 +48,14 @@ public class Producto implements Serializable {
 		this.preciounitario=preciounitario;
 		this.preciopublico=preciopublico;
 		this.categoria=categoria;
+		bodegas=new HashSet<Bodega>();
 	}
 	
 	public int getId() {
 		return id;
 	}
 
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -89,24 +91,8 @@ public class Producto implements Serializable {
 	public void setPreciopublico(Double preciopublico) {
 		this.preciopublico = preciopublico;
 	}
-
 	
 	
-	public Set<Bodega> getListaProducto() {
-		return listaProducto;
-	}
-
-	public void setListaProducto(Set<Bodega> listaProducto) {
-		this.listaProducto = listaProducto;
-	}
-
-	public Set<FacturaDetalle> getFacturaDetalle() {
-		return facturaDetalle;
-	}
-
-	public void setFacturaDetalle(Set<FacturaDetalle> facturaDetalle) {
-		this.facturaDetalle = facturaDetalle;
-	}
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -134,7 +120,6 @@ public class Producto implements Serializable {
 	
 	
 	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -157,11 +142,18 @@ public class Producto implements Serializable {
 		return true;
 	}
 
+	public void addBodega(Bodega bodega){
+     this.bodegas.add(bodega);
+    }
+
 	@Override
 	public String toString() {
-		return "Nombre=" + nombre + ", Descripcion=" + descripcion + ", Precio unitario="
-				+ preciounitario + ", Precio publico=" + preciopublico ;
+		return " Nombre=" + nombre + ", descripcion=" + descripcion + ", preciounitario="
+				+ preciounitario + ", preciopublico=" + preciopublico + ", categoria="
+				+ categoria ;
 	}
+
+	
 	
 	
    

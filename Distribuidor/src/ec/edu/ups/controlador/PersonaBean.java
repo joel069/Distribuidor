@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.modelo.Persona;
+import ec.edu.ups.modelo.Rol;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -23,6 +24,10 @@ public class PersonaBean implements Serializable{
     private String apellido;
     private String telefono;
     private String cedula;
+    private UsuarioBean ejbUsuarioBean;
+    private String correo;
+    private String contrasena;
+    private Rol rol;
     
 	public PersonaBean() {
 		
@@ -30,7 +35,9 @@ public class PersonaBean implements Serializable{
 	
 	 @PostConstruct
 	    public void init() {
+		//ejbPersonaFacade.create(new Persona("Helen","Companioni","0992726928","0151489812","Simon Bolivar"));
 		list = ejbPersonaFacade.findAll();
+	
 	    }
 	        
 	    public Persona[] getList() {
@@ -65,6 +72,80 @@ public class PersonaBean implements Serializable{
 		c.setEditable(false);
 		return null;
 	    }
+
+		public String getNombre() {
+			return nombre;
+		}
+
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+
+		public String getApellido() {
+			return apellido;
+		}
+
+		public void setApellido(String apellido) {
+			this.apellido = apellido;
+		}
+
+		public String getTelefono() {
+			return telefono;
+		}
+
+		public void setTelefono(String telefono) {
+			this.telefono = telefono;
+		}
+
+		public String getCedula() {
+			return cedula;
+		}
+
+		public void setCedula(String cedula) {
+			this.cedula = cedula;
+		}
+
+		public UsuarioBean getEjbUsuarioBean() {
+			return ejbUsuarioBean;
+		}
+
+		public void setEjbUsuarioBean(UsuarioBean ejbUsuarioBean) {
+			this.ejbUsuarioBean = ejbUsuarioBean;
+		}
+
+		public String getCorreo() {
+			return correo;
+		}
+
+		public void setCorreo(String correo) {
+			this.correo = correo;
+		}
+
+		public String getContraseña() {
+			return contrasena;
+		}
+
+		public void setContraseña(String contraseña) {
+			this.contrasena = contraseña;
+		}
+
+		public String getContrasena() {
+			return contrasena;
+		}
+
+		public void setContrasena(String contrasena) {
+			this.contrasena = contrasena;
+		}
+
+		public Rol getRol() {
+			return rol;
+		}
+
+		public void setRol(Rol rol) {
+			this.rol = rol;
+		}
+
+		
 
 	
 }

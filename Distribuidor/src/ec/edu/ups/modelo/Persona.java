@@ -22,25 +22,29 @@ public class Persona implements Serializable {
 	private String apellido;
 	private String telefono;
 	private String cedula;
+	
 	@OneToMany(mappedBy = "facturacab")
 	private Set<FacturaCabecera> listFacturasCab;
 	@Transient
 	private boolean editable;
-
+    
+	
 	
 	public Persona() {
 
 	}
 	
-	
-	
+
 	public Persona(String nombre, String apellido, String telefono, String cedula) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
 		this.cedula = cedula;
+		
+		
 	}
+
 
 
 
@@ -92,6 +96,7 @@ public class Persona implements Serializable {
 		this.listFacturasCab = listFacturasCab;
 	}
 
+	
 	public boolean isEditable() {
 		return editable;
 	}
@@ -131,8 +136,16 @@ public class Persona implements Serializable {
 	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
-				+ ", cedula=" + cedula + ", listFacturasCab=" + listFacturasCab + ", editable=" + editable + "]";
+				+ ", cedula=" + cedula + "]";
 	}
+
+
+
+	
+
+
+
+	
 	
 	
 }

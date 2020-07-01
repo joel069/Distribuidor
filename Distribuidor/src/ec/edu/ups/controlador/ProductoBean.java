@@ -21,7 +21,7 @@ import ec.edu.ups.modelo.Producto;
 public class ProductoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+	//
 	@EJB
 	private ProductoFacade ejbProductoFacade;
 	private CategoriaFacade ejbCategoriaFacade;
@@ -31,7 +31,11 @@ public class ProductoBean implements Serializable{
 	private double preciopublico;
 	private String categoria;
 	private List<Producto> listaProductos;
+
 	//variable para bodegas
+
+		//ariable para bodegas
+ 
 	private String bodega;
 	
 	public ProductoBean() {

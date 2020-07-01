@@ -10,7 +10,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Usuario;
 
@@ -20,7 +22,7 @@ import ec.edu.ups.modelo.Usuario;
 public class UsuarioBean implements Serializable{
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
-	private Rol ejbRolFacade;
+	private RolFacade ejbRolFacade;
 	private List<Usuario> list;
 	private Rol rol;
 	private String nombre;
@@ -28,14 +30,19 @@ public class UsuarioBean implements Serializable{
 	private String telefono;
 	private String cedula;
 	private String correo;
-	private String contraseña;
+	private String contrasena;
+	private String direccion;
+	private Rol roll;
+	private String rool;
 	
 	public UsuarioBean() {
-		rol=new Rol();
+		
 	}
 	
 	@PostConstruct
 	public void init() {
+		 
+		 //ejbUsuarioFacade.create(new Usuario("Kevin","Cordero","0992726928","015128912","kevin@gmail.com","123",rol));
 		 list= ejbUsuarioFacade.findAll();
 	 }
 
@@ -48,7 +55,7 @@ public class UsuarioBean implements Serializable{
 	}
 	 
 	 public String add() {
-		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,this.contraseña,this.rol));
+		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,this.contrasena,buscar()));
 			list = ejbUsuarioFacade.findAll();
 			return null;
 		    }
@@ -120,14 +127,42 @@ public class UsuarioBean implements Serializable{
 				this.correo = correo;
 			}
 
-			public String getContraseña() {
-				return contraseña;
+			public String getContrasena() {
+				return contrasena;
 			}
 
-			public void setContraseña(String contraseña) {
-				this.contraseña = contraseña;
+			public void setContrasena(String contrasena) {
+				this.contrasena = contrasena;
+			}
+
+			public String getDireccion() {
+				return direccion;
+			}
+
+			public void setDireccion(String direccion) {
+				this.direccion = direccion;
+			}
+
+			public String getRool() {
+				return rool;
+			}
+
+			public void setRool(String rool) {
+				this.rool = rool;
 			}
 
   
+			public Rol buscar() {
+				Rol rol = new Rol();
+				System.out.println("Se recupera elrol------------------------------------>>>>>>");
+				System.out.println(rool);
+				System.out.println("---------------------------------------");
+			rol= ejbUsuarioFacade.buscarRol(rool);
+			System.out.println("muestra del rol");
+			System.out.println(rol);
+			return rol;
+			}
+			
+			
 	
 }

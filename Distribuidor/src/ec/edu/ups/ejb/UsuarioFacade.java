@@ -22,4 +22,11 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
 		// TODO Auto-generated method stub
 		return em;
 	}
+	
+	public Rol buscarRol(String nombre){
+		Rol rol=new Rol();
+		String sql="SELECT p FROM Rol p where p.nombre='"+nombre+"'";
+		rol = (Rol) em.createQuery(sql).getSingleResult();
+		return rol;
+	}
 }

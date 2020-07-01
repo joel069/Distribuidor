@@ -31,7 +31,7 @@
 	</style>
 </h:head>
 <h:body>
-	<h3>Registro Clientes</h3>
+	<h3>Registro Personal</h3>
 	<h:form>
 		<h:dataTable value="#{usuarioBean.list}" var="c" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
@@ -39,14 +39,14 @@
 				<f:facet name="header">Codigo</f:facet>#{c.id}</h:column>
 			<h:column>
 				<f:facet name="header">Nombre</f:facet>
-				<h:inputText value="#{c.nombre}" size="10"
+				<h:inputText value="#{c.nombre}"
 					rendered="#{c.editable}" />
 				<h:outputText value="#{c.nombre}" rendered="#{not c.editable}" />
 			</h:column>	
 			
 			<h:column>
 				<f:facet name="header">Apellido</f:facet>
-				<h:inputText value="#{c.apellido}" size="10"
+				<h:inputText value="#{c.apellido}"
 					rendered="#{c.editable}" />
 				<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
 			</h:column>	
@@ -67,14 +67,14 @@
 			
 			<h:column>
 				<f:facet name="header">Correo</f:facet>
-				<h:inputText value="#{c.correo}" size="10"
+				<h:inputText value="#{c.correo}" 
 					rendered="#{c.editable}" />
 				<h:outputText value="#{c.correo}" rendered="#{not c.editable}" />
 			</h:column>	
 			
 			<h:column>
 				<f:facet name="header">Contraseña</f:facet>
-				<h:inputText value="#{c.contraseña}" size="10"
+				<h:inputText value="#{c.contraseña}"
 					rendered="#{c.editable}" />
 				<h:outputText value="#{c.contraseña}" rendered="#{not c.editable}" />
 			</h:column>	
@@ -94,11 +94,11 @@
 			</h:column>
 		</h:dataTable>
 		<ul>
-			<li>Nombre:<h:inputText size="10" value="#{usuarioBean.nombre}"/></li>
+			<li>Nombre:<h:inputText value="#{usuarioBean.nombre}"/></li>
 		</ul>
 		
 		<ul>
-			<li>Apellido:<h:inputText size="10" value="#{usuarioBean.apellido}"/></li>
+			<li>Apellido:<h:inputText  value="#{usuarioBean.apellido}"/></li>
 		</ul>
 		
 		<ul>
@@ -110,11 +110,11 @@
 		</ul>
 		
 		<ul>
-			<li>Correo:<h:inputText size="10" value="#{usuarioBean.correo}"/></li>
+			<li>Correo:<h:inputText  value="#{usuarioBean.correo}"/></li>
 		</ul>
 		
 		<ul>
-			<li>Contraseña:<h:inputText size="10" value="#{usuarioBean.contraseña}"/></li>
+			<li>Contraseña:<h:inputText  value="#{usuarioBean.contraseña}"/></li>
 		</ul>
 		
 		<h:commandButton value="Add" action="#{usuarioBean.add}" />
