@@ -30,12 +30,11 @@ public class Usuario extends Persona implements Serializable {
 	
 
 	
-	public Usuario(String nombre, String apellido, String telefono, String cedula, String correo, String contraseña,
-			Rol roles) {
+	public Usuario(String nombre, String apellido, String telefono, String cedula, String correo, String contraseña,Rol roles) {
 		super(nombre, apellido, telefono, cedula);
 		this.correo = correo;
 		this.contraseña = contraseña;
-		this.roles = roles;
+		this.roles=roles;
 	}
 
 

@@ -32,8 +32,8 @@ public class RolBean  implements Serializable{
 	 
 	 @PostConstruct
 	 public void init() {
-		 ejbRolFacade.create(new Rol("admin","administracion"));
-		 ejbRolFacade.create(new Rol("emple","Empleado"));
+		 //ejbRolFacade.create(new Rol("admin","administracion"));
+		// ejbRolFacade.create(new Rol("emple","Empleado"));
 		 list= ejbRolFacade.findAll();
 	 }
 
