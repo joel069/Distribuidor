@@ -31,7 +31,7 @@ public class ProductoBean implements Serializable{
 	private double preciopublico;
 	private String categoria;
 	private List<Producto> listaProductos;
-	
+	private BodegaBeans bodega;
 	public ProductoBean() {
 		
 	}

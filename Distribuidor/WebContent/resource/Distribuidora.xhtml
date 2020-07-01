@@ -5,37 +5,82 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>Bodega</title>
-
+<style>
+		.tabla {
+			border-collapse: collapse;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none repeat scroll 0 0 #E5E5E5;
+			border-bottom: 1px solid #BBBBBB;
+			padding: 8px;
+		}
+		
+		.filaPar {
+			text-align: center;
+			background: none repeat scroll 0 0 #FFFFFFF;
+			border-top: 1px solid #BBBBBB;
+		}
+		
+		.filaImpar {
+			text-align: center;
+			background: none repeat scroll 0 0 #F9F9F9;
+			border-top: 1px solid #BBBBBB;
+		}
+	</style>
 </h:head>
 <h:body>
 
 	<h:form>
-	<li>Nombre: <h:inputText size="10" value="#{bodegaBeans.nombre}"/></li>
-	<li>Stock: <h:inputText id="stock" value="#{bodegaBeans.stock}"
-				converterMessage="Debe ser un numero entero">
-				<f:validateLongRange minimum="1"/>
-			</h:inputText></li>
-			
+	
+			<h:dataTable value="#{bodegaBeans.listaBodega}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+		<h:column>
+		<f:facet name="header">Codigo</f:facet>#{p.id}</h:column>
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			<h:inputText value="#{p.nombre}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Stock</f:facet>
+			<h:inputText value="#{p.stock}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.stock}" rendered="#{not p.editable}" />
+		</h:column>
 		
-		<p>Pais</p><h:selectOneMenu value="#{bodegaBeans.pais}">
+		<h:column>
+			<f:facet name="header">Accion</f:facet>
+			<h:commandLink value="Remove" action="#{bodegaBeans.remove(p)}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Accion</f:facet>
+			<h:commandLink value="Edit" action="#{bodegaBeans.edit(p)}" rendered="#{not p.editable}"/>
+			<h:commandLink value="Save" action="#{bodegaBeans.save(p)}" rendered="#{ p.editable}"/>
+		</h:column>
+		</h:dataTable>
+		<li>Nombre: <h:inputText size="10" value="#{bodegaBeans.nombre}" /></li>
+		<li>Stock: <h:inputText id="stock" value="#{bodegaBeans.stock}"
+				converterMessage="Debe ser un numero entero">
+				<f:validateLongRange minimum="1" />
+			</h:inputText></li>
+		<p>Pais</p>
+		<h:selectOneMenu value="#{bodegaBeans.pais}">
 			<f:selectItems value="#{paisBean.listaPais}" />
 		</h:selectOneMenu>
-		
-		
-		
-		<p>Provincia</p><h:selectOneMenu value="#{bodegaBeans.provincia}">
+		<p>Provincia</p>
+		<h:selectOneMenu value="#{bodegaBeans.provincia}">
 			<f:selectItems value="#{provinciaBean.listaProvincia}" />
 		</h:selectOneMenu>
-		
-		
-		<p>Ciudad</p><h:selectOneMenu value="#{bodegaBeans.ciudad}">
+		<p>Ciudad</p>
+		<h:selectOneMenu value="#{bodegaBeans.ciudad}">
 			<f:selectItems value="#{ciudadBean.listaCiudad}" />
 		</h:selectOneMenu>
-		
-		<p>Producto</p><h:selectOneMenu value="#{bodegaBeans.producto}">
+		<p>Producto</p>
+		<h:selectManyListbox value="#{bodegaBeans.manyListbox}">
 			<f:selectItems value="#{productoBean.listaProductos}" />
-		</h:selectOneMenu>
- 
+		</h:selectManyListbox>
+		<h:commandLink value="submit" type="submit"
+			action="#{bodegaBeans.add}" />
 	</h:form>
 </h:body>
 </html>

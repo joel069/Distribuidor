@@ -1,8 +1,12 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -25,10 +29,11 @@ public class Bodega implements Serializable {
 	@ManyToOne
 	private Ciudad ciudad;
 	
-	@ManyToMany(mappedBy = "listaProducto")
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinColumn
-	private List<Producto> producto;
-		
+	private Collection<Producto> producto;
+	@Transient
+	private boolean editable;		
 	
 	public Bodega() {
 		
@@ -39,8 +44,18 @@ public class Bodega implements Serializable {
 		super();
 		this.nombre = nombre;
 		this.stock = stock;
+		this.ciudad = ciudad;			
+	
+	}
+
+
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+
+	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
-		
 	}
 
 
@@ -73,17 +88,7 @@ public class Bodega implements Serializable {
 		this.stock = stock;
 	}
 
-
-	public List<Producto> getProducto() {
-		return producto;
-	}
-
-
-	public void setProducto(List<Producto> producto) {
-		this.producto = producto;
-	}
-
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -108,25 +113,31 @@ public class Bodega implements Serializable {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Bodega [id=" + id + ", nombre=" + nombre + ", stock=" + stock + ", ciudad=" + ciudad + ", producto="
-				+ producto + "]";
+	public boolean isEditable() {
+		return editable;
 	}
 
 
-	public String process() {
-		System.out.println("Se procesa...");
-		System.out.println("nombre: " + this.nombre);
-		System.out.println("stock: " + this.stock);
-		
-		
-		return null;
-	    }
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public void addProducto(Producto produ) {
+		if (this.producto==null) {
+			producto=new HashSet<Producto>();
+		}
+		this.producto.add(produ);
+	}
+
+	@Override
+	public String toString() {
+		return "Bodega [id=" + id + ", nombre=" + nombre + ", stock=" + stock + ", ciudad=" + ciudad + "]";
+	}
+	
+
 
 
 	
-
 
 	
 	
