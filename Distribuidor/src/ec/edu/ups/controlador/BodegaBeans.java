@@ -46,9 +46,12 @@ public class BodegaBeans implements Serializable {
 
 	@PostConstruct
 	public void init() {
+
 		this.bodega = new Bodega();
 	manyListbox= new HashSet<Producto>();
 		listaBodega = ejbBodegaFacade.findAll();
+
+		
 	}
 
 	public Bodega getBodega() {
@@ -138,12 +141,11 @@ public class BodegaBeans implements Serializable {
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
-		
+	
 	}
-	//Aquiiiiiiiiiiii
  
 	public String add() {
-		bodega.setCiudad(this.process());//Aqui recupero la ciudad
+		bodega.setCiudad(this.process());
 		bodega.setNombre(this.nombre);
 		bodega.setStock(this.stock);
 		for (Producto produ : manyListbox) {			

@@ -33,7 +33,7 @@ public class Rol implements Serializable {
 	}
 
 	
-	public Rol(String nombre, String descripcion, List<Usuario> rol) {
+	public Rol(String nombre, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;

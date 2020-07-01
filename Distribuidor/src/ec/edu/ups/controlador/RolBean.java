@@ -23,16 +23,17 @@ public class RolBean  implements Serializable{
 	 private RolFacade ejbRolFacade;
 	 private List<Rol> list;
 	 private List<Usuario> usuario;
-	 private String nombre="emple";
-	 private String descripcion ="Empleado";
+	 private String nombre;
+	 private String descripcion;
 	 
 	 public RolBean() {
-		 usuario=new ArrayList<Usuario>();
+		
 	 }
 	 
 	 @PostConstruct
 	 public void init() {
-		 ejbRolFacade.create(new Rol("UPS","administracion",usuario));
+		 ejbRolFacade.create(new Rol("admin","administracion"));
+		 ejbRolFacade.create(new Rol("emple","Empleado"));
 		 list= ejbRolFacade.findAll();
 	 }
 
@@ -45,7 +46,7 @@ public class RolBean  implements Serializable{
 	}
 	 
 	 public String add() {
-		    ejbRolFacade.create(new Rol(this.nombre,this.descripcion,this.usuario));
+		    ejbRolFacade.create(new Rol(this.nombre,this.descripcion));
 			list = ejbRolFacade.findAll();
 			return null;
 		    }
@@ -68,6 +69,30 @@ public class RolBean  implements Serializable{
 			c.setEditable(false);
 			return null;
 		    }
+
+			public List<Usuario> getUsuario() {
+				return usuario;
+			}
+
+			public void setUsuario(List<Usuario> usuario) {
+				this.usuario = usuario;
+			}
+
+			public String getNombre() {
+				return nombre;
+			}
+
+			public void setNombre(String nombre) {
+				this.nombre = nombre;
+			}
+
+			public String getDescripcion() {
+				return descripcion;
+			}
+
+			public void setDescripcion(String descripcion) {
+				this.descripcion = descripcion;
+			}
 
    
 }

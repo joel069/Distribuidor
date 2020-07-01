@@ -20,6 +20,7 @@ import ec.edu.ups.modelo.Usuario;
 public class UsuarioBean implements Serializable{
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
+	private Rol ejbRolFacade;
 	private List<Usuario> list;
 	private Rol rol;
 	private String nombre;
@@ -29,19 +30,17 @@ public class UsuarioBean implements Serializable{
 	private String correo;
 	private String contraseña;
 	
-	
 	public UsuarioBean() {
 		rol=new Rol();
 	}
 	
 	@PostConstruct
 	public void init() {
-		ejbUsuarioFacade.create(new Usuario("Ernesto","Piedra","0992726928","0151489813","ernesto@gmail.com","123",rol));
 		 list= ejbUsuarioFacade.findAll();
 	 }
 
-	public Rol[] getList() {
-		return list.toArray(new Rol[0]);
+	public Usuario[] getList() {
+		return list.toArray(new Usuario[0]);
 	}
 
 	public void setList(List<Usuario> list) {
@@ -49,7 +48,7 @@ public class UsuarioBean implements Serializable{
 	}
 	 
 	 public String add() {
-		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,this.contraseña,this.rol	));
+		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,this.contraseña,this.rol));
 			list = ejbUsuarioFacade.findAll();
 			return null;
 		    }
@@ -72,6 +71,62 @@ public class UsuarioBean implements Serializable{
 			c.setEditable(false);
 			return null;
 		    }
+
+			public Rol getRol() {
+				return rol;
+			}
+
+			public void setRol(Rol rol) {
+				this.rol = rol;
+			}
+
+			public String getNombre() {
+				return nombre;
+			}
+
+			public void setNombre(String nombre) {
+				this.nombre = nombre;
+			}
+
+			public String getApellido() {
+				return apellido;
+			}
+
+			public void setApellido(String apellido) {
+				this.apellido = apellido;
+			}
+
+			public String getTelefono() {
+				return telefono;
+			}
+
+			public void setTelefono(String telefono) {
+				this.telefono = telefono;
+			}
+
+			public String getCedula() {
+				return cedula;
+			}
+
+			public void setCedula(String cedula) {
+				this.cedula = cedula;
+			}
+
+			public String getCorreo() {
+				return correo;
+			}
+
+			public void setCorreo(String correo) {
+				this.correo = correo;
+			}
+
+			public String getContraseña() {
+				return contraseña;
+			}
+
+			public void setContraseña(String contraseña) {
+				this.contraseña = contraseña;
+			}
 
   
 	
