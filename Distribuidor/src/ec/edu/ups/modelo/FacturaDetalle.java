@@ -32,9 +32,7 @@ public class FacturaDetalle implements Serializable {
 	public FacturaDetalle() {
 		
 	}
-	
-	
-	
+
 	public FacturaDetalle(String cantidad, double subtotal, double total, double descuento, FacturaCabecera facturadet,
 			Producto facdet) {
 		super();
@@ -46,19 +44,13 @@ public class FacturaDetalle implements Serializable {
 		this.facdet = facdet;
 	}
 
-
-
 	public Producto getFacdet() {
 		return facdet;
 	}
 
-
-
 	public void setFacdet(Producto facdet) {
 		this.facdet = facdet;
 	}
-
-
 
 	public int getId() {
 		return id;
