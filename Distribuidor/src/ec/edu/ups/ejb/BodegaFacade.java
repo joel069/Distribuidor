@@ -24,7 +24,7 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
 	public BodegaFacade() {
 		super(Bodega.class);
 	}
-
+//
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;
