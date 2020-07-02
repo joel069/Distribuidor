@@ -73,8 +73,17 @@
 			<li>Total:<h:inputText size="10" value="#{facturaCabeceraBean.total}"/></li>
 		</ul>
 		
+		<ul>
+		<li>Cliente:
+		<h:selectOneMenu value="#{facturaCabeceraBean.persona}">
+			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
+		</h:selectOneMenu>
+		</li>
+		</ul>
 		
-		<h:commandButton value="Add" action="#{facturCabeceraBean.add}" />
+		<h:commandButton value="Buscar" action="#{facturaCabeceraBean.buscar}" />
+		
+		<h:commandButton value="Add" action="#{facturaCabeceraBean.add}" />
 
 	</h:form>
 </h:body>

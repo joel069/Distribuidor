@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Registro Personal</title>
+	<style>
+		.tabla {
+			border-collapse: collapse;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none repeat scroll 0 0 #E5E5E5;
+			border-bottom: 1px solid #BBBBBB;
+			padding: 8px;
+		}
+		
+		.filaPar {
+			text-align: center;
+			background: none repeat scroll 0 0 #FFFFFFF;
+			border-top: 1px solid #BBBBBB;
+		}
+		
+		.filaImpar {
+			text-align: center;
+			background: none repeat scroll 0 0 #F9F9F9;
+			border-top: 1px solid #BBBBBB;
+		}
+	</style>
+</h:head>
+<h:body>
+	<h3>Registro Clientes</h3>
+	<h:form>
+		<h:dataTable value="#{usuarioBean.list}" var="c" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{c.id}</h:column>
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:inputText value="#{c.nombre}" 
+					rendered="#{c.editable}" />
+				<h:outputText value="#{c.nombre}" rendered="#{not c.editable}" />
+			</h:column>	
+			
+			<h:column>
+				<f:facet name="header">Apellido</f:facet>
+				<h:inputText value="#{c.apellido}" 
+					rendered="#{c.editable}" />
+				<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
+			</h:column>	
+				
+			<h:column>
+				<f:facet name="header">Telefono</f:facet>
+				<h:inputText value="#{c.telefono}" size="10"
+					rendered="#{c.editable}" />
+				<h:outputText value="#{c.telefono}" rendered="#{not c.editable}" />
+			</h:column>	
+			
+			<h:column>
+				<f:facet name="header">Cedula</f:facet>
+				<h:inputText value="#{c.cedula}" size="10"
+					rendered="#{c.editable}" />
+				<h:outputText value="#{c.cedula}" rendered="#{not c.editable}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Correo</f:facet>
+				<h:inputText value="#{personaBean.correo}"
+					rendered="#{c.editable}" />
+				<h:outputText value="#{personaBean.correo}" rendered="#{not c.editable}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Contraseña</f:facet>
+				<h:inputText value="#{usuarioBean.contrasena}"
+					rendered="#{c.editable}" />
+				<h:outputText value="#{usuarioBean.contrasena}" rendered="#{not c.editable}"/>
+			</h:column>
+			
+			
+			
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Delete" action="#{usuarioBean.delete(c)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Edit" action="#{usuarioBean.edit(c)}"
+					rendered="#{not c.editable}" />
+				<h:commandLink value="Save" action="#{usuarioBean.save(c)}"
+					rendered="#{c.editable}" />
+			</h:column>
+		</h:dataTable>
+		
+		
+		<ul>
+			<li>Nombre:<h:inputText value="#{usuarioBean.nombre}"/></li>
+		</ul>
+		
+		<ul>
+			<li>Apellido:<h:inputText value="#{usuarioBean.apellido}"/></li>
+		</ul>
+		
+		<ul>
+			<li>Telefono:<h:inputText size="10" value="#{usuarioBean.telefono}"/></li>
+		</ul>
+		
+		<ul>
+			<li>Cedula:<h:inputText size="10" value="#{usuarioBean.cedula}"/></li>
+		</ul>
+		
+		<ul>
+			<li>Correo:<h:inputText  value="#{usuarioBean.correo}"  /></li>
+		</ul>
+		
+		<ul>
+			<li>Contraseña:<h:inputText  value="#{usuarioBean.contrasena}"  /></li>
+		</ul>
+		
+		<h:selectOneMenu value="#{usuarioBean.rool}">
+			<f:selectItems value="#{rolBean.list}" />
+		</h:selectOneMenu>
+	
+	 	<h:commandButton value="listar" action="#{usuarioBean.buscar}" />
+		<h:commandButton value="Add" action="#{usuarioBean.add}" />
+	</h:form>
+	
+	
+		
+	
+		
+		
+</h:body>
+</html>

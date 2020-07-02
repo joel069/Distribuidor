@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,10 +12,12 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.FacturaCabeceraFacade;
 import ec.edu.ups.ejb.PersonaFacade;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.FacturaCabecera;
 import ec.edu.ups.modelo.FacturaDetalle;
 import ec.edu.ups.modelo.Persona;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Usuario;
 
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
@@ -31,8 +34,18 @@ public class FacturaCabeceraBean implements Serializable{
 	private String fecha;
 	private double total;
 	private String estado;
+	private String persona;
+	public String getPersona() {
+		return persona;
+	}
+
+	public void setPersona(String persona) {
+		this.persona = persona;
+	}
+
+	private List<Usuario> personalist;
 	private List<FacturaCabecera> listaFacturaCabe;
-	private Persona persona;
+	
 	
 	public FacturaCabeceraBean() {
 	
@@ -43,7 +56,8 @@ public class FacturaCabeceraBean implements Serializable{
 		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
 		listaFacturaCabe= ejbFacturaCabeceraFacade.findAll();
-	
+		personalist = new ArrayList<Usuario>();	
+		buscar();
 	}
 
 	public FacturaCabeceraFacade getEjbFacturaCabeceraFacade() {
@@ -93,20 +107,19 @@ public class FacturaCabeceraBean implements Serializable{
 	public void setListaFacturaCabe(List<FacturaCabecera> listaFacturaCabe) {
 		this.listaFacturaCabe = listaFacturaCabe;
 	}
-
-	public Persona getPersona() {
-		return persona;
+	public List<Usuario> getPersonalist() {
+		return personalist;
 	}
 
-	public void setPersona(Persona persona) {
-		this.persona = persona;
+	public void setPersonalist(List<Usuario> personalist) {
+		this.personalist = personalist;
 	}
-	
+
 	//Metodos para agregar, listar, modificar y Eliminar
 	public String add() {
 	
 	
-	ejbFacturaCabeceraFacade.create(new FacturaCabecera(this.fecha,this.total,this.estado,this.persona));								
+	//ejbFacturaCabeceraFacade.create(new FacturaCabecera(this.fecha,this.total,this.estado,buscar()));								
 	listaFacturaCabe= ejbFacturaCabeceraFacade.findAll();
 		
 	return null;
@@ -128,6 +141,16 @@ public class FacturaCabeceraBean implements Serializable{
 		ejbFacturaCabeceraFacade.edit(fc);
 		fc.setEditable(false);
 		return null;
+	}
+	
+	public List<Usuario> buscar() {
+		
+		System.out.println("Si entroooooo");
+		personalist = ejbFacturaCabeceraFacade.validarper();
+		System.out.println("Lista:" +personalist);
+	
+		return personalist;
+		
 	}
 }
 	

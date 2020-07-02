@@ -114,9 +114,7 @@ public class Persona implements Serializable {
 		result = prime * result + id;
 		return result;
 	}
-
-
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -135,17 +133,7 @@ public class Persona implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
+		return "Persona [ nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
 				+ ", cedula=" + cedula + "]";
-	}
-
-
-
-	
-
-
-
-	
-	
-	
+	}	
 }
