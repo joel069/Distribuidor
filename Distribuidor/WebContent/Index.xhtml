@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+<title>Index</title>
+<link rel="stylesheet" href="css/estilosIndex.css"></link>
+</head>
+<body>
+	<header>
+        <h1>Bienvenidos a Distribuidora UPS.</h1>
+        <h:form>
+        <nav>
+        	<h:link value="CATEGORIAS" outcome="ListarProductosJSF.xhtml">
+				<f:param name="Categorias" value="enlace" />
+			</h:link>
+			<h:link value="BODEGAS" outcome="ListarProductosJSF.xhtml">
+				<f:param name="Bodegas" value="enlace" />
+			</h:link>
+			<h:link value="INICIAR SESION" outcome="Login.xhtml">
+				<f:param name="Sesion" value="enlace" />
+			</h:link>
+        </nav>
+        </h:form>
+    </header>
+</body>
+</html>

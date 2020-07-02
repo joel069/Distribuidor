@@ -154,4 +154,12 @@ public class Tags {
 				System.out.println("myClass: " + this.myClass.getName());
 				return null;
 			    }
+		 
+		 public String cambioPagina() {
+			 String valor="cambioP";
+			 System.out.println(valor);
+			 
+			return valor;
+			 
+		 }
 }
