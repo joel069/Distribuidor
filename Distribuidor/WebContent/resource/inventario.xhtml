@@ -31,38 +31,9 @@
 </h:head>
 <h:body>
 	<h3>Listado de Inventario.</h3>
-	<h:form>
-	<ul>
-	<li>Bodegas:
-		<h:selectOneMenu value="#{bodegaBeans.inventario}">
-			<f:selectItems value="#{bodegaBeans.list}" />
-		</h:selectOneMenu>
-	</li>
-	</ul>
-	<h:commandButton value="Buscar Inventario." action="#{bodegaBeans.buscarBodega}"/>
-	<br></br>
-	<br></br>
-	<h:dataTable value="#{productoBean.listaProductos}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
-		<h:column>
-			<f:facet name="header">Codigo.</f:facet>#{p.id}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Nombre.</f:facet>
-			<h:outputText value="#{p.nombre}"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Descripcion.</f:facet>
-			<h:outputText value="#{p.descripcion}"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">PrecioU.</f:facet>	
-			<h:outputText value="#{p.preciounitario}"/>	
-		</h:column>
-		<h:column>
-			<f:facet name="header">PrecioP</f:facet>
-			<h:outputText value="#{p.preciopublico}"/>
-		</h:column>
-	</h:dataTable>
+	<h:form>		
+	<h:commandButton value="Buscar Inventario." action="#{bodegaBeans.inventarioRecuperado}"/>
+	
 	</h:form>
 </h:body>
 </html>

@@ -36,19 +36,17 @@ public class BodegaBeans implements Serializable {
 	private String nombre;
 	private int stock;
 	private Set<Producto> manyListbox;
-	// private Ciudad ciudad;	
 	private String provincia;
 	private String ciudad;
 	private String producto;
 	private List<Bodega> listaBodega;
 	private String inventario;
 	private Bodega bodega;
-	private List<Object>list;
-	//ajax pais	
-	private PaisFacade ejbPaisFacade;
+private PaisFacade ejbPaisFacade;
 	private List<Pais> listaPais;
 	private List<Provincia> listaProvincia;
 	private List<Ciudad> listaCiudad;
+	private List<Producto>listaProducto;
 	private String pais;
 	public BodegaBeans() {
 
@@ -61,6 +59,7 @@ public class BodegaBeans implements Serializable {
 	listaCiudad=new  ArrayList<Ciudad>();
 	listaProvincia=new ArrayList<Provincia>(); 
 	listaBodega = ejbBodegaFacade.findAll();
+	listaProducto=new ArrayList<Producto>();
 
 		
 	}
@@ -93,14 +92,6 @@ public class BodegaBeans implements Serializable {
 	public void setListaPais(List<Pais> listaPais) {
 		this.listaPais = listaPais;
 	}
-	public List<Object> getList() {
-		return list;
-	}
-
-	public void setList(List<Object> list) {
-		this.list = list;
-	}
-
 	public String getInventario() {
 		return inventario;
 	}
@@ -240,6 +231,14 @@ public class BodegaBeans implements Serializable {
 	/**
 	 * Metodos
 	 */
+	
+	public List<Producto>  inventarioRecuperado() {
+		listaProducto=ejbBodegaFacade.buscarProductos();
+		System.out.println(listaProducto);
+		return listaProducto;	
+		
+		
+	}
 	public Ciudad process() {
 		Ciudad ciudadd = new Ciudad();
 		ciudadd = ejbBodegaFacade.validar(ciudad);
@@ -247,11 +246,7 @@ public class BodegaBeans implements Serializable {
 		System.out.println(ciudadd.toString());
 		return ciudadd;
 	}
-	public List<Object> buscarBodega() {
-		list =ejbBodegaFacade.buscarProductos();
-		System.out.println(list);
-		return list;
-	}
+	
 	public Pais retornarrpais() {
 		Pais paisss=new Pais();
 		paisss=ejbBodegaFacade.pais(pais);		
@@ -275,4 +270,18 @@ public class BodegaBeans implements Serializable {
 		listaCiudad=ejbBodegaFacade.ciudad(retornarProvincia());
 		System.out.println(listaProvincia);
 		}
+
+	/**
+	 * Inventario
+	 */
+	public List<Producto> getListaProducto() {
+		return listaProducto;
+	}
+	public void setListaProducto(List<Producto> listaProducto) {
+		this.listaProducto = listaProducto;
+	}
+	
+	
+	
+	
 }

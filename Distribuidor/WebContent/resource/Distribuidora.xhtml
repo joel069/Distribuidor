@@ -5,40 +5,21 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>Bodega</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>.
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
-<style>
-		.tabla {
-			border-collapse: collapse;
-		}
-		
-		.cabeceraTabla {
-			text-align: center;
-			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 1px solid #BBBBBB;
-			padding: 8px;
-		}
-		
-		.filaPar {
-			text-align: center;
-			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 1px solid #BBBBBB;
-		}
-		
-		.filaImpar {
-			text-align: center;
-			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 1px solid #BBBBBB;
-		}
-	</style>
+
 </h:head>
 <h:body>
 	<h:form>	
-		<h:dataTable value="#{bodegaBeans.listaBodega}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+		<h:dataTable value="#{bodegaBeans.listaBodega}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar"  class="table table-hover">
 		<h:column>
 		<f:facet name="header">Codigo</f:facet>#{p.id}</h:column>
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>
-			<h:inputText value="#{p.nombre}" size="10" rendered="#{p.editable}"/>
+			<h:inputText value="#{p.nombre}" size="10" rendered="#{p.editable}" class="form-control"/>
 			<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
 		</h:column>
 			<h:column>
@@ -47,7 +28,7 @@
 		</h:column>
 		<h:column>
 			<f:facet name="header">Stock</f:facet>
-			<h:inputText value="#{p.stock}" size="10" rendered="#{p.editable}"/>
+			<h:inputText value="#{p.stock}" size="10" rendered="#{p.editable}" class="form-control"/>
 			<h:outputText value="#{p.stock}" rendered="#{not p.editable}" />
 		</h:column>
 		
@@ -68,24 +49,24 @@
 			</h:inputText></li>
 		<p>Pais</p>
 		<h:selectOneMenu value="#{bodegaBeans.pais}">
-			<f:selectItems name="item" value="#{paisBean.listaPais}" />
+			<f:selectItems name="item" value="#{paisBean.listaPais}" class="form-control" />
 			<f:ajax event="change" listener="#{bodegaBeans.cargarProvincia}" render="idList2 idList3" execute="@this"/>
 		</h:selectOneMenu>
 		<p>Provincia</p>
 		<h:selectOneMenu id="idList2" value="#{bodegaBeans.provincia}" >
-			<f:selectItems value="#{bodegaBeans.listaProvincia}" />
+			<f:selectItems value="#{bodegaBeans.listaProvincia}" class="form-control" />
 			<f:ajax event="change" listener="#{bodegaBeans.cargarCiudades}" render="idList3" execute="@this"/>
 		</h:selectOneMenu>
 		<p>Ciudad</p>
 		<h:selectOneMenu value="#{bodegaBeans.ciudad}" id="idList3">
-			<f:selectItems value="#{bodegaBeans.listaCiudad}" />
+			<f:selectItems value="#{bodegaBeans.listaCiudad}"  class="form-control"/>
 		</h:selectOneMenu>
 		<p>Producto</p>
 		<h:selectManyListbox value="#{bodegaBeans.manyListbox}">
-			<f:selectItems value="#{productoBean.listaProductos}" />
+			<f:selectItems value="#{productoBean.listaProductos}" class="form-control" />
 		</h:selectManyListbox>
 		<h:commandLink value="submit" type="submit"
-			action="#{bodegaBeans.add}" />
+			action="#{bodegaBeans.add}" class="btn btn-danger btn block"/>
 	</h:form>
 </h:body>
 </html>
