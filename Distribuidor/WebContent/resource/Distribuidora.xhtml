@@ -5,6 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>Bodega</title>
+	
 <style>
 		.tabla {
 			border-collapse: collapse;
@@ -31,16 +32,18 @@
 	</style>
 </h:head>
 <h:body>
-
-	<h:form>
-	
-			<h:dataTable value="#{bodegaBeans.listaBodega}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+	<h:form>	
+		<h:dataTable value="#{bodegaBeans.listaBodega}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		<h:column>
 		<f:facet name="header">Codigo</f:facet>#{p.id}</h:column>
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>
 			<h:inputText value="#{p.nombre}" size="10" rendered="#{p.editable}"/>
 			<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
+		</h:column>
+			<h:column>
+			<f:facet name="header">Ciudad</f:facet>
+			<h:outputText value="#{p.ciudad.nombre}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Stock</f:facet>
@@ -65,15 +68,17 @@
 			</h:inputText></li>
 		<p>Pais</p>
 		<h:selectOneMenu value="#{bodegaBeans.pais}">
-			<f:selectItems value="#{paisBean.listaPais}" />
+			<f:selectItems name="item" value="#{paisBean.listaPais}" />
+			<f:ajax event="change" listener="#{bodegaBeans.cargarProvincia}" render="idList2 idList3" execute="@this"/>
 		</h:selectOneMenu>
 		<p>Provincia</p>
-		<h:selectOneMenu value="#{bodegaBeans.provincia}">
-			<f:selectItems value="#{provinciaBean.listaProvincia}" />
+		<h:selectOneMenu id="idList2" value="#{bodegaBeans.provincia}" >
+			<f:selectItems value="#{bodegaBeans.listaProvincia}" />
+			<f:ajax event="change" listener="#{bodegaBeans.cargarCiudades}" render="idList3" execute="@this"/>
 		</h:selectOneMenu>
 		<p>Ciudad</p>
-		<h:selectOneMenu value="#{bodegaBeans.ciudad}">
-			<f:selectItems value="#{ciudadBean.listaCiudad}" />
+		<h:selectOneMenu value="#{bodegaBeans.ciudad}" id="idList3">
+			<f:selectItems value="#{bodegaBeans.listaCiudad}" />
 		</h:selectOneMenu>
 		<p>Producto</p>
 		<h:selectManyListbox value="#{bodegaBeans.manyListbox}">

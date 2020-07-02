@@ -11,14 +11,19 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 import org.eclipse.persistence.internal.jpa.config.mappings.ManyToOneImpl;
 
 import ec.edu.ups.ejb.BodegaFacade;
+import ec.edu.ups.ejb.PaisFacade;
 import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.modelo.Bodega;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Ciudad;
+import ec.edu.ups.modelo.Pais;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Provincia;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -31,27 +36,77 @@ public class BodegaBeans implements Serializable {
 	private String nombre;
 	private int stock;
 	private Set<Producto> manyListbox;
-	// private Ciudad ciudad;
-	private String pais;
+	// private Ciudad ciudad;	
 	private String provincia;
 	private String ciudad;
 	private String producto;
 	private List<Bodega> listaBodega;
-	
+	private String inventario;
 	private Bodega bodega;
-	
+	private List<Object>list;
+	//ajax pais	
+	private PaisFacade ejbPaisFacade;
+	private List<Pais> listaPais;
+	private List<Provincia> listaProvincia;
+	private List<Ciudad> listaCiudad;
+	private String pais;
 	public BodegaBeans() {
 
 	}
-
 	@PostConstruct
 	public void init() {
 
-		this.bodega = new Bodega();
+	this.bodega = new Bodega();
 	manyListbox= new HashSet<Producto>();
-		listaBodega = ejbBodegaFacade.findAll();
+	listaCiudad=new  ArrayList<Ciudad>();
+	listaProvincia=new ArrayList<Provincia>(); 
+	listaBodega = ejbBodegaFacade.findAll();
 
 		
+	}
+	
+	
+	public List<Ciudad> getListaCiudad() {
+		return listaCiudad;
+	}
+	public void setListaCiudad(List<Ciudad> listaCiudad) {
+		this.listaCiudad = listaCiudad;
+	}
+	public List<Provincia> getListaProvincia() {
+		return listaProvincia;
+	}
+	public void setListaProvincia(List<Provincia> listaProvincia) {
+		this.listaProvincia = listaProvincia;
+	}
+	public List<Pais> getListaPais() {
+		return listaPais;
+	}
+	public PaisFacade getEjbPaisFacade() {
+		return ejbPaisFacade;
+	}
+
+	public void setEjbPaisFacade(PaisFacade ejbPaisFacade) {
+		this.ejbPaisFacade = ejbPaisFacade;
+	}
+
+	
+	public void setListaPais(List<Pais> listaPais) {
+		this.listaPais = listaPais;
+	}
+	public List<Object> getList() {
+		return list;
+	}
+
+	public void setList(List<Object> list) {
+		this.list = list;
+	}
+
+	public String getInventario() {
+		return inventario;
+	}
+
+	public void setInventario(String inventario) {
+		this.inventario = inventario;
 	}
 
 	public Bodega getBodega() {
@@ -182,7 +237,6 @@ public class BodegaBeans implements Serializable {
 		p.setEditable(false);
 		return null;
 	}
-
 	/**
 	 * Metodos
 	 */
@@ -193,5 +247,32 @@ public class BodegaBeans implements Serializable {
 		System.out.println(ciudadd.toString());
 		return ciudadd;
 	}
-
+	public List<Object> buscarBodega() {
+		list =ejbBodegaFacade.buscarProductos();
+		System.out.println(list);
+		return list;
+	}
+	public Pais retornarrpais() {
+		Pais paisss=new Pais();
+		paisss=ejbBodegaFacade.pais(pais);		
+		return paisss;	
+	}
+	public Provincia retornarProvincia() {
+		Provincia pro=new Provincia();
+		pro=ejbBodegaFacade.recuperoProvincia(provincia);		
+		System.out.println(pro);
+		return pro;		
+	}
+	/*
+	 * Ajaxxx
+	 * 
+	 */
+	public void cargarProvincia(AjaxBehaviorEvent event) {		
+		listaProvincia=ejbBodegaFacade.provincia(retornarrpais());
+		System.out.println(listaProvincia);
+}
+	public void cargarCiudades(AjaxBehaviorEvent event) {		
+		listaCiudad=ejbBodegaFacade.ciudad(retornarProvincia());
+		System.out.println(listaProvincia);
+		}
 }

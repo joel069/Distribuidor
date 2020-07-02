@@ -1,5 +1,6 @@
 package ec.edu.ups.controlador;
 
+import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.PaisFacade;
 import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.ejb.ProvinciaFacade;
@@ -12,10 +13,7 @@ public class main {
 		// TODO Auto-generated method stub
 		PaisBean bo= new PaisBean();
 
-		ProductoFacade pais= new ProductoFacade();
-		Producto pa=pais.find(1);
-		System.out.println(pa);
-	
+		
 		
 	
 	}
