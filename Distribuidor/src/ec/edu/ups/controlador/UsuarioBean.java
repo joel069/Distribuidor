@@ -34,6 +34,8 @@ public class UsuarioBean implements Serializable{
 	private String direccion;
 	private Rol roll;
 	private String rool;
+	private String corr;
+	private String contra;
 	
 	public UsuarioBean() {
 		
@@ -152,6 +154,22 @@ public class UsuarioBean implements Serializable{
 			}
 
   
+			public String getCorr() {
+				return corr;
+			}
+
+			public void setCorr(String corr) {
+				this.corr = corr;
+			}
+
+			public String getContra() {
+				return contra;
+			}
+
+			public void setContra(String contra) {
+				this.contra = contra;
+			}
+
 			public Rol buscar() {
 				Rol rol = new Rol();
 				System.out.println("Se recupera elrol------------------------------------>>>>>>");
@@ -163,6 +181,40 @@ public class UsuarioBean implements Serializable{
 			return rol;
 			}
 			
+			
+			
+			public String inicio() {
+				try {
+				Usuario us = new Usuario();
+				System.out.println("cREDENCIALES");
+				System.out.println(corr);
+				System.out.println(contra);
+				us = ejbUsuarioFacade.inicio(corr, contra);
+				System.out.println("El usuario ingresadooooooo");
+				System.out.println(us);
+				Rol rol1=new Rol();
+				rol1.setNombre("admin");
+				Usuario usu=new Usuario();
+				usu.setRoles(rol1);
+				
+				Rol rol2=new Rol();
+				rol2.setNombre("emple");
+				Usuario usu1=new Usuario();
+				usu.setRoles(rol2);
+				
+				System.out.println(us.getRoles().equals(rol1));
+					if (us != null && us.getRoles().equals(rol1)) {
+						return "exito";
+					} else if(us != null && us.getRoles().equals(rol2)) {
+						return "exitoEmple";
+					} else {
+						return "fallo";
+					}
+				} catch (Exception e) {
+					return "fallo";
+				}
+                 
+			}
 			
 	
 }

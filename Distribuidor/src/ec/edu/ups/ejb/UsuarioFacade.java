@@ -29,4 +29,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
 		rol = (Rol) em.createQuery(sql).getSingleResult();
 		return rol;
 	}
+	
+	public Usuario inicio(String username, String password) {
+    	Usuario us=new Usuario();
+   	 String query = "SELECT e " +
+   		      "FROM Usuario e " +
+   		      "WHERE e.correo = '" + username +
+   		      "' AND " +
+   		      " e.contraseña = '" + password + "'";
+      	us =em.createQuery(query, Usuario.class).getSingleResult();
+   		      return us;
+   }
+	
+	
 }
