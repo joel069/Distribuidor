@@ -69,9 +69,8 @@ public class Usuario extends Persona implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
-
-
-
+	
+	
 	//@Override
 	//public String toString() {
 	//	return "Usuario [correo=" + correo + ", contraseña=" + contraseña + ", roles=" + roles +"]";

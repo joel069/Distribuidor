@@ -45,9 +45,6 @@ public class Persona implements Serializable {
 		
 	}
 
-
-
-
 	public int getId() {
 		return id;
 	}

@@ -34,6 +34,9 @@
 	<h3>Registro Factura...!!!!</h3>
 	<h:form>
 	
+								<!--  Factura Cabecera -->
+								
+	
 	<h:dataTable value="#{facturaCabeceraBean.listaFacturaCabe}" var="fa" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		<h:column>
 		<f:facet name="header">Codigo</f:facet>#{fa.id}</h:column>
@@ -67,6 +70,60 @@
 		
 		<ul>
 			<li>Estado:<h:inputText size="10" value="#{facturaCabeceraBean.estado}"/></li>
+		</ul>
+		
+		<ul>
+			<li>Total:<h:inputText size="10" value="#{facturaCabeceraBean.total}"/></li>
+		</ul>
+		
+		<ul>
+		<li>Cliente:
+		<h:selectOneMenu value="#{facturaCabeceraBean.persona}">
+			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
+		</h:selectOneMenu>
+		</li>
+		</ul>
+		
+		
+		
+		
+								<!--  Factura Detalle -->
+								
+								
+		
+		<h:dataTable value="#{facturaCabeceraBean.listaFacturaCabe}" var="fa" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+		<h:column>
+		<f:facet name="header">Codigo</f:facet>#{fa.id}</h:column>
+		<h:column>
+			<f:facet name="header">Fecha</f:facet>
+			<h:inputText value="#{fa.fecha}" size="10" rendered="#{fa.editable}"/>
+			<h:outputText value="#{fa.fecha}" rendered="#{not fa.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Estado</f:facet>
+			<h:inputText value="#{fa.estado}" size="10" rendered="#{fa.editable}"/>
+			<h:outputText value="#{fa.estado}" rendered="#{not fa.editable}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">Total</f:facet>
+			<h:inputText value="#{fa.total}" size="10" rendered="#{fa.editable}"/>
+			<h:outputText value="#{fa.total}" rendered="#{not fa.editable}" />
+		</h:column>		
+			
+		<h:column>
+			<f:facet name="header">Accion</f:facet>
+			<h:commandLink value="Edit" action="#{facturaCabeceraBean.edit(fa)}" rendered="#{not fa.editable}"/>
+			<h:commandLink value="Save" action="#{facturaCabeceraBean.save(fa)}" rendered="#{ fa.editable}"/>
+		</h:column>
+		</h:dataTable>
+		
+		<ul>
+			<li>Cantidad:<h:inputText size="10" value="#{facturaCabeceraBean.fecha}"/></li>
+		</ul>
+		
+		<ul>
+			<li>Subtotal:<h:inputText size="10" value="#{facturaCabeceraBean.estado}"/></li>
 		</ul>
 		
 		<ul>

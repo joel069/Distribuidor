@@ -35,6 +35,8 @@ public class FacturaCabeceraBean implements Serializable{
 	private double total;
 	private String estado;
 	private String persona;
+	
+	
 	public String getPersona() {
 		return persona;
 	}
