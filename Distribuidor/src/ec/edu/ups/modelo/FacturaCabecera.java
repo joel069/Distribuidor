@@ -22,6 +22,8 @@ public class FacturaCabecera implements Serializable {
     private String fecha;
     private double total;
     private String estado;
+    @Transient
+	private boolean editable;
     @ManyToOne
     private Persona facturacab;
     @OneToMany(mappedBy = "facturadet")
@@ -34,12 +36,25 @@ public class FacturaCabecera implements Serializable {
 	
 	public FacturaCabecera(String fecha, double total, String estado, Persona facturacab) {
 		super();
+		
 		this.fecha = fecha;
 		this.total = total;
 		this.estado = estado;
 		this.facturacab = facturacab;
 		
 		
+	}
+
+	
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 

@@ -70,7 +70,4 @@ public class PaisBean implements Serializable{
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
-	
-	
-
 }
