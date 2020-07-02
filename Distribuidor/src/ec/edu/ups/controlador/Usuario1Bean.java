@@ -43,7 +43,7 @@ public class Usuario1Bean implements Serializable{
 	public void init() {
 		
 		 //ejbUsuarioFacade.create(new Usuario("Kevin","Cordero","0992726928","015128912","kevin@gmail.com","123",rol));
-		 list= ejbUsuarioFacade.findAll();
+		 list= ejbUsuarioFacade.muestraClientes();
 	 }
 
 	public Usuario[] getList() {

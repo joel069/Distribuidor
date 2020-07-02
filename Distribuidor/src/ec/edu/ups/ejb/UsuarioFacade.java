@@ -1,5 +1,7 @@
 package ec.edu.ups.ejb;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,6 +42,12 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
       	us =em.createQuery(query, Usuario.class).getSingleResult();
    		      return us;
    }
-	
-	
+
+	public List<Usuario> muestraClientes() {
+		String sql="SELECT u FROM Usuario u where u.roles.nombre = 'cli'";
+		List<Usuario> list = em.createQuery(sql).getResultList();
+		System.out.println("Lista persona:" + list);
+		return list;
+   }
+
 }
