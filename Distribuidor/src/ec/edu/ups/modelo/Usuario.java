@@ -13,23 +13,17 @@ public class Usuario extends Persona implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-    
 	private String correo;
 	private String contraseña;
 	@Transient
 	private boolean editable;
 	 @ManyToOne
-	 private Rol roles;
+	private Rol roles;
 	 
 	public Usuario() {
 		super();
 	}
-	
-	
 
-	
-
-	
 	public Usuario(String nombre, String apellido, String telefono, String cedula, String correo, String contraseña,Rol roles) {
 		super(nombre, apellido, telefono, cedula);
 		this.correo = correo;
@@ -78,10 +72,12 @@ public class Usuario extends Persona implements Serializable {
 
 
 
-	@Override
-	public String toString() {
-		return "Usuario [correo=" + correo + ", contraseña=" + contraseña + ", roles=" + roles + "]";
-	}
+	//@Override
+	//public String toString() {
+	//	return "Usuario [correo=" + correo + ", contraseña=" + contraseña + ", roles=" + roles +"]";
+	//}
+	
+	
 	
 	
    
