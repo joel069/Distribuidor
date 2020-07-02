@@ -4,7 +4,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Registro Personal</title>
+	<title>Registro Usuarios</title>
 	<style>
 		.tabla {
 			border-collapse: collapse;
@@ -67,9 +67,9 @@
 			
 			<h:column>
 				<f:facet name="header">Correo</f:facet>
-				<h:inputText value="#{personaBean.correo}"
+				<h:inputText value="#{c.correo}"
 					rendered="#{c.editable}" />
-				<h:outputText value="#{personaBean.correo}" rendered="#{not c.editable}"/>
+				<h:outputText value="#{c.correo}" rendered="#{not c.editable}"/>
 			</h:column>
 			
 			<h:column>

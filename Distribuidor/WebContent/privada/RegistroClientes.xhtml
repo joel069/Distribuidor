@@ -4,7 +4,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Registro Clientes</title>
+	<title>Registro Usuarios</title>
 	<style>
 		.tabla {
 			border-collapse: collapse;
@@ -31,22 +31,22 @@
 	</style>
 </h:head>
 <h:body>
-	<h3>Registro Personal</h3>
+	<h3>Registro Clientes</h3>
 	<h:form>
-		<h:dataTable value="#{usuarioBean.list}" var="c" styleClass="tabla"
+		<h:dataTable value="#{usuario1Bean.list}" var="c" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 			<h:column>
 				<f:facet name="header">Codigo</f:facet>#{c.id}</h:column>
 			<h:column>
 				<f:facet name="header">Nombre</f:facet>
-				<h:inputText value="#{c.nombre}"
+				<h:inputText value="#{c.nombre}" 
 					rendered="#{c.editable}" />
 				<h:outputText value="#{c.nombre}" rendered="#{not c.editable}" />
 			</h:column>	
 			
 			<h:column>
 				<f:facet name="header">Apellido</f:facet>
-				<h:inputText value="#{c.apellido}"
+				<h:inputText value="#{c.apellido}" 
 					rendered="#{c.editable}" />
 				<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
 			</h:column>	
@@ -63,24 +63,16 @@
 				<h:inputText value="#{c.cedula}" size="10"
 					rendered="#{c.editable}" />
 				<h:outputText value="#{c.cedula}" rendered="#{not c.editable}" />
-			</h:column>	
+			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Correo</f:facet>
-				<h:inputText value="#{c.correo}" 
+				<h:inputText value="#{c.correo}"
 					rendered="#{c.editable}" />
-				<h:outputText value="#{c.correo}" rendered="#{not c.editable}" />
-			</h:column>	
+				<h:outputText value="#{c.correo}" rendered="#{not c.editable}"/>
+			</h:column>
 			
-			<h:column>
-				<f:facet name="header">Contraseña</f:facet>
-				<h:inputText value="#{c.contraseña}"
-					rendered="#{c.editable}" />
-				<h:outputText value="#{c.contraseña}" rendered="#{not c.editable}" />
-			</h:column>	
-			
-			
-			
+	
 			<h:column>
 				<f:facet name="header">Accion</f:facet>
 				<h:commandLink value="Delete" action="#{usuarioBean.delete(c)}" />
@@ -93,31 +85,36 @@
 					rendered="#{c.editable}" />
 			</h:column>
 		</h:dataTable>
+		
+		
 		<ul>
-			<li>Nombre:<h:inputText value="#{usuarioBean.nombre}"/></li>
+			<li>Nombre:<h:inputText value="#{usuario1Bean.nombre}"/></li>
 		</ul>
 		
 		<ul>
-			<li>Apellido:<h:inputText  value="#{usuarioBean.apellido}"/></li>
+			<li>Apellido:<h:inputText value="#{usuario1Bean.apellido}"/></li>
 		</ul>
 		
 		<ul>
-			<li>Telefono:<h:inputText size="10" value="#{usuarioBean.telefono}"/></li>
+			<li>Telefono:<h:inputText size="10" value="#{usuario1Bean.telefono}"/></li>
 		</ul>
 		
 		<ul>
-			<li>Cedula:<h:inputText size="10" value="#{usuarioBean.cedula}"/></li>
+			<li>Cedula:<h:inputText size="10" value="#{usuario1Bean.cedula}"/></li>
 		</ul>
 		
 		<ul>
-			<li>Correo:<h:inputText  value="#{usuarioBean.correo}"/></li>
+			<li>Correo:<h:inputText  value="#{usuario1Bean.correo}"  /></li>
 		</ul>
 		
-		<ul>
-			<li>Contraseña:<h:inputText  value="#{usuarioBean.contraseña}"/></li>
-		</ul>
-		
-		<h:commandButton value="Add" action="#{usuarioBean.add}" />
+	 
+		<h:commandButton value="Add" action="#{usuario1Bean.add}" />
 	</h:form>
+	
+	
+		
+	
+		
+		
 </h:body>
 </html>
