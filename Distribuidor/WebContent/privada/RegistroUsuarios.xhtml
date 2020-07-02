@@ -31,7 +31,7 @@
 	</style>
 </h:head>
 <h:body>
-	<h3>Registro Clientes</h3>
+	<h3>Registro Usuarios</h3>
 	<h:form>
 		<h:dataTable value="#{usuarioBean.list}" var="c" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
@@ -123,9 +123,7 @@
 			<f:selectItems value="#{rolBean.list}" />
 		</h:selectOneMenu>
 	
-	 <h:commandButton value="listar" action="#{usuarioBean.buscar}" />
-	 
-	 
+	 	<h:commandButton value="listar" action="#{usuarioBean.buscar}" />
 		<h:commandButton value="Add" action="#{usuarioBean.add}" />
 	</h:form>
 	
