@@ -7,7 +7,7 @@ import javax.inject.Named;
 @RequestScoped
 public class Navigator {
  private String page;
-
+//
 public Navigator() {
 	
 }
