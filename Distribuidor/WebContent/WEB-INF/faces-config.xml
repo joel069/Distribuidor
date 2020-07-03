@@ -54,6 +54,14 @@
 			<to-view-id>/privada/RegistroRol.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>privada/VistaEmpleado.xhtml</display-name>
+		<from-view-id>/privada/VistaEmpleado.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>RegistroCientesEmpleado</from-outcome>
+			<to-view-id>/privada/RegistroClientes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 
 
