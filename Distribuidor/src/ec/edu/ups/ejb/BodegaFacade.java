@@ -106,9 +106,7 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
 		} catch (Exception e) {
 			System.out.println("bodega" + e.getMessage());
 		}
-
 		return cat;
-
 	}
 
 	public List<Producto> buscarProductos() {
