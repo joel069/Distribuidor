@@ -59,7 +59,7 @@ public class Usuario1Bean implements Serializable{
 	 public String add() {
 		 Rol rol3=new Rol();
 		 Usuario usuario=new Usuario();
-		    rol3.setNombre("cli");
+		    rol3.setNombre("cliente");
 		    System.out.println(rol3.getNombre());
 			usuario.setContraseña("no tiene");
 			System.out.println(usuario.getContraseña());
@@ -199,12 +199,12 @@ public class Usuario1Bean implements Serializable{
 				System.out.println("El usuario ingresadooooooo");
 				System.out.println(us);
 				Rol rol1=new Rol();
-				rol1.setNombre("admin");
+				rol1.setNombre("administrador");
 				Usuario usu=new Usuario();
 				usu.setRoles(rol1);
 				
 				Rol rol2=new Rol();
-				rol2.setNombre("emple");
+				rol2.setNombre("empleado");
 				Usuario usu1=new Usuario();
 				usu.setRoles(rol2);
 				
