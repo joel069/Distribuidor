@@ -47,4 +47,11 @@ public class ProductoFacade extends AbstractFacade<Producto>{
 			List<Producto> list = em.createQuery(sql).getResultList();
 			return list;
 		}
+		
+		public List<Producto> buscarProductosnombre(String nombre){
+			
+			String sql="SELECT p FROM Producto p where p.categoria.nombre='"+nombre+"'";
+			List<Producto> list = em.createQuery(sql).getResultList();
+			return list;
+		}
 }
