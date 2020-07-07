@@ -7,26 +7,26 @@
 	<title>Facturacion</title>
 	<style>
 		.tabla {
-			border-collapse: collapse;
+			border-collaprose: collaprose;
 		}
 		
 		.cabeceraTabla {
 			text-align: center;
-			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 1px solid #BBBBBB;
-			padding: 8px;
+			background: none reproeat scroll 0 0 #E5E5E5;
+			border-bottom: 1prox solid #BBBBBB;
+			proadding: 8prox;
 		}
 		
-		.filaPar {
+		.filaproar {
 			text-align: center;
-			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 1px solid #BBBBBB;
+			background: none reproeat scroll 0 0 #FFFFFFF;
+			border-topro: 1prox solid #BBBBBB;
 		}
 		
-		.filaImpar {
+		.filaImproar {
 			text-align: center;
-			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 1px solid #BBBBBB;
+			background: none reproeat scroll 0 0 #F9F9F9;
+			border-topro: 1prox solid #BBBBBB;
 		}
 	</style>
 </h:head>
@@ -34,49 +34,14 @@
 	<h3>Registro Factura...!!!!</h3>
 	<h:form>
 	
-								<!--  Factura Cabecera -->
-								
-	
-	<h:dataTable value="#{facturaCabeceraBean.listaFacturaCabe}" var="fa" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
-		<h:column>
-		<f:facet name="header">Codigo</f:facet>#{fa.id}</h:column>
-		<h:column>
-			<f:facet name="header">Fecha</f:facet>
-			<h:inputText value="#{fa.fecha}" size="10" rendered="#{fa.editable}"/>
-			<h:outputText value="#{fa.fecha}" rendered="#{not fa.editable}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Estado</f:facet>
-			<h:inputText value="#{fa.estado}" size="10" rendered="#{fa.editable}"/>
-			<h:outputText value="#{fa.estado}" rendered="#{not fa.editable}" />
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">Total</f:facet>
-			<h:inputText value="#{fa.total}" size="10" rendered="#{fa.editable}"/>
-			<h:outputText value="#{fa.total}" rendered="#{not fa.editable}" />
-		</h:column>		
-			
-		<h:column>
-			<f:facet name="header">Accion</f:facet>
-			<h:commandLink value="Edit" action="#{facturaCabeceraBean.edit(fa)}" rendered="#{not fa.editable}"/>
-			<h:commandLink value="Save" action="#{facturaCabeceraBean.save(fa)}" rendered="#{ fa.editable}"/>
-		</h:column>
-		</h:dataTable>
+	<!-- ////////////////////////////////  Factura Cabecera  /////////////////////////////////////////////-->
 		
+								
 		<ul>
 			<li>Fecha:<h:inputText size="10" value="#{facturaCabeceraBean.fecha}"/></li>
 		</ul>
 		
 		<ul>
-			<li>Estado:<h:inputText size="10" value="#{facturaCabeceraBean.estado}"/></li>
-		</ul>
-		
-		<ul>
-			<li>Total:<h:inputText size="10" value="#{facturaCabeceraBean.total}"/></li>
-		</ul>
-		
-		<ul>
 		<li>Cliente:
 		<h:selectOneMenu value="#{facturaCabeceraBean.persona}">
 			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
@@ -85,63 +50,50 @@
 		</ul>
 		
 		
-		
-		
-								<!--  Factura Detalle -->
+	<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
 								
 								
+	<h:dataTable value="#{facturaDetaBean.prod}" var="pr" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		
-		<h:dataTable value="#{facturaCabeceraBean.listaFacturaCabe}" var="fa" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		<h:column>
-		<f:facet name="header">Codigo</f:facet>#{fa.id}</h:column>
-		<h:column>
-			<f:facet name="header">Fecha</f:facet>
-			<h:inputText value="#{fa.fecha}" size="10" rendered="#{fa.editable}"/>
-			<h:outputText value="#{fa.fecha}" rendered="#{not fa.editable}" />
+			<f:facet name="header">Cantidad</f:facet>
+			<h:inputText value="#{facturaDetaBean.cantidad}" size="10" />
 		</h:column>
+		
 		<h:column>
-			<f:facet name="header">Estado</f:facet>
-			<h:inputText value="#{fa.estado}" size="10" rendered="#{fa.editable}"/>
-			<h:outputText value="#{fa.estado}" rendered="#{not fa.editable}" />
+			<f:facet name="header">Descripcion</f:facet>
+			<h:inputText value="#{facturaDetaBean.producto}" size="10" rendered="#{p.editable}" />
+			<h:outputText value="#{facturaDetaBean.producto} " size="10" rendered="#{p.editable}"/>
 		</h:column>
-
+		
 		<h:column>
-			<f:facet name="header">Total</f:facet>
-			<h:inputText value="#{fa.total}" size="10" rendered="#{fa.editable}"/>
-			<h:outputText value="#{fa.total}" rendered="#{not fa.editable}" />
-		</h:column>		
+			<f:facet name="header">V. Unitario</f:facet>
+			<h:inputText value="#{pr.preciounitario}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{pr.preciounitario}" size="10" rendered="#{p.editable}" />
+		</h:column>
+		
+		<!--<h:column>
+			<f:facet name="header">Subtotal Productos</f:facet>
+			<h:outputText value="#{facturaDetaBean.calcularTotalParcial}" />
+			<h:outputText value="#{facturaDetaBean.calcularTotalParcial}"  />
+		</h:column>-->	
+		
+	</h:dataTable>
+	
+	
+	<ul>
+			<li>Cantidad: <h:inputText size="10" value="#{facturaDetaBean.cantidad}"/></li>
+			<li>Descripcion: <h:inputText size="10" value="#{facturaDetaBean.producto}"/></li>
+			<li>V. Unitario: <h:inputText size="10" value="#{pr.preciounitario}"/></li>
+			 <!-- <li>Subtotal Productos: <h:outputText size="10" value="#{facturaDetaBean.calcularTotalParcial}"/></li>	-->	
+	</ul>
 			
-		<h:column>
-			<f:facet name="header">Accion</f:facet>
-			<h:commandLink value="Edit" action="#{facturaCabeceraBean.edit(fa)}" rendered="#{not fa.editable}"/>
-			<h:commandLink value="Save" action="#{facturaCabeceraBean.save(fa)}" rendered="#{ fa.editable}"/>
-		</h:column>
-		</h:dataTable>
+			<h:commandButton value="Buscar" action="#{facturaCabeceraBean.buscar}" />
 		
-		<ul>
-			<li>Cantidad:<h:inputText size="10" value="#{facturaCabeceraBean.fecha}"/></li>
-		</ul>
-		
-		<ul>
-			<li>Subtotal:<h:inputText size="10" value="#{facturaCabeceraBean.estado}"/></li>
-		</ul>
-		
-		<ul>
-			<li>Total:<h:inputText size="10" value="#{facturaCabeceraBean.total}"/></li>
-		</ul>
-		
-		<ul>
-		<li>Cliente:
-		<h:selectOneMenu value="#{facturaCabeceraBean.persona}">
-			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
-		</h:selectOneMenu>
-		</li>
-		</ul>
-		
-		<h:commandButton value="Buscar" action="#{facturaCabeceraBean.buscar}" />
-		
-		<h:commandButton value="Add" action="#{facturaCabeceraBean.add}" />
-
+			<h:commandButton value="Añadir" action="#{facturaDetaBean.add}" />
+			
+			<!--  <h:commandButton value="calcular" action="#{facturaDetaBean.calcularTotalParcial}" />
+		-->
 	</h:form>
 </h:body>
 </html>

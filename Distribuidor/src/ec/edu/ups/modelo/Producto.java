@@ -30,7 +30,7 @@ public class Producto implements Serializable {
 	private boolean editable;	
 	@ManyToMany(mappedBy = "producto")
 	private Collection<Bodega>bodegas;	
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "facdet")
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "proid")
 	private Set<FacturaDetalle>facturaDetalle;	
 	
 	
@@ -116,9 +116,7 @@ public class Producto implements Serializable {
 	
 	public void setEditable(boolean editable) {
 		this.editable = editable;
-	}
-	
-	
+	}	
 	
 	@Override
 	public int hashCode() {

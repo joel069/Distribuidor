@@ -26,7 +26,7 @@ public class FacturaCabecera implements Serializable {
 	private boolean editable;
     @ManyToOne
     private Persona facturacab;
-    @OneToMany(mappedBy = "facturadet")
+    @OneToMany(mappedBy = "faccabeid")
     private Set<FacturaDetalle> listFacturaDetalle;   
 	public FacturaCabecera() {
 		

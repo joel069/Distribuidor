@@ -35,6 +35,8 @@ public class FacturaCabeceraBean implements Serializable{
 	private double total;
 	private String estado;
 	private String persona;
+	private List<Usuario> personalist;
+	private List<FacturaCabecera> listaFacturaCabe;
 	
 	
 	public String getPersona() {
@@ -45,10 +47,6 @@ public class FacturaCabeceraBean implements Serializable{
 		this.persona = persona;
 	}
 
-	private List<Usuario> personalist;
-	private List<FacturaCabecera> listaFacturaCabe;
-	
-	
 	public FacturaCabeceraBean() {
 	
 	}

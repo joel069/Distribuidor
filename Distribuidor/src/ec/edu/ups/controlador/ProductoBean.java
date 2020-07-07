@@ -31,6 +31,7 @@ public class ProductoBean implements Serializable{
 	private double preciopublico;
 	private String categoria;
 	private List<Producto> listaProductos;
+	private List<Producto> listaProductos1;
 
 	//variable para bodegas
 
@@ -155,6 +156,16 @@ public class ProductoBean implements Serializable{
 		listaProductos=ejbProductoFacade.buscarProductos(id);
 		System.out.println("La lista de Productos es:" +listaProductos);
 		return ca;
+		
+	}
+	
+	public Producto buscarProductosnombre() {
+		Producto pro = new Producto();
+		String nombre=pro.getNombre();
+		System.out.println(nombre);
+		listaProductos1=ejbProductoFacade.buscarProductosnombre(nombre);
+		System.out.println("La lista de Productos es:" +listaProductos1);
+		return pro;
 		
 	}
 }
