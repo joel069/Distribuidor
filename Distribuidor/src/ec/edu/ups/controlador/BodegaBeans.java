@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -239,8 +240,9 @@ public class BodegaBeans implements Serializable {
 	 */
 
 	public List<Producto> inventarioRecuperado() {
-		listaProducto = ejbBodegaFacade.buscarProductos();
-		System.out.println(listaProducto);
+		listaProducto=ejbBodegaFacade.recuperarInventario(inventario);
+		System.out.println("Inventario");
+		System.out.println(listaBodega);
 		return listaProducto;
 	}
 
