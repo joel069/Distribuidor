@@ -19,11 +19,24 @@ public class FacturaDetalle implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String cantidad;
+    private int cantidad;
     private double subtotal;
-    private double total;
     private double descuento;
-    @ManyToOne
+    private double total;
+    @Transient
+	private boolean editable;
+    
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
+	@ManyToOne
     private FacturaCabecera faccabeid;
     //productoooooooooooooooooooo
     @ManyToOne
@@ -33,8 +46,8 @@ public class FacturaDetalle implements Serializable {
 		
 	}
 
-	public FacturaDetalle(String cantidad, double subtotal, double total, double descuento,
-			Producto facdet) {
+	public FacturaDetalle(int cantidad, double subtotal, double total, double descuento,
+			Producto proid) {
 		super();
 		this.cantidad = cantidad;
 		this.subtotal = subtotal;
@@ -60,12 +73,12 @@ public class FacturaDetalle implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getCantidad() {
+	
+	public int getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(String cantidad) {
+	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
 
@@ -101,7 +114,8 @@ public class FacturaDetalle implements Serializable {
 	public void setFaccabeid(FacturaCabecera faccabeid) {
 		this.faccabeid = faccabeid;
 	}
-
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -5,16 +5,38 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>Facturacion</title>
-	
+	<style>
+		.tabla {
+			border-collaprose: collaprose;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none reproeat scroll 0 0 #E5E5E5;
+			border-bottom: 1prox solid #BBBBBB;
+			proadding: 8prox;
+		}
+		
+		.filaproar {
+			text-align: center;
+			background: none reproeat scroll 0 0 #FFFFFFF;
+			border-topro: 1prox solid #BBBBBB;
+		}
+		
+		.filaImproar {
+			text-align: center;
+			background: none reproeat scroll 0 0 #F9F9F9;
+			border-topro: 1prox solid #BBBBBB;
+		}
+	</style>
 </h:head>
 <h:body>
 	<h3>Registro Factura...!!!!</h3>
 	<h:form>
 	
-								<!--  Factura Cabecera -->
+	<!-- ////////////////////////////////  Factura Cabecera  /////////////////////////////////////////////-->
+		
 								
-	
-	
 		<ul>
 			<li>Fecha:<h:inputText size="10" value="#{facturaCabeceraBean.fecha}"/></li>
 		</ul>
@@ -27,26 +49,51 @@
 		</li>
 		</ul>
 		
-
-								<!--  Factura Detalle -->
+		
+	<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
+								
+								
+	<h:dataTable value="#{facturaDetaBean.prod}" var="pr" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+		
+		<h:column>
+			<f:facet name="header">Cantidad</f:facet>
+			<h:inputText value="#{facturaDetaBean.cantidad}" size="10" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			<h:inputText value="#{facturaDetaBean.producto}" size="10" rendered="#{p.editable}" />
+			<h:outputText value="#{facturaDetaBean.producto} " size="10" rendered="#{p.editable}"/>
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">V. Unitario</f:facet>
+			<h:inputText value="#{pr.preciounitario}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{pr.preciounitario}" size="10" rendered="#{p.editable}" />
+		</h:column>
+		
+		<!--<h:column>
+			<f:facet name="header">Subtotal Productos</f:facet>
+			<h:outputText value="#{facturaDetaBean.calcularTotalParcial}" />
+			<h:outputText value="#{facturaDetaBean.calcularTotalParcial}"  />
+		</h:column>-->	
+		
+	</h:dataTable>
 	
-			Cantidad:<h:inputText size="10" value="#{facturaDetaBean.cantidad}"/>
+	
+	<ul>
+			<li>Cantidad: <h:inputText size="10" value="#{facturaDetaBean.cantidad}"/></li>
+			<li>Descripcion: <h:inputText size="10" value="#{facturaDetaBean.producto}"/></li>
+			<li>V. Unitario: <h:inputText size="10" value="#{pr.preciounitario}"/></li>
+			 <!-- <li>Subtotal Productos: <h:outputText size="10" value="#{facturaDetaBean.calcularTotalParcial}"/></li>	-->	
+	</ul>
 			
+			<h:commandButton value="Buscar" action="#{facturaCabeceraBean.buscar}" />
 		
-		
-			Producto:<h:inputText size="10" value="#{facturaDetaBean.producto}"/>
-		
-		
-			Subtotal:<h:inputText size="10" value="#{facturaDetaBean.subtotal}"/>
-		
-		
-			Total:<h:inputText size="10" value="#{facturaDetaBean.total}"/>
-		
-		
-		<h:commandButton value="Buscar" action="#{facturaCabeceraBean.buscar}" />
-		
-		<h:commandButton value="Añadir" action="#{facturaDetaBean.add}" />
-		
+			<h:commandButton value="Añadir" action="#{facturaDetaBean.add}" />
+			
+			<!--  <h:commandButton value="calcular" action="#{facturaDetaBean.calcularTotalParcial}" />
+		-->
 	</h:form>
 </h:body>
 </html>
