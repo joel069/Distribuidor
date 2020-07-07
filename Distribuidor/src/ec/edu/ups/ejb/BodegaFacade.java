@@ -111,7 +111,7 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
 
 
 	public List<Producto>  recuperarInventario(String bodega) {
-		String sql = "select distinct p "
+		String sql = "select p "
 				+ "from Producto p "
 				+ "join p.bodegas b "
 				+ "join b.producto bb "
