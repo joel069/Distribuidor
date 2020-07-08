@@ -109,15 +109,15 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
 		return cat;
 	}
 
-	public List<Producto> buscarProductos() {
-		String sql = "select p,b from Producto  p, Bodega b ";
-		List<Producto> list = em.createQuery(sql).getResultList();
-		for (Producto c : list) {
-			System.out.println("inventariooooooooooooooo");
-		   System.out.println(c);
-		  }
-		System.out.println(list);
-		return list;
-	}
 
+	public List<Producto>  recuperarInventario(String bodega) {
+		String sql = "select p "
+				+ "from Producto p "
+				+ "join p.bodegas b "
+				+ "join b.producto bb "
+				+ "where bb.name=:"+bodega+"";
+		System.out.println(sql);
+		List<Producto> list = em.createQuery(sql).getResultList();
+		return list;		
+	}
 }
