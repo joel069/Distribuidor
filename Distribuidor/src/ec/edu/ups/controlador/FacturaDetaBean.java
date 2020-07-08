@@ -194,6 +194,16 @@ public class FacturaDetaBean implements Serializable{
 		return null;
 	}
 	
+	public void calcularIva() {
+		
+		
+	}
+	
+	public void calculartotalconIva() {
+		
+		
+	}
+	
 	
 	
 	
