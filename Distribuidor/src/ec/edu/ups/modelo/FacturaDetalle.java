@@ -34,8 +34,6 @@ public class FacturaDetalle implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
-
-
 	@ManyToOne
     private FacturaCabecera faccabeid;
     //productoooooooooooooooooooo

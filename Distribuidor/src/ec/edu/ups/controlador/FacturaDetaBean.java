@@ -46,7 +46,9 @@ public class FacturaDetaBean implements Serializable{
 		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
 		facdetalle = ejbFacturaDetalleFacade.findAll();
-		listproducto= new ArrayList<Producto>();	
+		listproducto= new ArrayList<Producto>();
+		prod = new Producto();
+		
 	}
 
 	public FacturaDetalleFacade getEjbFacturaDetalleFacade() {
@@ -91,8 +93,6 @@ public class FacturaDetaBean implements Serializable{
 	public void setTotalparcial(double totalparcial) {
 		this.total = totalparcial;
 	}
-
-	
 
 	public double getIva() {
 		return iva;
@@ -174,7 +174,8 @@ public class FacturaDetaBean implements Serializable{
 		this.prod = prod;
 	}
 
-	public double calcularTotalParcial(){
+	
+	public void calcularTotalParcial(){
 		
 		double valor=0 ;
 		
@@ -183,13 +184,17 @@ public class FacturaDetaBean implements Serializable{
 			valor = prod.getPreciounitario() * cantidad;
 			System.out.println(valor);	
 		}
-		return valor;
 	
+	}  
+	
+	public String busca() {
+		
+		System.out.println("Si valiooooooooooooooo");
+		
+		return null;
 	}
 	
 	
 	
 	
-	
-
 }

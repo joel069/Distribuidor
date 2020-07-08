@@ -32,8 +32,6 @@ public class Producto implements Serializable {
 	private Collection<Bodega>bodegas;	
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "proid")
 	private Set<FacturaDetalle>facturaDetalle;	
-	
-	
 	@ManyToOne
 	private Categoria categoria;
 	 
