@@ -130,7 +130,6 @@ public class Persona implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Persona [ nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
-				+ ", cedula=" + cedula + "]";
+		return   nombre ;
 	}	
 }

@@ -28,7 +28,8 @@ public class FacturaCabecera implements Serializable {
     private Persona facturacab;
     @OneToMany(mappedBy = "faccabeid")
     private Set<FacturaDetalle> listFacturaDetalle;   
-	public FacturaCabecera() {
+	
+    public FacturaCabecera() {
 		
 	}
 	
@@ -136,6 +137,6 @@ public class FacturaCabecera implements Serializable {
 	@Override
 	public String toString() {
 		return "FacturaCabecera [id=" + id + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado
-				+ ", facturacab=" + facturacab + ", listFacturaDetalle=" + listFacturaDetalle + "]";
+				+ ", facturacab=" + facturacab + "]";
 	}
 }

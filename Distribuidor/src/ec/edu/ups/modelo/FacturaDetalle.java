@@ -137,6 +137,13 @@ public class FacturaDetalle implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "FacturaDetalle [id=" + id + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", descuento="
+				+ descuento + ", total=" + total + ", editable=" + editable + ", faccabeid=" + faccabeid + ", proid="
+				+ proid + "]";
+	}
+
 	
 		
    

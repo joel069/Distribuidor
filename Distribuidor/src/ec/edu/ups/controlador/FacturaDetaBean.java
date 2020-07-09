@@ -10,10 +10,16 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.FacturaCabeceraFacade;
 import ec.edu.ups.ejb.FacturaDetalleFacade;
+import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.ejb.UsuarioFacade;
+import ec.edu.ups.modelo.FacturaCabecera;
 import ec.edu.ups.modelo.FacturaDetalle;
+import ec.edu.ups.modelo.Persona;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Usuario;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -24,18 +30,28 @@ public class FacturaDetaBean implements Serializable{
 	//
 	
 	@EJB
+	private FacturaCabeceraFacade ejbFacturaCabeceraFacade; 
+	@EJB
 	private FacturaDetalleFacade ejbFacturaDetalleFacade; 
+	
+	private PersonaFacade personaFacade;
 	private ProductoFacade ejbProductoFacade;
 	private int cantidad;
 	private double subtotal;
 	//public String categoria;
 	private double total;
 	private Producto prod;
+	private FacturaCabecera faccabe;
+	private FacturaDetalle facdeta;
 	private double iva;
 	private double descuento;
 	private String producto;
+	private String persona;
+	private String fecha;
 	private List<Producto> listproducto;
 	private List<FacturaDetalle> facdetalle;
+	private List<FacturaCabecera> faccabecera;
+	
 	
 	public FacturaDetaBean() {
 		
@@ -45,12 +61,16 @@ public class FacturaDetaBean implements Serializable{
 	public void init() {
 		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
-		facdetalle = ejbFacturaDetalleFacade.findAll();
-		listproducto= new ArrayList<Producto>();
-		prod = new Producto();
+		//facdetalle = ejbFacturaDetalleFacade.findAll();
+		//faccabecera= ejbFacturaCabeceraFacade.findAll();
+		this.listproducto= new ArrayList<Producto>();
+		this.prod = new Producto();
+		this.faccabe = new FacturaCabecera();
+		this.facdeta = new FacturaDetalle();
+		
 		
 	}
-
+ /*
 	public FacturaDetalleFacade getEjbFacturaDetalleFacade() {
 		return ejbFacturaDetalleFacade;
 	}
@@ -58,7 +78,7 @@ public class FacturaDetaBean implements Serializable{
 	public void setEjbFacturaDetalleFacade(FacturaDetalleFacade ejbFacturaDetalleFacade) {
 		this.ejbFacturaDetalleFacade = ejbFacturaDetalleFacade;
 	}
-
+*/
 	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
@@ -66,8 +86,71 @@ public class FacturaDetaBean implements Serializable{
 	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
 		this.ejbProductoFacade = ejbProductoFacade;
 	}
+	public FacturaCabeceraFacade getEjbFacturaCabeceraFacade() {
+		return ejbFacturaCabeceraFacade;
+	}
 
+	
+	public PersonaFacade getPersonaFacade() {
+		return personaFacade;
+	}
 
+	public void setPersonaFacade(PersonaFacade personaFacade) {
+		this.personaFacade = personaFacade;
+	}
+
+	public String getPersona() {
+		return persona;
+	}
+
+	public void setPersona(String persona) {
+		this.persona = persona;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public List<FacturaCabecera> getFaccabecera() {
+		return faccabecera;
+	}
+
+	public void setFaccabecera(List<FacturaCabecera> faccabecera) {
+		this.faccabecera = faccabecera;
+	}
+
+	
+	public FacturaDetalle getFacdeta() {
+		return facdeta;
+	}
+
+	public void setFacdeta(FacturaDetalle facdeta) {
+		this.facdeta = facdeta;
+	}
+
+	public void setEjbFacturaCabeceraFacade(FacturaCabeceraFacade ejbFacturaCabeceraFacade) {
+		this.ejbFacturaCabeceraFacade = ejbFacturaCabeceraFacade;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public FacturaCabecera getFaccabe() {
+		return faccabe;
+	}
+
+	public void setFaccabe(FacturaCabecera faccabe) {
+		this.faccabe = faccabe;
+	}
 
 	public int getCantidad() {
 		return cantidad;
@@ -136,8 +219,27 @@ public class FacturaDetaBean implements Serializable{
 	//Metodos de CRUD
 	
 	public String add() {
-		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,this.subtotal,this.total,this.descuento,buscarpro()));
-		listproducto = ejbProductoFacade.findAll();
+		
+		faccabe.setFecha(this.fecha);
+		faccabe.setFacturacab(buscarPersonanombre());;
+		faccabe.setEstado("activo");
+		faccabe.setTotal(50);
+		
+		facdeta.setCantidad(cantidad);
+		facdeta.setProid(buscarpro());
+		facdeta.setFaccabeid(faccabe);
+		
+		facdeta.setSubtotal(12.01);
+		facdeta.setTotal(20.00);
+		
+		
+		System.out.println(faccabe);
+		System.out.println(facdeta);
+		
+		ejbFacturaCabeceraFacade.create(faccabe);
+		ejbFacturaDetalleFacade.create(facdeta);
+		
+		//listproducto = ejbProductoFacade.findAll();
 		
 		return null;
 	}
@@ -156,7 +258,6 @@ public class FacturaDetaBean implements Serializable{
 	
 	public Producto buscarpro() {
 		
-		
 		System.out.println(producto);
 		prod=ejbFacturaDetalleFacade.buscarProductos(producto);
 		String nombre = prod.getNombre();
@@ -165,6 +266,17 @@ public class FacturaDetaBean implements Serializable{
 		return prod;	
 		
 	}
+	
+	public Usuario buscarPersonanombre() {
+    
+		System.out.println("recupero la person" + persona);
+    	Usuario usu = new Usuario();
+    	usu=ejbFacturaDetalleFacade.buscarpersona(persona);
+    	System.out.println("Nombre es:" +usu);
+    	
+    	return usu;
+    
+    }
 	
 	public Producto getProd() {
 		return prod;
@@ -204,6 +316,12 @@ public class FacturaDetaBean implements Serializable{
 		
 		int tot = 0;
 	}
+	
+   
+    
+    
+    
+    
 	
 	
 	

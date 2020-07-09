@@ -153,14 +153,3 @@ public class FacturaCabeceraBean implements Serializable{
 		
 	}
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-

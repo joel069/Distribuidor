@@ -11,8 +11,7 @@ import javax.persistence.Query;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.FacturaDetalle;
 import ec.edu.ups.modelo.Producto;
-
-
+import ec.edu.ups.modelo.Usuario;
 
 @Stateless
 public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle> {
@@ -43,4 +42,20 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle> {
 		}
 		return p;
 	}
+	
+	public Usuario buscarpersona(String nombre) {
+		System.out.println("El nombre que llega a las base es" +nombre);
+		Usuario usu = new Usuario();
+		try {
+		String sql = "SELECT u FROM Usuario u where u.nombre= '"+nombre+"'";
+		System.out.println(sql);
+		Query query = em.createQuery(sql);
+		usu= (Usuario) query.getSingleResult();
+		System.out.println("recupere : " +nombre);
+	}catch(Exception e) {
+		System.out.println("Usuario" + e.getMessage());
+	}
+		
+		return usu;
+ }
 }
