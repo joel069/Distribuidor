@@ -28,7 +28,6 @@ public class Bodega implements Serializable {
 	private int stock;	
 	@ManyToOne
 	private Ciudad ciudad;
-	
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinColumn
 	private Collection<Producto> producto;

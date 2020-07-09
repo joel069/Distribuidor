@@ -10,6 +10,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import com.sun.rowset.internal.Row;
+
 import ec.edu.ups.ejb.FacturaCabeceraFacade;
 import ec.edu.ups.ejb.FacturaDetalleFacade;
 import ec.edu.ups.ejb.PersonaFacade;
@@ -70,6 +72,7 @@ public class FacturaDetaBean implements Serializable{
 		
 		
 	}
+	
  /*
 	public FacturaDetalleFacade getEjbFacturaDetalleFacade() {
 		return ejbFacturaDetalleFacade;
@@ -79,6 +82,7 @@ public class FacturaDetaBean implements Serializable{
 		this.ejbFacturaDetalleFacade = ejbFacturaDetalleFacade;
 	}
 */
+	
 	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
@@ -228,11 +232,8 @@ public class FacturaDetaBean implements Serializable{
 		facdeta.setCantidad(cantidad);
 		facdeta.setProid(buscarpro());
 		facdeta.setFaccabeid(faccabe);
-		
 		facdeta.setSubtotal(12.01);
 		facdeta.setTotal(20.00);
-		
-		
 		System.out.println(faccabe);
 		System.out.println(facdeta);
 		
@@ -240,6 +241,8 @@ public class FacturaDetaBean implements Serializable{
 		ejbFacturaDetalleFacade.create(facdeta);
 		
 		//listproducto = ejbProductoFacade.findAll();
+		faccabe.addFacturaDetalle(facdeta);
+		
 		
 		return null;
 	}
@@ -317,13 +320,12 @@ public class FacturaDetaBean implements Serializable{
 		int tot = 0;
 	}
 	
-   
-    
-    
-    
-    
 	
-	
-	
-	
+	public void agregar() {
+		
+		Row r = new Row(1);
+		
+		System.out.println("Se agrego");
+			
+	}	
 }
