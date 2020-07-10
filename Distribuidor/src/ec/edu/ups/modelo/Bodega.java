@@ -27,9 +27,14 @@ public class Bodega implements Serializable {
 	private String nombre;
 	@ManyToOne
 	private Ciudad ciudad;
+
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "bodega")
 	private Collection<Stock> listStock;
+
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinColumn
+	private Collection<Producto> producto;
 	@Transient
 	private boolean editable;		
 	

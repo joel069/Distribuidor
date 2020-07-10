@@ -1,6 +1,8 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +30,8 @@ public class FacturaCabecera implements Serializable {
     private Persona facturacab;
     @OneToMany(mappedBy = "faccabeid")
     private Set<FacturaDetalle> listFacturaDetalle;   
-	public FacturaCabecera() {
+	
+    public FacturaCabecera() {
 		
 	}
 	
@@ -45,13 +48,9 @@ public class FacturaCabecera implements Serializable {
 		
 	}
 
-	
-
 	public boolean isEditable() {
 		return editable;
 	}
-
-
 
 	public void setEditable(boolean editable) {
 		this.editable = editable;
@@ -106,6 +105,15 @@ public class FacturaCabecera implements Serializable {
 	public void setListFacturaDetalle(Set<FacturaDetalle> listFacturaDetalle) {
 		this.listFacturaDetalle = listFacturaDetalle;
 	}
+	
+	public void addFacturaDetalle(FacturaDetalle facdet) {
+		if(this.listFacturaDetalle==null) {
+			listFacturaDetalle= new HashSet<FacturaDetalle>();
+		}
+		
+		this.listFacturaDetalle.add(facdet);
+		
+	}
 
 
 
@@ -136,6 +144,6 @@ public class FacturaCabecera implements Serializable {
 	@Override
 	public String toString() {
 		return "FacturaCabecera [id=" + id + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado
-				+ ", facturacab=" + facturacab + ", listFacturaDetalle=" + listFacturaDetalle + "]";
+				+ ", facturacab=" + facturacab + "]";
 	}
 }

@@ -38,12 +38,12 @@
 		
 								
 		<ul>
-			<li>Fecha:<h:inputText size="10" value="#{facturaCabeceraBean.fecha}"/></li>
+			<li>Fecha:<h:inputText size="10" value="#{facturaDetaBean.fecha}"/></li>
 		</ul>
 		
 		<ul>
 		<li>Cliente:
-		<h:selectOneMenu value="#{facturaCabeceraBean.persona}">
+		<h:selectOneMenu value="#{facturaDetaBean.persona}">
 			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
 		</h:selectOneMenu>
 		</li>
@@ -53,7 +53,7 @@
 	<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
 								
 								
-	<h:dataTable value="#{facturaDetaBean.prod}" var="pr" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+	<h:dataTable value="#{facturaDetaBean.facdetalle}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		
 		<h:column>
 			<f:facet name="header">Cantidad</f:facet>
@@ -68,9 +68,8 @@
 		
 		<h:column>
 			<f:facet name="header">V. Unitario</f:facet>
-			<h:outputText value="#{pr.preciounitario}" size="10"  />
+			<h:outputText value="#{facturaDetaBean.prod.preciounitario}" size="10"  />
 		</h:column>
-		
 		
 	</h:dataTable>
 	
@@ -78,16 +77,16 @@
 	<ul>
 			<li>Cantidad: <h:inputText size="10" value="#{facturaDetaBean.cantidad}"/></li>
 			<li>Descripcion: <h:inputText size="10" value="#{facturaDetaBean.producto}"/></li>
-			<li>V. Unitario: <h:outputText size="10" value="#{pr.preciounitario}"/></li>
-			
-		 
+			<li>V. Unitario: <h:outputText size="10" value="#{pr.preciounitario}"/></li>	 
 	</ul>
 			
 			<h:commandButton value="Buscar" action="#{facturaDetaBean.buscarpro}" />
 		
 			<h:commandButton value="Añadir" action="#{facturaDetaBean.add}" />
 			
-		   <h:commandButton value="calcular" action="#{facturaDetaBean.calcularTotalParcial}" />
+		    <h:commandButton value="calcular" action="#{facturaDetaBean.buscarPersonanombre}" />
+		    
+		    <h:commandButton value="calcular" action="#{facturaDetaBean.agregar}" />
 		
 	</h:form>
 </h:body>
