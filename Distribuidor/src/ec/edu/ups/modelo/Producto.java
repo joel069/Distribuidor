@@ -26,10 +26,11 @@ public class Producto implements Serializable {
 	private String descripcion;
 	private double preciounitario;
 	private double preciopublico;
+	private int stock;
 	@Transient
 	private boolean editable;	
-	@ManyToMany(mappedBy = "producto")
-	private Collection<Bodega>bodegas;	
+	@OneToMany(mappedBy = "producto")
+	private Collection<Stock>listStock;	
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "proid")
 	private Set<FacturaDetalle>facturaDetalle;	
 	@ManyToOne
@@ -39,14 +40,15 @@ public class Producto implements Serializable {
 			
 		}
 
-	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico,Categoria categoria) {
+	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico,Categoria categoria,int stock) {
 		super();
 		this.nombre=nombre;
 		this.descripcion=descripcion;
 		this.preciounitario=preciounitario;
 		this.preciopublico=preciopublico;
 		this.categoria=categoria;
-		bodegas=new HashSet<Bodega>();
+		this.stock=stock;
+		
 	}
 	
 	public int getId() {
@@ -116,6 +118,16 @@ public class Producto implements Serializable {
 		this.editable = editable;
 	}	
 	
+	
+	
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -138,19 +150,28 @@ public class Producto implements Serializable {
 		return true;
 	}
 
-	public void addBodega(Bodega bodega){
-     this.bodegas.add(bodega);
-    }
+	
+	public Collection<Stock> getListStock() {
+		return listStock;
+	}
+
+	public void setListStock(Collection<Stock> listStock) {
+		this.listStock = listStock;
+	}
+
+	public Set<FacturaDetalle> getFacturaDetalle() {
+		return facturaDetalle;
+	}
+
+	public void setFacturaDetalle(Set<FacturaDetalle> facturaDetalle) {
+		this.facturaDetalle = facturaDetalle;
+	}
 
 	@Override
 	public String toString() {
 		return " Nombre=" + nombre + ", descripcion=" + descripcion + ", preciounitario="
 				+ preciounitario + ", preciopublico=" + preciopublico + ", categoria="
-				+ categoria ;
+				+ categoria+ ", stock="	+ stock ;
 	}
 
-	
-	
-	
-   
 }

@@ -19,12 +19,14 @@ import org.eclipse.persistence.internal.jpa.config.mappings.ManyToOneImpl;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.PaisFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.ejb.StockFacade;
 import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Ciudad;
 import ec.edu.ups.modelo.Pais;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Provincia;
+import ec.edu.ups.modelo.Stock;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -33,23 +35,21 @@ public class BodegaBeans implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private BodegaFacade ejbBodegaFacade;
+	@EJB
+	private StockFacade ejbStockFacade;
 	private String listaBdoega;
 	private String nombre;
-	private int stock;
+	
 	private Set<Producto> manyListbox;
 	private String provincia;
 	private String ciudad;
 	private String producto;
 	private List<Bodega> listaBodega;
-	private String inventario;
-	private Bodega bodega;
 	private PaisFacade ejbPaisFacade;
 	private List<Pais> listaPais;
 	private List<Provincia> listaProvincia;
 	private List<Ciudad> listaCiudad;
-	private List<Producto> listaProducto;
 	private String pais;
-
 	public BodegaBeans() {
 
 	}
@@ -57,12 +57,10 @@ public class BodegaBeans implements Serializable {
 	@PostConstruct
 	public void init() {
 
-		this.bodega = new Bodega();
 		manyListbox = new HashSet<Producto>();
 		listaCiudad = new ArrayList<Ciudad>();
 		listaProvincia = new ArrayList<Provincia>();
 		listaBodega = ejbBodegaFacade.findAll();
-		listaProducto = new ArrayList<Producto>();
 
 	}
 
@@ -98,22 +96,7 @@ public class BodegaBeans implements Serializable {
 		this.listaPais = listaPais;
 	}
 
-	public String getInventario() {
-		return inventario;
-	}
-
-	public void setInventario(String inventario) {
-		this.inventario = inventario;
-	}
-
-	public Bodega getBodega() {
-		return bodega;
-	}
-
-	public void setBodega(Bodega bodega) {
-		this.bodega = bodega;
-	}
-
+	
 	public void setListaBodega(List<Bodega> listaBodega) {
 		this.listaBodega = listaBodega;
 	}
@@ -146,13 +129,16 @@ public class BodegaBeans implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public int getStock() {
-		return stock;
+	
+
+	public StockFacade getEjbStockFacade() {
+		return ejbStockFacade;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setEjbStockFacade(StockFacade ejbStockFacade) {
+		this.ejbStockFacade = ejbStockFacade;
 	}
+
 
 	public Set<Producto> getManyListbox() {
 		return manyListbox;
@@ -196,25 +182,11 @@ public class BodegaBeans implements Serializable {
 	}
 
 	public String add() {
-		bodega.setCiudad(this.process());
-		bodega.setNombre(this.nombre);
-		bodega.setStock(this.stock);
-		for (Producto produ : manyListbox) {
-			bodega.addProducto(produ);
-			System.out.println("Pproductosssssssssssss");
-			System.out.println(produ.toString());
-		}
-		System.out.println("Lista productos en bodegas");
-		System.out.print(bodega.toString());
-		ejbBodegaFacade.create(bodega);
+		
+		System.out.println("Lista productos en bodegas");	
+		ejbBodegaFacade.create(new Bodega(this.nombre, process()));
 		listaBodega = ejbBodegaFacade.findAll();
 		return null;
-
-	}
-
-	public Bodega agregarBodegaAproduto() {
-		Bodega bod = ejbBodegaFacade.nombreBodega(this.nombre);
-		return bod;
 
 	}
 
@@ -239,12 +211,6 @@ public class BodegaBeans implements Serializable {
 	 * Metodos
 	 */
 
-	public List<Producto> inventarioRecuperado() {
-		listaProducto=ejbBodegaFacade.recuperarInventario(inventario);
-		System.out.println("Inventario");
-		System.out.println(listaBodega);
-		return listaProducto;
-	}
 
 	public Ciudad process() {
 		Ciudad ciudadd = new Ciudad();
@@ -284,12 +250,5 @@ public class BodegaBeans implements Serializable {
 	/**
 	 * Inventario
 	 */
-	public List<Producto> getListaProducto() {
-		return listaProducto;
-	}
-
-	public void setListaProducto(List<Producto> listaProducto) {
-		this.listaProducto = listaProducto;
-	}
-
+	
 }

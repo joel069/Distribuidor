@@ -11,8 +11,11 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.ejb.StockFacade;
+import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Stock;
 
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
@@ -25,6 +28,8 @@ public class ProductoBean implements Serializable{
 	@EJB
 	private ProductoFacade ejbProductoFacade;
 	private CategoriaFacade ejbCategoriaFacade;
+	@EJB
+	private StockFacade ejbStockFacade;
 	private String nombre;
 	private String descripcion;
 	private double preciounitario;
@@ -32,11 +37,9 @@ public class ProductoBean implements Serializable{
 	private String categoria;
 	private List<Producto> listaProductos;
 	private List<Producto> listaProductos1;
-
-	//variable para bodegas
-
-		//ariable para bodegas
- 
+	private Producto producto;
+	private Stock stock1;
+	private int stock;
 	private String bodega;
 	
 	public ProductoBean() {
@@ -47,12 +50,43 @@ public class ProductoBean implements Serializable{
 	public void init() {
 		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
+		this.producto=new Producto();
+		this.stock1= new Stock();
 		listaProductos = ejbProductoFacade.findAll();
 	}
 
 //Getters and Setters.
+	
+	
+	
 	public String getNombre() {
 		return nombre;
+	}
+
+	
+
+	public Stock getStock1() {
+		return stock1;
+	}
+
+	public void setStock1(Stock stock1) {
+		this.stock1 = stock1;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 
 	public void setNombre(String nombre) {
@@ -111,8 +145,21 @@ public class ProductoBean implements Serializable{
 
 	//Metodos para agregar, listar, modificar y Eliminar
 	public String add() {
-		ejbProductoFacade.create(new Producto(this.nombre,this.descripcion,this.preciounitario,this.preciopublico,buscar()));
-		listaProductos = ejbProductoFacade.findAll();
+		try {
+			producto.setNombre(this.nombre);
+			producto.setDescripcion(this.descripcion);
+			producto.setPreciounitario(this.preciounitario);
+			producto.setPreciopublico(this.preciopublico);
+			producto.setCategoria(buscar());
+			producto.setStock(this.stock);
+			ejbProductoFacade.create(producto);
+			listaProductos = ejbProductoFacade.findAll();
+			stock1.setBodega(bode());
+			stock1.setProducto(producto);
+			ejbStockFacade.create(stock1);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		return null;
 	}
@@ -167,5 +214,11 @@ public class ProductoBean implements Serializable{
 		System.out.println("La lista de Productos es:" +listaProductos1);
 		return pro;
 		
+	}
+	public Bodega bode() {
+		Bodega bo= new Bodega();
+		bo=ejbProductoFacade.nombreBodega(bodega);
+		System.out.println(bo);
+		return bo;
 	}
 }

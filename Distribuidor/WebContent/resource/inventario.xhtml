@@ -30,19 +30,53 @@
 	</style>
 </h:head>
 <h:body>
-		<nav>
-        	<h:link value="distribudora" outcome="Distribuidora.xhtml">
-				<f:param name="distribuidora" value="distribuidora" />
-			</h:link>	
-		<br></br>	
-				<h:link value="producto" outcome="ProductoJSF.xhtml">
-				<f:param name="producto" value="producto" />
-			</h:link>			
-        </nav>
-	<h3>Listado de Inventario.</h3>
+
 	<h:form>	
-	<li>Nombre: <h:inputText size="10" value="#{bodegaBeans.inventario}" /></li>	
-	<h:commandButton value="Buscar Inventario." action="#{bodegaBeans.inventarioRecuperado}"/>
+		<li>Bodegas:
+		<h:selectOneMenu value="#{stockBean.bodega}">
+			<f:selectItems value="#{bodegaBeans.listaBodega}" />
+		</h:selectOneMenu>
+		</li>	
+		<h:dataTable value="#{stockBean.listStock}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+		<h:column>
+			<f:facet name="header">Nombre Bodega</f:facet>
+				<h:outputText value="#{p.getBodega().getNombre()}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Direccion Bodega</f:facet>
+		<h:outputText value="#{p.getBodega().getCiudad().getNombre()}"  />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nombre Producto</f:facet>
+			<h:outputText value="#{p.getProducto().getNombre()}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descripcionn Producto</f:facet>
+			<h:outputText value="#{p.getProducto().getDescripcion()}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Precio Publico</f:facet>
+			<h:outputText value="#{p.getProducto().getPreciopublico()}"  />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Precio Unitario</f:facet>
+			<h:outputText value="#{p.getProducto().getPreciounitario()}"  />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Stock</f:facet>
+			<h:outputText value="#{p.getProducto().getStock()}"  />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Categoria</f:facet>
+			<h:outputText value="#{p.getProducto().getCategoria().getNombre()}"  />
+		</h:column>
+		
+		</h:dataTable>
+	<h3>Listado de Inventario.</h3>
+	<h:commandButton value="Buscar Inventario." action="#{stockBean.listabo}"/>
 </h:form>
 </h:body>
 </html>

@@ -15,6 +15,7 @@
 		<class>ec.edu.ups.modelo.Usuario</class>
 		<class>ec.edu.ups.modelo.Rol</class>
 		<class>ec.edu.ups.modelo.Categoria</class>
+		<class>ec.edu.ups.modelo.Stock</class>
 		
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>

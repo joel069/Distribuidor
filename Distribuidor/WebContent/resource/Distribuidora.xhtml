@@ -47,13 +47,7 @@
 				<f:facet name="header">Ciudad</f:facet>
 				<h:outputText value="#{p.ciudad.nombre}" />
 			</h:column>
-			<h:column>
-				<f:facet name="header">Stock</f:facet>
-				<h:inputText value="#{p.stock}" size="10" rendered="#{p.editable}"
-					class="form-control" />
-				<h:outputText value="#{p.stock}" rendered="#{not p.editable}" />
-			</h:column>
-
+			
 			<h:column>
 				<f:facet name="header">Accion</f:facet>
 				<h:commandLink value="Remove" action="#{bodegaBeans.remove(p)}" />
@@ -67,10 +61,7 @@
 			</h:column>
 		</h:dataTable>
 		<li>Nombre: <h:inputText size="10" value="#{bodegaBeans.nombre}" /></li>
-		<li>Stock: <h:inputText id="stock" value="#{bodegaBeans.stock}"
-				converterMessage="Debe ser un numero entero">
-				<f:validateLongRange minimum="1" />
-			</h:inputText></li>
+		
 		<p>Pais</p>
 		<h:selectOneMenu value="#{bodegaBeans.pais}">
 			<f:selectItems name="item" value="#{paisBean.listaPais}"
@@ -90,11 +81,7 @@
 			<f:selectItems value="#{bodegaBeans.listaCiudad}"
 				class="form-control" />
 		</h:selectOneMenu>
-		<p>Producto</p>
-		<h:selectManyListbox value="#{bodegaBeans.manyListbox}">
-			<f:selectItems value="#{productoBean.listaProductos}"
-				class="form-control" />
-		</h:selectManyListbox>
+		
 		<h:commandLink value="submit" type="submit"
 			action="#{bodegaBeans.add}" class="btn btn-danger btn block" />
 	</h:form>

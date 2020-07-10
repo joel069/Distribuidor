@@ -25,13 +25,11 @@ public class Bodega implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nombre;
-	private int stock;	
 	@ManyToOne
 	private Ciudad ciudad;
 	
-	@ManyToMany(cascade = CascadeType.MERGE)
-	@JoinColumn
-	private Collection<Producto> producto;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "bodega")
+	private Collection<Stock> listStock;
 	@Transient
 	private boolean editable;		
 	
@@ -40,10 +38,20 @@ public class Bodega implements Serializable {
 	}
 	
 
-	public Bodega(String nombre, int stock, Ciudad ciudad) {
+	public Collection<Stock> getListStock() {
+		return listStock;
+	}
+
+
+	public void setListStock(Collection<Stock> listStock) {
+		this.listStock = listStock;
+	}
+
+
+	public Bodega(String nombre, Ciudad ciudad) {
 		super();
 		this.nombre = nombre;
-		this.stock = stock;
+	
 		this.ciudad = ciudad;			
 	
 	}
@@ -79,15 +87,7 @@ public class Bodega implements Serializable {
 	}
 
 
-	public int getStock() {
-		return stock;
-	}
-
-
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
+	
 	
 	@Override
 	public int hashCode() {
@@ -122,24 +122,11 @@ public class Bodega implements Serializable {
 		this.editable = editable;
 	}
 
-	public void addProducto(Producto produ) {
-		if (this.producto==null) {
-			producto=new HashSet<Producto>();
-		}
-		this.producto.add(produ);
-	}
 
 	@Override
 	public String toString() {
-		return "Bodega [id=" + id + ", nombre=" + nombre + ", stock=" + stock + ", ciudad=" + ciudad + "]";
+		return nombre;
 	}
-	
 
-
-
-	
-
-	
-	
-   
+	   
 }

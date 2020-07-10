@@ -47,6 +47,11 @@
 			<h:outputText value="#{p.descripcion}" rendered="#{not p.editable}" />
 		</h:column>
 		<h:column>
+			<f:facet name="header">Stock</f:facet>
+			<h:inputText value="#{p.stock}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.stock}" rendered="#{not p.editable}" />
+		</h:column>
+		<h:column>
 			<f:facet name="header">PrecioU</f:facet>
 			<h:inputText value="#{p.preciounitario}" size="10" rendered="#{p.editable}"/>
 			<h:outputText value="#{p.preciounitario}" rendered="#{not p.editable}" />
@@ -71,6 +76,7 @@
 			<li>Descripcion: <h:inputText size="10" value="#{productoBean.descripcion}"/></li>
 			<li>PrecioU: <h:inputText size="10" value="#{productoBean.preciounitario}"/></li>
 			<li>PrecioP: <h:inputText size="10" value="#{productoBean.preciopublico}"/></li>
+			<li>Stock: <h:inputText size="10" value="#{productoBean.stock}"/></li>
 			<li>Categoria:
 		<h:selectOneMenu value="#{productoBean.categoria}">
 			<f:selectItems value="#{categoriaBeans.listaCategorias}" />
@@ -78,7 +84,7 @@
 		</li>
 		<li>Bodegas:
 		<h:selectOneMenu value="#{productoBean.bodega}">
-			<f:selectItems value="#{bodegaBeans.listaBdoega}" />
+			<f:selectItems value="#{bodegaBeans.listaBodega}" />
 		</h:selectOneMenu>
 		</li>
 		</ul>
