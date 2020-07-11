@@ -146,17 +146,20 @@ public class ProductoBean implements Serializable{
 	//Metodos para agregar, listar, modificar y Eliminar
 	public String add() {
 		try {
-			producto.setNombre(this.nombre);
-			producto.setDescripcion(this.descripcion);
-			producto.setPreciounitario(this.preciounitario);
-			producto.setPreciopublico(this.preciopublico);
-			producto.setCategoria(buscar());
-			producto.setStock(this.stock);
-			ejbProductoFacade.create(producto);
+				
+				producto.setNombre(this.nombre);
+				producto.setDescripcion(this.descripcion);
+				producto.setPreciounitario(this.preciounitario);
+				producto.setPreciopublico(this.preciopublico);
+				producto.setCategoria(buscar());
+				producto.setStock(this.stock);
+				ejbProductoFacade.create(producto);
+				
 			listaProductos = ejbProductoFacade.findAll();
 			stock1.setBodega(bode());
 			stock1.setProducto(producto);
 			ejbStockFacade.create(stock1);
+			producto = new Producto();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -221,4 +224,5 @@ public class ProductoBean implements Serializable{
 		System.out.println(bo);
 		return bo;
 	}
+	
 }
