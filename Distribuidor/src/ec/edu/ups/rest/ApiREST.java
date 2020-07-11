@@ -12,7 +12,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
 
 @Path("/prueba")
@@ -20,6 +22,7 @@ public class ApiREST {
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
+	@EJB private CategoriaFacade ejbCategoriaFacade;
 	
 	
 
@@ -32,20 +35,29 @@ public class ApiREST {
     @Path("/ListaProductos/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listProductos() {
-    	
     	List<Producto> list = new ArrayList<Producto>();
-    	
     	Jsonb jsonb = JsonbBuilder.create();
-    	
     	//list=ejbProductoFacade.findAll();
     	list = Producto.serializeProducto(ejbProductoFacade.findAll());
-    	
-    	
 		return Response.ok(jsonb.toJson(list))
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     	
+    }
+    
+    @GET
+    @Path("/Categorias/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listCategorias() {
+    	List<Categoria> list = new ArrayList<Categoria>();
+    	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	list=Categoria.serializeCategoria(ejbCategoriaFacade.findAll());
+		return Response.ok(jsonb.toJson(list))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     	
     }
 

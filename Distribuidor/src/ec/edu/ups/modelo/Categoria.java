@@ -1,7 +1,9 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,9 +28,9 @@ public class Categoria implements Serializable {
 	private Set<Producto> usuarioRol = new HashSet<Producto>();
 	
 
-    
+    //Se borro Set<Producto> usuarioRol del Constructor.
 	
-	public Categoria(int id, String nombre, Set<Producto> usuarioRol) {
+	public Categoria(int id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -90,6 +92,22 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
+	
+	private static Categoria categoria;
+	public static List<Categoria> serializeCategoria(List<Categoria> productos) {
+		List<Categoria> categoriaList = new ArrayList<>();
+		
+		productos.forEach(
+				e->{
+					Categoria categoria = new Categoria(e.getId(),e.getNombre());
+					
+					categoriaList.add(categoria);
+				}
+		);
+		
+		return categoriaList;
+	}
+	
 
 
 	@Override
