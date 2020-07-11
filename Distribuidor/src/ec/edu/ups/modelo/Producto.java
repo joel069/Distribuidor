@@ -149,6 +149,22 @@ public class Producto implements Serializable {
 			return false;
 		return true;
 	}
+	
+	private static Producto producto;
+	public static List<Producto> serializeProducto(List<Producto> productos) {
+		List<Producto> productoList = new ArrayList<>();
+		
+		productos.forEach(
+				e->{
+					Categoria categoria = new Categoria(e.getCategoria().getId(), e.getCategoria().getNombre(), null);
+					
+					producto = new Producto(e.getNombre(), e.getDescripcion(), e.getPreciounitario(), e.getPreciopublico(), categoria, e.getStock());
+					productoList.add(producto);
+				}
+		);
+		
+		return productoList;
+	}
 
 	
 	public Collection<Stock> getListStock() {

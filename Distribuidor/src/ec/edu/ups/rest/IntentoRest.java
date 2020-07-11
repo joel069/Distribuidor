@@ -28,7 +28,7 @@ public class IntentoRest {
 	return "Hola mundo, desde Restful FUNCIONA";
     }
     
-    
+    @GET
     @Path("/ListaProductos/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listProductos() {
@@ -37,7 +37,9 @@ public class IntentoRest {
     	
     	Jsonb jsonb = JsonbBuilder.create();
     	
-    	list=ejbProductoFacade.findAll();
+    	//list=ejbProductoFacade.findAll();
+    	list = Producto.serializeProducto(ejbProductoFacade.findAll());
+    	
     	
 		return Response.ok(jsonb.toJson(list))
 				.header("Access-Control-Allow-Origin", "*")
