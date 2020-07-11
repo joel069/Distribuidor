@@ -16,7 +16,7 @@ import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.modelo.Producto;
 
 @Path("/prueba")
-public class IntentoRest {
+public class ApiREST {
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
