@@ -156,7 +156,7 @@ public class Producto implements Serializable {
 		
 		productos.forEach(
 				e->{
-					Categoria categoria = new Categoria(e.getCategoria().getId(), e.getCategoria().getNombre(), null);
+					Categoria categoria = new Categoria(e.getId(),e.getNombre());
 					
 					producto = new Producto(e.getNombre(), e.getDescripcion(), e.getPreciounitario(), e.getPreciopublico(), categoria, e.getStock());
 					productoList.add(producto);
