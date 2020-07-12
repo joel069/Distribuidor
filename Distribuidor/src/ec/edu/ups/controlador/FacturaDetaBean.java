@@ -36,6 +36,7 @@ public class FacturaDetaBean implements Serializable{
 	@EJB
 	private FacturaDetalleFacade ejbFacturaDetalleFacade; 
 	
+	
 	private PersonaFacade personaFacade;
 	private ProductoFacade ejbProductoFacade;
 	private int cantidad;
@@ -82,7 +83,6 @@ public class FacturaDetaBean implements Serializable{
 		this.ejbFacturaDetalleFacade = ejbFacturaDetalleFacade;
 	}
 */
-	
 	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
@@ -90,10 +90,10 @@ public class FacturaDetaBean implements Serializable{
 	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
 		this.ejbProductoFacade = ejbProductoFacade;
 	}
+	
 	public FacturaCabeceraFacade getEjbFacturaCabeceraFacade() {
 		return ejbFacturaCabeceraFacade;
 	}
-
 	
 	public PersonaFacade getPersonaFacade() {
 		return personaFacade;
@@ -302,30 +302,32 @@ public class FacturaDetaBean implements Serializable{
 	
 	}  
 	
-	public String busca() {
-		
-		System.out.println("Si valiooooooooooooooo");
-		
-		return null;
-	}
-	
 	public void calcularIva() {
 		
-		int iva =0;
+		double iva =0;
 		
+		if (subtotal != 0) {
+			
+			iva = 0.12 * subtotal;
+			
+			System.out.println("Subtotal mas Iva es:" + iva);
+		}
+
 	}
 	
-	public void calculartotalconIva() {
+	public void calculartotalFinal() {
 		
-		int tot = 0;
+		double tot = 0;	
+		tot = subtotal + iva;
+		System.out.println("El total a pagar es: " + tot);
+		
 	}
 	
 	
 	public void agregar() {
 		
-		Row r = new Row(1);
-		
-		System.out.println("Se agrego");
+	
+	
 			
 	}	
 }
