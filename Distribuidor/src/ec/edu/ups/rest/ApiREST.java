@@ -125,7 +125,7 @@ public class ApiREST {
     
     
     @POST
-    @Path("/personas")
+    @Path("/personass")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
@@ -139,7 +139,21 @@ public class ApiREST {
     	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
     	System.out.println(usu);
     	ejbUsuarioFacade.create(usu);
-    	return Response.ok(jsonb.toJson(usu)).build();
+    	//Response.ok(jsonb.toJson(usu)).build();
+    	return Response.ok("creado").build();
       
     }
+    
+    
+    @POST
+    @Path("/personas")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Usuario add(@FormParam("Usuario") Usuario usuario)
+    		throws IOException{
+    	System.out.println(usuario);
+    	return usuario;
+    }
+   
+    
 }
