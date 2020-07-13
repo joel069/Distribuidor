@@ -1,12 +1,16 @@
 package ec.edu.ups.rest;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -24,7 +28,9 @@ import ec.edu.ups.modelo.Bodega;
 
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Stock;
+import ec.edu.ups.modelo.Usuario;
 
 @Path("/prueba")
 public class ApiREST {
@@ -113,5 +119,25 @@ public class ApiREST {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     	
+    }
+    
+    
+    @POST
+    @Path("/personas")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
+    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+          throws IOException{
+    	System.out.println("Metodo crear");
+    	Jsonb jsonb=JsonbBuilder.create();
+    	Usuario usuario=new Usuario();
+    	Rol rol3=new Rol();
+	    rol3.setNombre("cliente");
+    	Usuario usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
+    	System.out.println(usu);
+    	ejbUsuarioFacade.create(usu);
+    	return Response.ok(jsonb.toJson(usu)).build();
+      
     }
 }
