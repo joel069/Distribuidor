@@ -4,7 +4,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Facturacion</title>
+	<title>Factura</title>
 	<style>
 		.tabla {
 			border-collaprose: collapse;
@@ -37,23 +37,26 @@
 	<!-- ////////////////////////////////  Factura Cabecera  /////////////////////////////////////////////-->
 		
 								
-		<ul>
-			<li>Fecha:<h:inputText size="10" value="#{facturaDetaBean.fecha}"/></li>
-		</ul>
+		Fecha:<h:inputText size="10" value="#{facturaDetaBean.fecha}"/>
 		
-		<ul>
-		<li>Cliente:
+		
+		Cliente:
 		<h:selectOneMenu value="#{facturaDetaBean.persona}">
 			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
 		</h:selectOneMenu>
-		</li>
-		</ul>
+		
 		
 		
 	<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
 								
 								
-	<h:dataTable value="#{facturaDetaBean.lista}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+	
+			Cantidad: <h:inputText size="10" value="#{facturaDetaBean.cantidad}"/>
+			Descripcion: <h:inputText size="10" value="#{facturaDetaBean.producto}"/>
+	
+		
+		
+		<h:dataTable value="#{facturaDetaBean.lista}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		
 		<h:column>
 			<f:facet name="header">Cantidad</f:facet>
@@ -70,22 +73,37 @@
 			<h:outputText value="#{fd.pun}" size="10"  />
 		</h:column>
 		
+		<h:column>
+			<f:facet name="header">Subtotal</f:facet>
+			<h:outputText value="#{facturaDetaBean.calcularTotalParcial()}" size="10"  />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Subtotal Productos</f:facet>
+			<h:outputText value="#{facturaDetaBean.calcularTotalParcial()}" size="10"  />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Iva 12 %</f:facet>
+			<h:outputText value="#{facturaDetaBean.iva}" size="10"  />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Total</f:facet>
+			<h:outputText value="#{facturaDetaBean.total}" size="10"  />
+		</h:column>
+		
 	</h:dataTable>
-	
-	
-	<ul>
-			<li>Cantidad: <h:inputText size="10" value="#{facturaDetaBean.cantidad}"/></li>
-			<li>Descripcion: <h:inputText size="10" value="#{facturaDetaBean.producto}"/></li>
-			<li>V. Unitario: <h:outputText size="10" value="#{pr.preciounitario}"/></li>	 
-	</ul>
 			
 			<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar}" />
 		
 			<h:commandButton value="Añadir" action="#{facturaDetaBean.add}" />
 			
-		    <h:commandButton value="calcular" action="#{facturaDetaBean.buscarPersonanombre}" />
-		    
-		    <h:commandButton value="calcular" action="#{facturaDetaBean.agregar}" />
+			<h:commandButton value="iva" action="#{facturaDetaBean.calcularIva()}" />
+			
+			<h:commandButton value="total" action="#{facturaDetaBean.calculartotalFinal()}" />
+			
+		   
 		
 	</h:form>
 </h:body>
