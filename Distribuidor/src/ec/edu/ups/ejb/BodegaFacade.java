@@ -94,10 +94,6 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
 		List<Ciudad> list = em.createQuery(sql).getResultList();
 		return list;
 	}
-
-	
-
-
 	public List<Producto>  recuperarInventario(String bodega) {
 		String sql = "select p "
 				+ "from Producto p "
@@ -107,5 +103,18 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
 		System.out.println(sql);
 		List<Producto> list = em.createQuery(sql).getResultList();
 		return list;		
+	}
+	public Bodega nombreBodega(String bodega) {
+		Bodega cat = new Bodega();
+		try {
+			String sql = "SELECT b FROM Bodega b where b.nombre='" + bodega + "'";
+			System.out.println(sql);
+			Query query = em.createQuery(sql);
+			cat = (Bodega) query.getSingleResult();
+
+		} catch (Exception e) {
+			System.out.println("bodega" + e.getMessage());
+		}
+		return cat;
 	}
 }

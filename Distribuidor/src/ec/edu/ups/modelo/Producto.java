@@ -51,6 +51,16 @@ public class Producto implements Serializable {
 		
 	}
 	
+<<<<<<< HEAD
+	//Creo un nuevo Constructor para el Serializa
+	public Producto(int id,String nombre,String descripcion,Double preciounitario, Double preciopublico,int stock) {
+		this.id=id;
+		this.nombre=nombre;
+		this.descripcion=descripcion;
+		this.preciounitario=preciounitario;
+		this.preciopublico=preciopublico;
+		this.stock=stock;
+=======
 	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico,int stock) {
 		super();
 		this.nombre=nombre;
@@ -59,6 +69,7 @@ public class Producto implements Serializable {
 		this.preciopublico=preciopublico;
 		this.stock=stock;
 		
+>>>>>>> branch 'master' of https://github.com/joel069/Distribuidor.git
 	}
 	
 	public int getId() {

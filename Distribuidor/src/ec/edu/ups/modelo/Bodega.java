@@ -56,10 +56,18 @@ public class Bodega implements Serializable {
 	public Bodega(String nombre, Ciudad ciudad) {
 		super();
 		this.nombre = nombre;
-	
 		this.ciudad = ciudad;			
 	
 	}
+	
+	public Bodega(String nombre,int id) {
+		this.nombre=nombre;
+		this.id=id;
+	}
+	public Bodega(String nombre) {
+		this.nombre=nombre;
+	}
+	
 
 
 	public Ciudad getCiudad() {
@@ -115,6 +123,53 @@ public class Bodega implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	
+	private static Bodega bodega;
+	public static Pais pais;
+	public static Provincia provincia;
+	public static Ciudad ciudadR;
+	
+	
+	private static List<Pais> paislist = new ArrayList<>();
+	private static List<Provincia> provinciaList = new ArrayList<>();
+	private static List<Ciudad> ciudadList = new ArrayList<>();
+	public static List<Bodega> serializeBodega(List<Bodega> bodegas){
+		List<Bodega> bodegasList= new ArrayList<>();
+		paislist.forEach(
+				p->{
+					 pais= new Pais(p.getNombre());
+				}
+				);
+		provinciaList.forEach(
+				pr->{
+					provincia=new Provincia(pr.getNombre(),pais);
+				}
+				);
+		ciudadList.forEach(
+				c->{
+					ciudadR= new Ciudad(c.getNombre(),provincia);
+				}
+				
+				);
+		
+		bodegas.forEach(
+				e->{
+					bodega = new Bodega(e.getNombre(),ciudadR);
+					bodegasList.add(bodega);
+				}
+				
+		);
+			
+		return bodegasList;
+	}
+	public static Bodega bodegaSingleResult;
+	public static Bodega serializeBodega2(Bodega bodega) {
+		
+		
+		bodegaSingleResult=new Bodega(bodega.getNombre(),bodega.getId());
+		return bodegaSingleResult;
+		
 	}
 
 

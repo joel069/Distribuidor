@@ -8,14 +8,19 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.ejb.StockFacade;
+import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Stock;
 
 @Path("/prueba")
 public class ApiREST {
@@ -23,6 +28,8 @@ public class ApiREST {
 	@EJB
 	private ProductoFacade ejbProductoFacade;
 	@EJB private CategoriaFacade ejbCategoriaFacade;
+	@EJB private BodegaFacade ejbBodegaFacade;
+	@EJB private StockFacade ejbStockFacade;
 	
 
 
@@ -56,7 +63,42 @@ public class ApiREST {
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
+    
+    @GET
+    @Path("/Bodegas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listBodegas() {
+    	List<Bodega> list = new ArrayList<Bodega>();
+    	Jsonb jsonb = JsonbBuilder.create();
     	
+    	list=Bodega.serializeBodega(ejbBodegaFacade.findAll());
+		return Response.ok(jsonb.toJson(list))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
 
+    
+    @GET
+    @Path("/ProductosByBodega/{nombreB}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listProductosBodega(@PathParam("nombreB") String nombreB) {
+    	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	Bodega bo= new Bodega();
+		bo=Bodega.serializeBodega2(ejbBodegaFacade.nombreBodega(nombreB));
+		
+		System.out.println(ejbStockFacade.listaInventario(bo));
+		List<Stock> lisStocks = new ArrayList<Stock>();
+		//lisStocks=ejbStockFacade.listaInventario(bo);
+		lisStocks=Stock.serializeStock(ejbStockFacade.listaInventario(bo));
+    	
+    	
+		return Response.ok(jsonb.toJson(lisStocks))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    	
+    }
 }
