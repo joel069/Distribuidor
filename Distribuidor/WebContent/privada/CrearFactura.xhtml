@@ -53,7 +53,7 @@
 	<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
 								
 								
-	<h:dataTable value="#{facturaDetaBean.facdetalle}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+	<h:dataTable value="#{facturaDetaBean.lista}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		
 		<h:column>
 			<f:facet name="header">Cantidad</f:facet>
@@ -62,12 +62,12 @@
 		
 		<h:column>
 			<f:facet name="header">Producto Detalle Nombre</f:facet>
-			<h:outputText value="#{facturaDetaBean.producto} " size="10"/>
+			<h:outputText value="#{fd.nombre1} " size="10"/>
 		</h:column>
 		
 		<h:column>
 			<f:facet name="header">V. Unitario</f:facet>
-			<h:outputText value="#{facturaDetaBean.prod.preciounitario}" size="10"  />
+			<h:outputText value="#{fd.pun}" size="10"  />
 		</h:column>
 		
 	</h:dataTable>
@@ -79,7 +79,7 @@
 			<li>V. Unitario: <h:outputText size="10" value="#{pr.preciounitario}"/></li>	 
 	</ul>
 			
-			<h:commandButton value="Buscar" action="#{facturaDetaBean.buscarpro}" />
+			<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar}" />
 		
 			<h:commandButton value="Añadir" action="#{facturaDetaBean.add}" />
 			
