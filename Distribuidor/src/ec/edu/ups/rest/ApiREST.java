@@ -31,12 +31,9 @@ public class ApiREST {
 	@EJB private BodegaFacade ejbBodegaFacade;
 	@EJB private StockFacade ejbStockFacade;
 	
-	
 
-    @GET @Produces(MediaType.TEXT_PLAIN)
-    public String saludar() {
-	return "Hola mundo, desde Restful FUNCIONA";
-    }
+
+    //metodo
     
     @GET
     @Path("/ListaProductos/")

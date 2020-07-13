@@ -2,7 +2,9 @@ package ec.edu.ups.controlador;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -36,9 +38,16 @@ public class FacturaDetaBean implements Serializable{
 	@EJB
 	private FacturaDetalleFacade ejbFacturaDetalleFacade; 
 	
+	
 	private PersonaFacade personaFacade;
 	private ProductoFacade ejbProductoFacade;
 	private int cantidad;
+	private String nombre1;
+	private String descripcion;
+	private double pun;
+	private double ppu;
+	private int stock;
+	private String categoria;
 	private double subtotal;
 	//public String categoria;
 	private double total;
@@ -50,7 +59,8 @@ public class FacturaDetaBean implements Serializable{
 	private String producto;
 	private String persona;
 	private String fecha;
-	private List<Producto> listproducto;
+	private Set<Producto> listproducto = new  HashSet<Producto>();
+	private Set<Roww> lista = new  HashSet<Roww>();
 	private List<FacturaDetalle> facdetalle;
 	private List<FacturaCabecera> faccabecera;
 	
@@ -65,7 +75,7 @@ public class FacturaDetaBean implements Serializable{
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
 		//facdetalle = ejbFacturaDetalleFacade.findAll();
 		//faccabecera= ejbFacturaCabeceraFacade.findAll();
-		this.listproducto= new ArrayList<Producto>();
+		
 		this.prod = new Producto();
 		this.faccabe = new FacturaCabecera();
 		this.facdeta = new FacturaDetalle();
@@ -83,6 +93,7 @@ public class FacturaDetaBean implements Serializable{
 	}
 */
 	
+	
 	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
@@ -90,10 +101,10 @@ public class FacturaDetaBean implements Serializable{
 	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
 		this.ejbProductoFacade = ejbProductoFacade;
 	}
+	
 	public FacturaCabeceraFacade getEjbFacturaCabeceraFacade() {
 		return ejbFacturaCabeceraFacade;
 	}
-
 	
 	public PersonaFacade getPersonaFacade() {
 		return personaFacade;
@@ -173,6 +184,54 @@ public class FacturaDetaBean implements Serializable{
 	}
 	
 	
+	public String getNombre() {
+		return nombre1;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre1 = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public double getPun() {
+		return pun;
+	}
+
+	public void setPun(double pun) {
+		this.pun = pun;
+	}
+
+	public double getPpu() {
+		return ppu;
+	}
+
+	public void setPpu(double ppu) {
+		this.ppu = ppu;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	public double getTotalparcial() {
 		return total;
 	}
@@ -203,13 +262,38 @@ public class FacturaDetaBean implements Serializable{
 	public void setProducto(String producto) {
 		this.producto = producto;
 	}
+	
+	public FacturaDetalleFacade getEjbFacturaDetalleFacade() {
+		return ejbFacturaDetalleFacade;
+	}
 
-	public List<Producto> getListproducto() {
+	public void setEjbFacturaDetalleFacade(FacturaDetalleFacade ejbFacturaDetalleFacade) {
+		this.ejbFacturaDetalleFacade = ejbFacturaDetalleFacade;
+	}
+
+	public String getNombre1() {
+		return nombre1;
+	}
+
+	public void setNombre1(String nombre1) {
+		this.nombre1 = nombre1;
+	}
+
+	public Set<Producto> getListproducto() {
 		return listproducto;
 	}
 
-	public void setListproducto(List<Producto> listproducto) {
+	public void setListproducto(Set<Producto> listproducto) {
 		this.listproducto = listproducto;
+	}
+	
+	
+	public Set<Roww> getLista() {
+		return lista;
+	}
+
+	public void setLista(Set<Roww> lista) {
+		this.lista = lista;
 	}
 
 	public List<FacturaDetalle> getFacdetalle() {
@@ -229,16 +313,8 @@ public class FacturaDetaBean implements Serializable{
 		faccabe.setEstado("activo");
 		faccabe.setTotal(50);
 		
-		facdeta.setCantidad(cantidad);
-		facdeta.setProid(buscarpro());
-		facdeta.setFaccabeid(faccabe);
-		facdeta.setSubtotal(12.01);
-		facdeta.setTotal(20.00);
-		System.out.println(faccabe);
-		System.out.println(facdeta);
-		
 		ejbFacturaCabeceraFacade.create(faccabe);
-		ejbFacturaDetalleFacade.create(facdeta);
+		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,calcularTotalParcial(), this.total,0,buscarpro()));
 		
 		//listproducto = ejbProductoFacade.findAll();
 		faccabe.addFacturaDetalle(facdeta);
@@ -264,6 +340,7 @@ public class FacturaDetaBean implements Serializable{
 		System.out.println(producto);
 		prod=ejbFacturaDetalleFacade.buscarProductos(producto);
 		String nombre = prod.getNombre();
+		listproducto.add(prod);
 		System.out.println("EL nombre es:" +nombre);
 		
 		return prod;	
@@ -290,7 +367,7 @@ public class FacturaDetaBean implements Serializable{
 	}
 
 	
-	public void calcularTotalParcial(){
+	public double calcularTotalParcial(){
 		
 		double valor=0 ;
 		
@@ -299,33 +376,49 @@ public class FacturaDetaBean implements Serializable{
 			valor = prod.getPreciounitario() * cantidad;
 			System.out.println(valor);	
 		}
+		
+		return valor;
 	
 	}  
 	
-	public String busca() {
-		
-		System.out.println("Si valiooooooooooooooo");
-		
-		return null;
-	}
-	
 	public void calcularIva() {
 		
-		int iva =0;
+		double iva =0;
 		
+		if (subtotal != 0) {
+			
+			iva = 0.12 * subtotal;
+			
+			System.out.println("Subtotal mas Iva es:" + iva);
+		}
+
 	}
 	
-	public void calculartotalconIva() {
+	public void calculartotalFinal() {
 		
-		int tot = 0;
+		total = 0;	
+		total = subtotal + iva;
+		System.out.println("El total a pagar es: " + total);
+		
 	}
-	
 	
 	public void agregar() {
 		
-		Row r = new Row(1);
+		System.out.println(producto);
+		prod=ejbFacturaDetalleFacade.buscarProductos(producto);
+		String nombre = prod.getNombre();
+		System.out.println("EL nombre es:" +nombre);
+		//this.listproducto.add(new Producto(prod.getNombre(),prod.getDescripcion(),prod.getPreciounitario(),prod.getPreciopublico(),prod.getCategoria(),prod.getStock()));
+		this.nombre1 =prod.getNombre();
+		this.descripcion = prod.getDescripcion();
+		this.pun = prod.getPreciounitario();
+		this.ppu = prod.getPreciopublico();
+		this.stock = prod.getStock();
+		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock));
+
+		System.out.println("la Lista" +lista);
 		
-		System.out.println("Se agrego");
-			
 	}	
+	
+	
 }
