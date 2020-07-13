@@ -51,6 +51,16 @@ public class Producto implements Serializable {
 		
 	}
 	
+	//Creo un nuevo Constructor para el Serializa
+	public Producto(int id,String nombre,String descripcion,Double preciounitario, Double preciopublico,int stock) {
+		this.id=id;
+		this.nombre=nombre;
+		this.descripcion=descripcion;
+		this.preciounitario=preciounitario;
+		this.preciopublico=preciopublico;
+		this.stock=stock;
+	}
+	
 	public int getId() {
 		return id;
 	}
