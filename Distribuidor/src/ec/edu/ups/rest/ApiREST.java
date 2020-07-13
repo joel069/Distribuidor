@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
 
@@ -23,10 +24,11 @@ public class ApiREST {
 	@EJB
 	private ProductoFacade ejbProductoFacade;
 	@EJB private CategoriaFacade ejbCategoriaFacade;
-	
+	@EJB private UsuarioFacade ejbUsuarioFacade;
 
 
     //metodo
+	
     
     @GET
     @Path("/ListaProductos/")
@@ -58,5 +60,10 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     	
     }
+    
+    
+    
+    
+    
 
 }
