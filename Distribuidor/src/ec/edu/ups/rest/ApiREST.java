@@ -34,6 +34,8 @@ import ec.edu.ups.modelo.Usuario;
 
 @Path("/prueba")
 public class ApiREST {
+	private Usuario usuario;
+	private Usuario usu;
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
@@ -131,10 +133,10 @@ public class ApiREST {
           throws IOException{
     	System.out.println("Metodo crear");
     	Jsonb jsonb=JsonbBuilder.create();
-    	Usuario usuario=new Usuario();
+    	usuario=new Usuario();
     	Rol rol3=new Rol();
 	    rol3.setNombre("cliente");
-    	Usuario usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
+    	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
     	System.out.println(usu);
     	ejbUsuarioFacade.create(usu);
     	return Response.ok(jsonb.toJson(usu)).build();
