@@ -314,7 +314,7 @@ public class FacturaDetaBean implements Serializable{
 		faccabe.setTotal(50);
 		
 		ejbFacturaCabeceraFacade.create(faccabe);
-		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,calcularTotalParcial(), this.total,0,buscarpro()));
+		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,this.subtotal, this.total,0,buscarpro()));
 		
 		//listproducto = ejbProductoFacade.findAll();
 		faccabe.addFacturaDetalle(facdeta);
@@ -369,21 +369,17 @@ public class FacturaDetaBean implements Serializable{
 	
 	public double calcularTotalParcial(){
 		
-		double valor=0 ;
-		
 		if(cantidad > 1) {
 			
-			valor = prod.getPreciounitario() * cantidad;
-			System.out.println(valor);	
+			subtotal = prod.getPreciounitario() * cantidad;
+			System.out.println(subtotal);	
 		}
 		
-		return valor;
-	
+		return subtotal;
 	}  
 	
-	public void calcularIva() {
-		
-		double iva =0;
+	
+	public double calcularIva() {
 		
 		if (subtotal != 0) {
 			
@@ -391,15 +387,17 @@ public class FacturaDetaBean implements Serializable{
 			
 			System.out.println("Subtotal mas Iva es:" + iva);
 		}
-
+		
+		return iva;
 	}
 	
-	public void calculartotalFinal() {
+	public double calculartotalFinal() {
 		
-		total = 0;	
+		
 		total = subtotal + iva;
 		System.out.println("El total a pagar es: " + total);
 		
+		return total;
 	}
 	
 	public void agregar() {
@@ -408,7 +406,7 @@ public class FacturaDetaBean implements Serializable{
 		prod=ejbFacturaDetalleFacade.buscarProductos(producto);
 		String nombre = prod.getNombre();
 		System.out.println("EL nombre es:" +nombre);
-		//this.listproducto.add(new Producto(prod.getNombre(),prod.getDescripcion(),prod.getPreciounitario(),prod.getPreciopublico(),prod.getCategoria(),prod.getStock()));
+		
 		this.nombre1 =prod.getNombre();
 		this.descripcion = prod.getDescripcion();
 		this.pun = prod.getPreciounitario();

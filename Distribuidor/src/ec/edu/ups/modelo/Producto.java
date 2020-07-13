@@ -60,7 +60,7 @@ public class Producto implements Serializable {
 		this.preciopublico=preciopublico;
 		this.stock=stock;
 	}
-		
+
 	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico,int stock) {
 		super();
 		this.nombre=nombre;
