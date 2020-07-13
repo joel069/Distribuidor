@@ -1,6 +1,9 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -24,6 +27,11 @@ public class Stock implements Serializable {
 	private Producto producto;
 	public Stock() {
 		
+	}
+	
+	public Stock(int id,Producto producto,Bodega bodega) {
+		this.id=id;
+		this.producto=producto;
 	}
 
 	public int getId() {
@@ -71,7 +79,44 @@ public class Stock implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
+	private static Stock stock;
+	private static Producto producto2;
+	private static Bodega bodega2;
+	
+	private static List<Producto> productoList = new ArrayList<>();
+	public static List<Stock> serializeStock(List<Stock> stocks) {
+		List<Stock> stockList = new ArrayList<>();
+		/*
+		productoList.forEach(
+				p->{
+					producto2 = new Producto(p.getId(),p.getNombre(),p.getDescripcion(),p.getPreciounitario(),p.getPreciopublico(),p.getStock());
+				}
+				);
+				**/
+		
+		stocks.forEach(
+				s->{
+					
+					producto2 = new Producto(s.getProducto().getId(),s.getProducto().getNombre(),s.getProducto().getDescripcion(),s.getProducto().getPreciounitario(),s.getProducto().getPreciopublico(),s.getProducto().getStock());
+					bodega2 = new Bodega(s.getBodega().getNombre(),s.getBodega().getCiudad());
+					
+					
+					System.out.println("Productos recuperados----"+producto2);
+					stock=new Stock(s.getId(),producto2,bodega2);	
+					stockList.add(stock);
+				}
+				);
+		
+		return stockList;
+	}
+	
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Stock [id=" + id + ", bodega=" + bodega + ", producto=" + producto + "]";
