@@ -123,7 +123,7 @@ public class ApiREST {
     	
     }
     
-    
+    /*
     @POST
     @Path("/personass")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -143,6 +143,7 @@ public class ApiREST {
     	return Response.ok("creado").build();
       
     }
+    */
     
     
     @POST
