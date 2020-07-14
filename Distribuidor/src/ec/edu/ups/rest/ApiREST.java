@@ -115,7 +115,7 @@ public class ApiREST {
 		List<Stock> lisStocks = new ArrayList<Stock>();
 		//lisStocks=ejbStockFacade.listaInventario(bo);
 		lisStocks=Stock.serializeStock(ejbStockFacade.listaInventario(bo));
-    	
+    	System.out.println("dkfjgndkjfgndkjfndf    productoooooossssssssssssssss");
     	
 		return Response.ok(jsonb.toJson(lisStocks))
 				.header("Access-Control-Allow-Origin", "*")
@@ -127,8 +127,6 @@ public class ApiREST {
 
 
     @POST
-    //@Path("/personas")
-    //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/bode/{nombre}")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
@@ -174,4 +172,5 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
 
+    
 }
