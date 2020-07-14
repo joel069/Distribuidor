@@ -1,12 +1,15 @@
 package ec.edu.ups.rest;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,21 +23,35 @@ import org.glassfish.api.Param;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+
+import ec.edu.ups.ejb.UsuarioFacade;
+
 import ec.edu.ups.ejb.StockFacade;
 import ec.edu.ups.modelo.Bodega;
+
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Stock;
+import ec.edu.ups.modelo.Usuario;
 
 @Path("/prueba")
 public class ApiREST {
+	private Usuario usuario;
+	private Usuario usu;
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
 	@EJB private CategoriaFacade ejbCategoriaFacade;
+
+	@EJB private UsuarioFacade ejbUsuarioFacade;
+
 	@EJB private BodegaFacade ejbBodegaFacade;
 	@EJB private StockFacade ejbStockFacade;
-    //metodo    
+
+
+
+
     @GET
     @Path("/ListaProductos/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -78,6 +95,11 @@ public class ApiREST {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
+    
+    
+    
+    
+    
 
     
     @GET
@@ -99,9 +121,9 @@ public class ApiREST {
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
-    	
     }
     
+
     @POST
     @Path("/bode/{nombre}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -117,4 +139,50 @@ public class ApiREST {
     	
     	
     }
+    
+    
+    @POST
+    @Path("/personas")
+    @Consumes(MediaType.APPLICATION_JSON)
+    //@Produces(MediaType.APPLICATION_JSON)
+    public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
+    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+          throws IOException{
+    	System.out.println("Metodo crear");
+    	Jsonb jsonb=JsonbBuilder.create();
+    	
+    	//@FormParam
+    	//usuario= jsonb.fromJson(nombre, Usuario.class);
+    	
+    	Rol rol3=new Rol();
+	    rol3.setNombre("cliente");
+    	Usuario usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
+    	System.out.println(nombre);
+    	System.out.println(apellidos);
+    	System.out.println(usu);
+    	//ejbUsuarioFacade.create(usu);
+    	//Response.ok(jsonb.toJson(usu)).build();
+    	return Response.ok(jsonb.toJson(usu))
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
+    
+    
+    
+       
+    /*
+    @POST
+    @Path("/personas")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Usuario add(@FormParam("usuarios") Usuario usuario)
+    		throws IOException {
+    	System.out.println(usuario);
+    	return usuario;
+    }
+
+   */
+    
+
 }
