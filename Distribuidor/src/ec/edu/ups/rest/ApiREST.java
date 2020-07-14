@@ -148,7 +148,6 @@ public class ApiREST {
     @POST
     @Path("/personas")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    //@Produces(MediaType.APPLICATION_JSON)
     public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
     		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
@@ -161,16 +160,6 @@ public class ApiREST {
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
-    	
-    	
-    	
-    	//Jsonb jsonb=JsonbBuilder.create();
-    	//usuario=new Usuario();
-
-    	
-    	//@FormParam
-    	//usuario= jsonb.fromJson(nombre, Usuario.class);
-    	
     	Rol rol3=new Rol();
 	    rol3.setNombre("cliente");
 
@@ -178,8 +167,6 @@ public class ApiREST {
     	System.out.println("Usuario tipo Usuario-------------------->"+usu.toString());
     	ejbUsuarioFacade.create(usu);
 
-    	//ejbUsuarioFacade.create(usu);
-    	//Response.ok(jsonb.toJson(usu)).build();
     	return Response.ok("Creado")
     			.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
@@ -187,17 +174,5 @@ public class ApiREST {
     }
 
 
-    /*
-    @POST
-    @Path("/personas")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Usuario add(@FormParam("usuarios") Usuario usuario)
-    		throws IOException {
-    	System.out.println(usuario);
-    	return usuario;
-    }
-
-   */
     
 }
