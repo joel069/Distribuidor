@@ -47,10 +47,8 @@ public class Producto implements Serializable {
 		this.preciounitario=preciounitario;
 		this.preciopublico=preciopublico;
 		this.categoria=categoria;
-		this.stock=stock;
-		
+		this.stock=stock;		
 	}
-	
 
 	//Creo un nuevo Constructor para el Serializa
 	public Producto(int id,String nombre,String descripcion,Double preciounitario, Double preciopublico,int stock) {
@@ -61,6 +59,7 @@ public class Producto implements Serializable {
 		this.preciopublico=preciopublico;
 		this.stock=stock;
 	}
+
 	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico,int stock) {
 		super();
 		this.nombre=nombre;
@@ -68,7 +67,6 @@ public class Producto implements Serializable {
 		this.preciounitario=preciounitario;
 		this.preciopublico=preciopublico;
 		this.stock=stock;
-		
 
 	}
 	
