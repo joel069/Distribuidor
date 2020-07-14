@@ -166,10 +166,9 @@ public class ApiREST {
     	System.out.println(usuario);
     	return usuario;
     }
-<<<<<<< HEAD
+
    */
     
-=======
-   
->>>>>>> branch 'master' of https://github.com/joel069/Distribuidor.git
+
+
 }
