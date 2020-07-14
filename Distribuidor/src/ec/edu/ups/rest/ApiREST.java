@@ -174,5 +174,35 @@ public class ApiREST {
     }
 
 
+    @POST
+    @Path("/inicio")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response inicio(@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+          throws IOException{
+    	System.out.println("Metodo crear");
+        Usuario us=new Usuario();
+    	System.out.println("Correo " + correo);
+    	System.out.println("Contrasena " + contrasena);
+    	
+    	Usuario usu=new Usuario();
+    	usu.setCorreo(correo);
+    	String correoo=usu.getCorreo();
+    	
+    	usu.setContraseña(contrasena);
+    	String contrasenaa=usu.getContraseña();
+    	
+    	us = ejbUsuarioFacade.inicio(correoo, contrasenaa);
+        if(us !=null) 
+        {
+    	return Response.ok("Iniciado")
+        
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+        }
+        
+        return Response.ok("No creado").build();
+    }
+
     
 }
