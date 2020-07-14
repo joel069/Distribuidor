@@ -124,7 +124,11 @@ public class ApiREST {
     }
     
 
+
+
     @POST
+    //@Path("/personas")
+    //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/bode/{nombre}")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
@@ -143,30 +147,31 @@ public class ApiREST {
     
     @POST
     @Path("/personas")
-    @Consumes(MediaType.APPLICATION_JSON)
-    //@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
     		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	System.out.println("Metodo crear");
-    	Jsonb jsonb=JsonbBuilder.create();
-    	
-    	//@FormParam
-    	//usuario= jsonb.fromJson(nombre, Usuario.class);
+
+    	System.out.println("Nombre " + nombre);
+    	System.out.println("Apellido " + apellidos);
+    	System.out.println("Telefono " + telefono);
+    	System.out.println("Cedula " + cedula);
+    	System.out.println("Correo " + correo);
+    	System.out.println("Contrasena " + contrasena);
     	
     	Rol rol3=new Rol();
 	    rol3.setNombre("cliente");
-    	Usuario usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
-    	System.out.println(nombre);
-    	System.out.println(apellidos);
-    	System.out.println(usu);
-    	//ejbUsuarioFacade.create(usu);
-    	//Response.ok(jsonb.toJson(usu)).build();
-    	return Response.ok(jsonb.toJson(usu))
+
+    	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
+    	System.out.println("Usuario tipo Usuario-------------------->"+usu.toString());
+    	ejbUsuarioFacade.create(usu);
+
+    	return Response.ok("Creado")
     			.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
-    
-    
+
 }
