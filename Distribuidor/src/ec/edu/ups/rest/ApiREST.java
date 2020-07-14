@@ -1,6 +1,7 @@
 package ec.edu.ups.rest;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,38 +124,48 @@ public class ApiREST {
     	
     }
     
-    /*
+    
+    
     @POST
-    @Path("/personass")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/personas")
+    @Consumes(MediaType.APPLICATION_JSON)
+    //@Produces(MediaType.APPLICATION_JSON)
     public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
     		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	System.out.println("Metodo crear");
     	Jsonb jsonb=JsonbBuilder.create();
-    	usuario=new Usuario();
+    	
+    	//@FormParam
+    	//usuario= jsonb.fromJson(nombre, Usuario.class);
+    	
     	Rol rol3=new Rol();
 	    rol3.setNombre("cliente");
-    	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
+    	Usuario usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
+    	System.out.println(nombre);
+    	System.out.println(apellidos);
     	System.out.println(usu);
-    	ejbUsuarioFacade.create(usu);
+    	//ejbUsuarioFacade.create(usu);
     	//Response.ok(jsonb.toJson(usu)).build();
-    	return Response.ok("creado").build();
-      
+    	return Response.ok(jsonb.toJson(usu))
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
-    */
     
     
+    
+       
+    /*
     @POST
     @Path("/personas")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public Usuario add(@FormParam("Usuario") Usuario usuario)
-    		throws IOException{
+    public Usuario add(@FormParam("usuarios") Usuario usuario)
+    		throws IOException {
     	System.out.println(usuario);
     	return usuario;
     }
-   
+   */
     
 }
