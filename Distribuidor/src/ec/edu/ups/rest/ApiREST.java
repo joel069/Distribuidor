@@ -187,10 +187,6 @@ public class ApiREST {
     }
 
 
-   
-
-    
-       
     /*
     @POST
     @Path("/personas")
