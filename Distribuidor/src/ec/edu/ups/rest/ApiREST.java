@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -121,7 +122,6 @@ public class ApiREST {
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
-    	
     }
     
     
@@ -166,6 +166,10 @@ public class ApiREST {
     	System.out.println(usuario);
     	return usuario;
     }
+<<<<<<< HEAD
    */
     
+=======
+   
+>>>>>>> branch 'master' of https://github.com/joel069/Distribuidor.git
 }
