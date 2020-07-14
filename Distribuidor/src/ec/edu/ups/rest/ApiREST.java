@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -18,6 +17,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.glassfish.api.Param;
 
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
@@ -47,12 +48,10 @@ public class ApiREST {
 
 	@EJB private BodegaFacade ejbBodegaFacade;
 	@EJB private StockFacade ejbStockFacade;
-	
 
 
-    //metodo
-	
-    
+
+
     @GET
     @Path("/ListaProductos/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -124,6 +123,22 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
     
+
+    @POST
+    @Path("/bode/{nombre}")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response bode(@PathParam("nombre")String nombre) {
+    	//Jsonb jsonb = JsonbBuilder.create();    	
+    	System.out.println("Aquiiiiiiiiiiiiiiiiiiiiii");      	
+    	System.out.println(nombre);
+    	return Response.ok("aquiiiiiiiiii"+nombre)
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    	
+    	
+    }
     
     
     @POST
@@ -169,6 +184,5 @@ public class ApiREST {
 
    */
     
-
 
 }
