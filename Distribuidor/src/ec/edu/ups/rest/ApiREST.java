@@ -102,11 +102,14 @@ public class ApiREST {
     
 
     
-    @GET
+    @POST
     @Path("/ProductosByBodega/{nombreB}")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response listProductosBodega(@PathParam("nombreB") String nombreB) {
     	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	System.out.println(nombreB);
     	
     	Bodega bo= new Bodega();
 		bo=Bodega.serializeBodega2(ejbBodegaFacade.nombreBodega(nombreB));
@@ -115,6 +118,7 @@ public class ApiREST {
 		List<Stock> lisStocks = new ArrayList<Stock>();
 		//lisStocks=ejbStockFacade.listaInventario(bo);
 		lisStocks=Stock.serializeStock(ejbStockFacade.listaInventario(bo));
+		
     	
     	
 		return Response.ok(jsonb.toJson(lisStocks))
@@ -127,16 +131,13 @@ public class ApiREST {
 
 
     @POST
-    //@Path("/personas")
-    //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/bode/{nombre}")
     @Produces(MediaType.TEXT_PLAIN)
-    @Consumes(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response bode(@PathParam("nombre")String nombre) {
     	//Jsonb jsonb = JsonbBuilder.create();    	
-    	System.out.println("Aquiiiiiiiiiiiiiiiiiiiiii");      	
-    	System.out.println(nombre);
-    	return Response.ok("aquiiiiiiiiii"+nombre)
+    	System.out.println("Aquiiiiiiii------>FUNCIONA");      	
+    	return Response.ok("En la bodega: " + nombre)
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
@@ -173,7 +174,32 @@ public class ApiREST {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
-
-
+    
+    @POST
+    @Path("/ProductosByBodegaCategorias/{nombreB}/{nombreC}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listProductosBodegaCategorias(@PathParam("nombreB") String nombreB,@PathParam("nombreC")String nombreC) {
+    	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	System.out.println(nombreB);
+    	System.out.println(nombreC);
+    	
+    	
+    	//Bodega bo= new Bodega();
+		
+		System.out.println(ejbStockFacade.bodegasCategorias_Productos(nombreB, nombreC));
+		List<Stock> lisStocks = new ArrayList<Stock>();
+		//lisStocks=ejbStockFacade.listaInventario(bo);
+		lisStocks=Stock.serializeStock(ejbStockFacade.bodegasCategorias_Productos(nombreB, nombreC));
+		System.out.println(lisStocks);
+		
+    	
+    	
+		return Response.ok(jsonb.toJson(lisStocks))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
     
 }
