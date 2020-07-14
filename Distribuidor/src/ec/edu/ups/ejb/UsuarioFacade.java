@@ -49,5 +49,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
 		System.out.println("Lista persona:" + list);
 		return list;
    }
+	
+  
 
 }

@@ -58,4 +58,27 @@ public class StockFacade extends AbstractFacade<Stock> {
 		System.out.println(list);
 		return list;
 	}
+	
+	public List<Stock> bodegasCategorias_Productos(String bodega, String categoria){
+		System.out.println(bodega);
+		System.out.println(categoria);
+		String sql = "SELECT s FROM Stock s where  s.bodega.nombre='" + bodega+"' AND  s.producto.categoria.nombre='"+categoria+"'";
+		System.out.println(sql);
+		List<Stock> list = em.createQuery(sql).getResultList();
+		for (Stock stock : list) {
+			System.out.println("Nombre  bodega"+stock.getBodega().getNombre());
+			System.out.println("Direccion Bodega"+stock.getBodega().getCiudad().getNombre());			
+			System.out.println("Nombre producto"+stock.getProducto().getNombre());
+			System.out.println("Descripcion Producto"+stock.getProducto().getDescripcion());
+			System.out.println("Precio Publico"+stock.getProducto().getPreciopublico());
+			System.out.println("Precio Unitario"+stock.getProducto().getPreciounitario());
+			System.out.println("Stock"+stock.getProducto().getStock());
+			System.out.println("Categoria"+stock.getProducto().getCategoria().getNombre());
+		}
+		System.out.println("recuperooooooooooo stock");
+		System.out.println(list);
+		
+		return list;
+		
+	}
 }
