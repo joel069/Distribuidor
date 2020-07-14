@@ -169,20 +169,4 @@ public class ApiREST {
     }
     
     
-    
-       
-    /*
-    @POST
-    @Path("/personas")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Usuario add(@FormParam("usuarios") Usuario usuario)
-    		throws IOException {
-    	System.out.println(usuario);
-    	return usuario;
-    }
-
-   */
-    
-
 }
