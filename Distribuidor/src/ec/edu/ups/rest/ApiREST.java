@@ -98,7 +98,7 @@ public class ApiREST {
     
     
     
-    
+    //
     
 
     
@@ -235,7 +235,5 @@ public class ApiREST {
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
-    }
-
-    
+    }    
 }
