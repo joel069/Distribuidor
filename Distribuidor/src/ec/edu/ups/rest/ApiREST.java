@@ -60,7 +60,7 @@ public class ApiREST {
 
 
 
-
+	
     @GET
     @Path("/ListaProductos/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -105,20 +105,11 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
     
-    
-    
-    
-    
 
-    
-    @POST
     @Path("/ProductosByBodega/{nombreB}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response listProductosBodega(@PathParam("nombreB") String nombreB) {
     	Jsonb jsonb = JsonbBuilder.create();
-    	
-    	System.out.println(nombreB);
     	
     	Bodega bo= new Bodega();
 		bo=Bodega.serializeBodega2(ejbBodegaFacade.nombreBodega(nombreB));
@@ -127,7 +118,6 @@ public class ApiREST {
 		List<Stock> lisStocks = new ArrayList<Stock>();
 		//lisStocks=ejbStockFacade.listaInventario(bo);
 		lisStocks=Stock.serializeStock(ejbStockFacade.listaInventario(bo));
-		
     	
     	
 		return Response.ok(jsonb.toJson(lisStocks))
@@ -136,17 +126,17 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
     
-
-
-
     @POST
+    //@Path("/personas")
+    //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/bode/{nombre}")
     @Produces(MediaType.TEXT_PLAIN)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.TEXT_PLAIN)
     public Response bode(@PathParam("nombre")String nombre) {
     	//Jsonb jsonb = JsonbBuilder.create();    	
-    	System.out.println("Aquiiiiiiii------>FUNCIONA");      	
-    	return Response.ok("En la bodega: " + nombre)
+    	System.out.println("Aquiiiiiiiiiiiiiiiiiiiiii");      	
+    	System.out.println(nombre);
+    	return Response.ok("aquiiiiiiiiii"+nombre)
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
@@ -183,6 +173,40 @@ public class ApiREST {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
+
+
+
+
+    @POST
+    @Path("/inicio")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response inicio(@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+          throws IOException{
+    	System.out.println("Metodo crear");
+        Usuario us=new Usuario();
+    	System.out.println("Correo " + correo);
+    	System.out.println("Contrasena " + contrasena);
+    	
+    	Usuario usu=new Usuario();
+    	usu.setCorreo(correo);
+    	String correoo=usu.getCorreo();
+    	
+    	usu.setContraseña(contrasena);
+    	String contrasenaa=usu.getContraseña();
+    	
+    	us = ejbUsuarioFacade.inicio(correoo, contrasenaa);
+        if(us !=null) 
+        {
+    	return Response.ok("Iniciado")
+        
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+        }
+        
+        return Response.ok("No creado").build();
+    }
+
     
     @POST
     @Path("/ProductosByBodegaCategorias/{nombreB}/{nombreC}")
@@ -209,6 +233,7 @@ public class ApiREST {
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+
     }
     @POST
     @Path("/AgregarProductosLista")
@@ -241,4 +266,8 @@ public class ApiREST {
 		return null;
     	
     }
+
+    }    
+
+
 }

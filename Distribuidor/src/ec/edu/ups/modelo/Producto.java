@@ -40,7 +40,8 @@ public class Producto implements Serializable {
 			
 		}
 
-	public Producto( String nombre,String descripcion,Double preciounitario, Double preciopublico,Categoria categoria,int stock) {
+	public Producto( String nombre,String descripcion,Double preciounitario,
+			Double preciopublico,Categoria categoria,int stock) {
 		super();
 		this.nombre=nombre;
 		this.descripcion=descripcion;
@@ -51,7 +52,8 @@ public class Producto implements Serializable {
 	}
 
 	//Creo un nuevo Constructor para el Serializa
-	public Producto(int id,String nombre,String descripcion,Double preciounitario, Double preciopublico,int stock) {
+	public Producto(int id,String nombre,String descripcion,Double preciounitario, 
+			Double preciopublico,int stock) {
 		this.id=id;
 		this.nombre=nombre;
 		this.descripcion=descripcion;

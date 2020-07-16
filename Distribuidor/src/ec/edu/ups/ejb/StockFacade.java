@@ -66,8 +66,9 @@ public class StockFacade extends AbstractFacade<Stock> {
 		System.out.println(sql);
 		List<Stock> list = em.createQuery(sql).getResultList();
 		for (Stock stock : list) {
+			System.out.println("Id" + stock.getBodega().getId());
 			System.out.println("Nombre  bodega"+stock.getBodega().getNombre());
-			System.out.println("Direccion Bodega"+stock.getBodega().getCiudad().getNombre());			
+			//System.out.println("Direccion Bodega"+stock.getBodega().getCiudad().getNombre());			
 			System.out.println("Nombre producto"+stock.getProducto().getNombre());
 			System.out.println("Descripcion Producto"+stock.getProducto().getDescripcion());
 			System.out.println("Precio Publico"+stock.getProducto().getPreciopublico());
