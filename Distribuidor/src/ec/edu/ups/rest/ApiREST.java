@@ -97,11 +97,6 @@ public class ApiREST {
     }
     
     
-    
-    
-    
-
-    
     @GET
     @Path("/ProductosByBodega/{nombreB}")
     @Produces(MediaType.APPLICATION_JSON)
