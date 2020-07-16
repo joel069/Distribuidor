@@ -257,7 +257,6 @@ public class ApiREST {
     	Roww roww = new Roww(nombre,descripcion,precioP,precioU,stockP,Cantidad);
     	
     	List<Roww> listRow = new ArrayList<Roww>();
-    	
     	listRow.add(roww);
     	
     	System.out.println(listRow);
@@ -270,4 +269,3 @@ public class ApiREST {
     }    
 
 
-}
