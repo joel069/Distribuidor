@@ -11,6 +11,7 @@ public class Roww implements Serializable{
 	private double pun;
 	private double ppu;
 	private int stock;
+	private int cantidad;
 
 	public Roww(String nombre1, String descripcion, double pun, double ppu, int stock) {
 		super();
@@ -19,6 +20,17 @@ public class Roww implements Serializable{
 		this.pun = pun;
 		this.ppu = ppu;
 		this.stock = stock;
+	}
+	
+	
+	public Roww(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad) {
+		super();
+		this.nombre1 = nombre1;
+		this.descripcion = descripcion;
+		this.pun = pun;
+		this.ppu = ppu;
+		this.stock = stock;
+		this.cantidad=cantidad;
 	}
 
 
@@ -69,6 +81,18 @@ public class Roww implements Serializable{
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	
+	
+
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 

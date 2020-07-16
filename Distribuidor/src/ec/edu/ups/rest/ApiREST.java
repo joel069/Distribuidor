@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.persistence.PreUpdate;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -20,6 +21,9 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.api.Param;
 
+import com.sun.rowset.internal.Row;
+
+import ec.edu.ups.controlador.Roww;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
@@ -48,6 +52,11 @@ public class ApiREST {
 
 	@EJB private BodegaFacade ejbBodegaFacade;
 	@EJB private StockFacade ejbStockFacade;
+	
+	
+	//Variables
+	List<Producto> lisProducto = new ArrayList<Producto>();
+	
 
 
 
@@ -201,5 +210,35 @@ public class ApiREST {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
-    
+    @POST
+    @Path("/AgregarProductosLista")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ListaProductos(@FormParam("nombre")String nombre,@FormParam("descripcion")String descripcion,
+    		@FormParam("preciopublico")String preciopublico, @FormParam("stock")String stock, @FormParam("cantidad")String cantidad
+    		,@FormParam("preciounitario")String preciounitario) {
+    	
+    	System.out.println("NombreProducto-->"+nombre);
+    	System.out.println("DescripcionProducto-->"+descripcion);
+    	System.out.println("PrecioProducto-->"+preciopublico);
+    	System.out.println("StockProducto-->"+stock);
+    	System.out.println("CantidadProducto-->"+cantidad);
+    	
+    	
+    	double precioP= Double.parseDouble(preciopublico);
+    	double precioU=Double.parseDouble(preciounitario);
+    	int stockP = Integer.valueOf(stock);
+    	int Cantidad = Integer.valueOf(cantidad);
+    	Roww roww = new Roww(nombre,descripcion,precioP,precioU,stockP,Cantidad);
+    	
+    	List<Roww> listRow = new ArrayList<Roww>();
+    	
+    	listRow.add(roww);
+    	
+    	System.out.println(listRow);
+    	
+    	
+		return null;
+    	
+    }
 }
