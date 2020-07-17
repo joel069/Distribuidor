@@ -28,6 +28,8 @@ public class Producto implements Serializable {
 	private double preciopublico;
 	private int stock;
 	@Transient
+	private int cantidad;
+	@Transient
 	private boolean editable;	
 	@OneToMany(mappedBy = "producto")
 	private Collection<Stock>listStock;	
@@ -39,6 +41,19 @@ public class Producto implements Serializable {
 		public Producto() {
 			
 		}
+		
+		public Producto( String nombre, String descripcion, double preciounitario, double preciopublico, int stock,
+				int cantidad) {
+			super();
+			
+			this.nombre = nombre;
+			this.descripcion = descripcion;
+			this.preciounitario = preciounitario;
+			this.preciopublico = preciopublico;
+			this.stock = stock;
+			this.cantidad = cantidad;
+		}
+
 
 	public Producto( String nombre,String descripcion,Double preciounitario,
 			Double preciopublico,Categoria categoria,int stock) {
@@ -72,6 +87,9 @@ public class Producto implements Serializable {
 
 	}
 	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -91,6 +109,15 @@ public class Producto implements Serializable {
 
 	public String getDescripcion() {
 		return descripcion;
+	}
+
+	
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	public void setDescripcion(String descripcion) {

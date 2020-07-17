@@ -43,6 +43,7 @@ import ec.edu.ups.modelo.Usuario;
 public class ApiREST {
 	private Usuario usuario;
 	private Usuario usu;
+	List<Roww> listRow = new ArrayList<Roww>();
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
@@ -235,13 +236,14 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 
     }
+    /*
     @POST
     @Path("/AgregarProductosLista")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response ListaProductos(@FormParam("nombre")String nombre,@FormParam("descripcion")String descripcion,
-    		@FormParam("preciopublico")String preciopublico, @FormParam("stock")String stock, @FormParam("cantidad")String cantidad
-    		,@FormParam("preciounitario")String preciounitario) {
+    public Response ListaProductos(@PathParam("nombre")String nombre,@PathParam("descripcion")String descripcion,
+    		@PathParam("preciopublico")String preciopublico, @PathParam("stock")String stock, @PathParam("cantidad")String cantidad
+    		,@PathParam("preciounitario")String preciounitario) {
     	
     	System.out.println("NombreProducto-->"+nombre);
     	System.out.println("DescripcionProducto-->"+descripcion);
@@ -254,18 +256,52 @@ public class ApiREST {
     	double precioU=Double.parseDouble(preciounitario);
     	int stockP = Integer.valueOf(stock);
     	int Cantidad = Integer.valueOf(cantidad);
-    	Roww roww = new Roww(nombre,descripcion,precioP,precioU,stockP,Cantidad);
     	
-    	List<Roww> listRow = new ArrayList<Roww>();
-    	listRow.add(roww);
-    	
+    	System.out.println("Lleegooo");
+    	this.listRow.add(new Roww(nombre,descripcion,precioP,precioU,stockP,Cantidad));
     	System.out.println(listRow);
     	
     	
 		return null;
     	
+    }*/
+    
+    @POST
+    @Path("/AgregarProductosLista")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response ListaProductos(String jsonproducto) {
+    	
+    
+    	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	List<Roww> list = jsonb.fromJson(jsonproducto, new ArrayList<Roww>() {}.getClass().getGenericSuperclass());
+    	
+    	for (Roww row : list) {
+			
+    		System.out.println("Nombre--->" +row.getNombre1());
+    		System.out.println("Descripcion--->" +row.getDescripcion());
+    		System.out.println("Punitario--->" +row.getPun());
+    		System.out.println("Ppublico--->" +row.getPpu());
+    		System.out.println("Stock--->" +row.getStock());
+    		System.out.println("Cantidad--->" +row.getCantidad());
+		} 
+			
+		
+    	System.out.println("La lista es :" +list);
+    	
+    //	System.out.println("Lleegooo");
+    	//this.listRow.add(new Roww(nombre,descripcion,precioP,precioU,stockP,Cantidad));
+    //	System.out.println(listRow);
+    	
+    	return Response.ok("Creado")
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    	
+		
+		
+    	
     }
-
-    }    
-
-
+    
+  }    
