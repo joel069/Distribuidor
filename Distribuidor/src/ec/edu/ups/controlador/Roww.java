@@ -94,9 +94,6 @@ public class Roww implements Serializable{
 		this.stock = stock;
 	}
 	
-	
-
-
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -107,7 +104,6 @@ public class Roww implements Serializable{
 	}
 	
 	private static Roww row;
-	
 	public static List<Roww> serializeRoww(List<Roww> rows) {
 		List<Roww> rowList = new ArrayList<>();
 		

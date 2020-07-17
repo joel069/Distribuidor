@@ -274,6 +274,7 @@ public class ApiREST {
     	
     
     	Jsonb jsonb = JsonbBuilder.create();
+    	System.out.println("JSONPRODUCTO----------------->"+jsonproducto);
     	
     	List<Roww> list = jsonb.fromJson(jsonproducto, new ArrayList<Roww>() {}.getClass().getGenericSuperclass());
     	
@@ -297,11 +298,8 @@ public class ApiREST {
     	return Response.ok("Creado")
     			.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
-    	
-		
-		
-    	
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();	
     }
+    
     
   }    
