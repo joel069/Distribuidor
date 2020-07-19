@@ -34,6 +34,7 @@ public class Usuario1Bean implements Serializable{
 	private String rool;
 	private String corr;
 	private String contra;
+	private String estado;
 	
 	public Usuario1Bean() {
 		
@@ -63,7 +64,8 @@ public class Usuario1Bean implements Serializable{
 		    System.out.println(rol3.getNombre());
 			usuario.setContraseña("no tiene");
 			System.out.println(usuario.getContraseña());
-		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,usuario.getContraseña(),rol3));
+			this.estado="A";
+		    ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,usuario.getContraseña(),rol3,this.estado));
 			list = ejbUsuarioFacade.findAll();
 			return null;
 		    }
@@ -174,6 +176,16 @@ public class Usuario1Bean implements Serializable{
 
 			public void setContra(String contra) {
 				this.contra = contra;
+			}
+			
+			
+
+			public String getEstado() {
+				return estado;
+			}
+
+			public void setEstado(String estado) {
+				this.estado = estado;
 			}
 
 			public Rol buscar() {

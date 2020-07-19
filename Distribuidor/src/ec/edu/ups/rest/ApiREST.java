@@ -162,10 +162,12 @@ public class ApiREST {
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
+    	Usuario usu3=new Usuario();
+    	usu3.setEstado("A");
     	Rol rol3=new Rol();
 	    rol3.setNombre("cliente");
 
-    	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3);
+    	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3,usu3.getEstado());
     	System.out.println("Usuario tipo Usuario-------------------->"+usu.toString());
     	ejbUsuarioFacade.create(usu);
 
@@ -195,17 +197,21 @@ public class ApiREST {
     	usu.setContraseña(contrasena);
     	String contrasenaa=usu.getContraseña();
     	
-    	us = ejbUsuarioFacade.inicio(correoo, contrasenaa);
+    	try {
+    	us = ejbUsuarioFacade.inicioo(correoo, contrasenaa);
         if(us !=null) 
         {
-    	return Response.ok("Iniciado")
+    	return Response.ok(correo)
         
     			.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
         }
-        
+    	}catch(Exception ex) {
         return Response.ok("No creado").build();
+        
+    	}
+    	 return Response.ok("No creado").build();
     }
 
     
@@ -301,5 +307,62 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();	
     }
     
+  
+    @POST
+    @Path("/eliminar/{correop}")
+    @Consumes(MediaType.APPLICATION_JSON)
+   // @Produces(MediaType.TEXT_PLAIN)
+    public Response eliminar(@PathParam("correop") String correo)
+          throws IOException{
+    	System.out.println("Metodo crear");
+    	System.out.println("Correo " + correo);
+    	
+    	Usuario us=new Usuario();
+    	us =ejbUsuarioFacade.buscarid(correo);
+    	System.out.println("idd--------------------------");
+    	System.out.println(us.getId());
+    	int id=us.getId();
+    	System.out.println(id);
+    	
+    	System.out.println("Elimina");
+    	ejbUsuarioFacade.elimina(id);
+    	return Response.ok(true)
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
     
+    
+    @POST
+    @Path("/activar")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response activar(@FormParam("correo") String correo)
+          throws IOException{
+    	System.out.println("Metodo crear");
+        Usuario us=new Usuario();
+    	System.out.println("Correo " + correo);
+    	
+    	
+    	Usuario usu=new Usuario();
+    	usu.setCorreo(correo);
+    	String correoo=usu.getCorreo();
+    	
+    	
+    	us =ejbUsuarioFacade.buscarid(correoo);
+    	System.out.println("idd--------------------------");
+    	System.out.println(us.getId());
+    	int id=us.getId();
+    	System.out.println(id);
+    	
+    	System.out.println("Elimina");
+    	ejbUsuarioFacade.acti(id);
+    	return Response.ok("Activado")
+        
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+       
+    }
+
+
   }    

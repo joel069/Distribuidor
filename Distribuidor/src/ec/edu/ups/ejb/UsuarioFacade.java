@@ -50,6 +50,48 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
 		return list;
    }
 	
-  
+	public Usuario inicioo(String username, String password) {
+    	Usuario us=new Usuario();
+   	 String query = "SELECT e " +
+   		      "FROM Usuario e " +
+   		      "WHERE e.estado='A' AND  e.correo = '" + username +
+   		      "' AND " +
+   		      " e.contraseña = '" + password + "'";
+      	us =em.createQuery(query, Usuario.class).getSingleResult();
+   		      return us;
+   }
+
+	public void elimina(int id) {
+    	//Usuario usu=new Usuario();
+   	 String query = "UPDATE Usuario e " +
+   		      "SET e.estado='E' " +
+   		      "WHERE  e.id=" + id;
+   	 System.out.println(query);
+   	em.createQuery(query).executeUpdate();
+   }
+	
+	public void acti(int id) {
+    	//Usuario usu=new Usuario();
+   	 String query = "UPDATE Usuario e " +
+   		      "SET e.estado='A' " +
+   		      "WHERE  e.id=" + id;
+   	 System.out.println(query);
+   	em.createQuery(query).executeUpdate();
+   }
+	//SELECT ID FROM distribuidora.persona WHERE CORREO='kevin@gmail';
+	
+	
+	public Usuario buscarid(String correo) {
+    	Usuario us=new Usuario();
+   	 String query = "SELECT e " +
+  		      "FROM Usuario e " +
+  		      "WHERE  e.correo = '" + correo + "'";
+      	us =em.createQuery(query,Usuario.class).getSingleResult();
+      	System.out.println(query);
+   	return us;
+   }
+
+	
+	
 
 }

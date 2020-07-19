@@ -36,7 +36,7 @@ public class UsuarioBean implements Serializable{
 	private String rool;
 	private String corr;
 	private String contra;
-	
+	private String estado="estado";
 	public UsuarioBean() {
 		
 	}
@@ -57,7 +57,8 @@ public class UsuarioBean implements Serializable{
 	}
 	 
 	 public String add() {
-		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,this.contrasena,buscar()));
+		 this.estado="A";
+		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,this.contrasena,buscar(),this.estado));
 			list = ejbUsuarioFacade.findAll();
 			return null;
 		    }
@@ -168,6 +169,16 @@ public class UsuarioBean implements Serializable{
 
 			public void setContra(String contra) {
 				this.contra = contra;
+			}
+			
+			
+
+			public String getEstado() {
+				return estado;
+			}
+
+			public void setEstado(String estado) {
+				this.estado = estado;
 			}
 
 			public Rol buscar() {

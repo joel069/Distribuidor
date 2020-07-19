@@ -29,6 +29,8 @@ public class Stock implements Serializable {
 		
 	}
 	
+	
+	
 	public Stock(int id,Producto producto,Bodega bodega) {
 		this.id=id;
 		this.producto=producto;
