@@ -374,7 +374,7 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
     
-    
+    //metodo activar cuenta
     @POST
     @Path("/activar")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
