@@ -34,6 +34,8 @@ import ec.edu.ups.ejb.StockFacade;
 import ec.edu.ups.modelo.Bodega;
 
 import ec.edu.ups.modelo.Categoria;
+import ec.edu.ups.modelo.PedidoDetalle;
+import ec.edu.ups.modelo.PedidosCabecera;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Stock;
@@ -44,6 +46,10 @@ public class ApiREST {
 	private Usuario usuario;
 	private Usuario usu;
 	List<Roww> listRow = new ArrayList<Roww>();
+	private List<Roww> list;
+	private PedidosCabecera pedidoCabecera;
+	private static double total;
+	private static String correo;
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
@@ -53,6 +59,13 @@ public class ApiREST {
 
 	@EJB private BodegaFacade ejbBodegaFacade;
 	@EJB private StockFacade ejbStockFacade;
+	
+	
+	
+	public ApiREST() {
+		this.list= new ArrayList<>();
+		this.pedidoCabecera= new PedidosCabecera();
+	}
 	
 	
 	//Variables
@@ -273,16 +286,45 @@ public class ApiREST {
     }*/
     
     @POST
+    @Path("/facturarTotal/{TotalF}/{correoP}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response Pasartotal(@PathParam("TotalF")String TotalF,@PathParam("correoP")String correoP) {
+    	System.out.println("Correo para insertar el pedido---------->"+correoP);
+    	System.out.println("valorTotal--------------------------->"+TotalF);
+    	total=Double.parseDouble(TotalF);
+    	correo=correoP;
+    	
+    	
+    	return Response.ok("Total")
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
+    @POST
     @Path("/AgregarProductosLista")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response ListaProductos(String jsonproducto) {
-    	
-    
+    	System.out.println("Obtenemos el total desde Agregar productos"+total);
+    	System.out.println("Obtenemos el correo desde Agregar productos"+correo);
     	Jsonb jsonb = JsonbBuilder.create();
     	System.out.println("JSONPRODUCTO----------------->"+jsonproducto);
     	
-    	List<Roww> list = jsonb.fromJson(jsonproducto, new ArrayList<Roww>() {}.getClass().getGenericSuperclass());
+    	
+    	Usuario usuario = ejbUsuarioFacade.buscarid(correo);
+    	System.out.println("Se recupero el usuario con el correo"+correo);
+    	System.out.println(usuario.toString());
+    	
+    	 list = jsonb.fromJson(jsonproducto, new ArrayList<Roww>() {}.getClass().getGenericSuperclass());
     	
     	for (Roww row : list) {
 			
@@ -296,7 +338,7 @@ public class ApiREST {
 			
 		
     	System.out.println("La lista es :" +list);
-    	
+    		
     //	System.out.println("Lleegooo");
     	//this.listRow.add(new Roww(nombre,descripcion,precioP,precioU,stockP,Cantidad));
     //	System.out.println(listRow);
@@ -363,6 +405,7 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
        
     }
+    
 
 
   }    
