@@ -26,6 +26,8 @@ import com.sun.rowset.internal.Row;
 import ec.edu.ups.controlador.Roww;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
+import ec.edu.ups.ejb.PedidoCabeceraFacade;
+import ec.edu.ups.ejb.PedidosDetallesFacade;
 import ec.edu.ups.ejb.ProductoFacade;
 
 import ec.edu.ups.ejb.UsuarioFacade;
@@ -36,10 +38,19 @@ import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.PedidoDetalle;
 import ec.edu.ups.modelo.PedidosCabecera;
+import ec.edu.ups.modelo.Persona;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Stock;
 import ec.edu.ups.modelo.Usuario;
+
+
+
+
+import java.text.DateFormat;  
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
+import java.util.Calendar;  
 
 @Path("/prueba")
 public class ApiREST {
@@ -50,6 +61,7 @@ public class ApiREST {
 	private PedidosCabecera pedidoCabecera;
 	private static double total;
 	private static String correo;
+	private static double subtotal;
 	
 	@EJB
 	private ProductoFacade ejbProductoFacade;
@@ -59,6 +71,8 @@ public class ApiREST {
 
 	@EJB private BodegaFacade ejbBodegaFacade;
 	@EJB private StockFacade ejbStockFacade;
+	@EJB private PedidoCabeceraFacade ejbPedidoCabeceraFacade;
+	@EJB private PedidosDetallesFacade ejbPedidosDetallesFacade;
 	
 	
 	
@@ -286,14 +300,16 @@ public class ApiREST {
     }*/
     
     @POST
-    @Path("/facturarTotal/{TotalF}/{correoP}")
+    @Path("/facturarTotal/{TotalF}/{correoP}/{subtotalF}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response Pasartotal(@PathParam("TotalF")String TotalF,@PathParam("correoP")String correoP) {
+    public Response Pasartotal(@PathParam("TotalF")String TotalF,@PathParam("correoP")String correoP,@PathParam("subtotalF")String subtotalF) {
     	System.out.println("Correo para insertar el pedido---------->"+correoP);
     	System.out.println("valorTotal--------------------------->"+TotalF);
+    	System.out.println("SUBTOTAL A PAGAR------------------------>>>"+subtotalF);
     	total=Double.parseDouble(TotalF);
-    	correo=correoP;
+    	this.correo=correoP;
+    	subtotal=Double.parseDouble(subtotalF);
     	
     	
     	return Response.ok("Total")
@@ -316,18 +332,34 @@ public class ApiREST {
     public Response ListaProductos(String jsonproducto) {
     	System.out.println("Obtenemos el total desde Agregar productos"+total);
     	System.out.println("Obtenemos el correo desde Agregar productos"+correo);
+    	System.out.println("Obtenemos el subtotal dese agregar productos"+subtotal);
     	Jsonb jsonb = JsonbBuilder.create();
     	System.out.println("JSONPRODUCTO----------------->"+jsonproducto);
+    	String EstadoPedido="Recibido";
     	
     	
-    	Usuario usuario = ejbUsuarioFacade.buscarid(correo);
-    	System.out.println("Se recupero el usuario con el correo"+correo);
-    	System.out.println(usuario.toString());
+    	
+    	//Se obtiene la Fecha
+    	 Date date = new Date(); 
+    	
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
+        String strDate = formatter.format(date);  
+        System.out.println("Date Format with MM/dd/yyyy : "+strDate); 
+            		
+    	Persona usuario = ejbUsuarioFacade.buscarid(correo);
+    	PedidosCabecera cabecera = new PedidosCabecera(strDate,total,EstadoPedido,usuario);
+    	System.out.println(cabecera.toString());
+    	ejbPedidoCabeceraFacade.create(cabecera);
+    	
+    	
     	
     	 list = jsonb.fromJson(jsonproducto, new ArrayList<Roww>() {}.getClass().getGenericSuperclass());
     	
     	for (Roww row : list) {
-			
+			Producto producto = ejbProductoFacade.nombreProducto(row.getNombre1());
+			PedidoDetalle detalle = new PedidoDetalle(row.getCantidad(),subtotal,0.0,cabecera,producto);
+			System.out.println(detalle);
+			ejbPedidosDetallesFacade.create(detalle);
     		
     		System.out.println("Nombre--->" +row.getNombre1());
     		System.out.println("Descripcion--->" +row.getDescripcion());

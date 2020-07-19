@@ -27,6 +27,20 @@ public class PedidoDetalle implements Serializable {
     private Producto proid;
     
     
+    
+    
+    
+
+	public PedidoDetalle(int cantidad, double subtotalDetalle, double total,PedidosCabecera pedidosCabID, Producto proid) {
+		super();
+		this.cantidad = cantidad;
+		this.subtotalDetalle = subtotalDetalle;
+		this.total = total;
+		this.pedidosCabID = pedidosCabID;
+		this.proid = proid;
+	}
+
+
 
 	public PedidoDetalle() {
 		super();
@@ -146,8 +160,7 @@ public class PedidoDetalle implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PedidoDetalle [id=" + id + ", cantidad=" + cantidad + ", subtotalDetalle=" + subtotalDetalle
-				+ ", editable=" + editable + ", total=" + total + ", pedidosCabID=" + pedidosCabID + ", proid=" + proid
+		return "PedidoDetalle [id=" + id + ", cantidad=" + cantidad + ", subtotalDetalle=" + subtotalDetalle + ", total=" + total + ", pedidosCabID=" + pedidosCabID + ", proid=" + proid
 				+ "]";
 	}
    

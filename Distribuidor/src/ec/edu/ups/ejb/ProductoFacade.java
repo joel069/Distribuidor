@@ -69,4 +69,19 @@ public class ProductoFacade extends AbstractFacade<Producto>{
 			}
 			return cat;
 		}
+		
+		
+		public Producto nombreProducto(String producto) {
+			Producto pro = new Producto();
+			try {
+				String sql = "SELECT b FROM Producto b where b.nombre='" + producto + "'";
+				System.out.println(sql);
+				Query query = em.createQuery(sql);
+				pro = (Producto) query.getSingleResult();
+
+			} catch (Exception e) {
+				System.out.println("bodega" + e.getMessage());
+			}
+			return pro;
+		}
 }
