@@ -26,9 +26,16 @@ public class PedidosCabecera implements Serializable {
 	@OneToMany(mappedBy = "pedidosCabID")
 	private Set<PedidoDetalle> listPedidosDetalles;
 	
-	
 	@ManyToOne
 	private Persona cliente;
+	
+	public PedidosCabecera(String fecha,double total,String estadoPedido, Persona usuario) {
+		super();
+		this.fecha=fecha;
+		this.total=total;
+		this.estadoPedido=estadoPedido;
+		this.cliente=usuario;
+	}
 
 	public PedidosCabecera() {
 		super();
