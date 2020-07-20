@@ -440,5 +440,114 @@ public class ApiREST {
     }
     
 
+    @POST
+    @Path("/actualizarr")
+    //@Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+   // @Produces(MediaType.TEXT_PLAIN)
+    public Response actualizar(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
+    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+          throws IOException{
+    	
+    	/*
+    	Usuario usu=new Usuario();
+    	usu.setCorreo(correoo);
+    	String correoo1=usu.getCorreo();
+    	
+    	
+    	Usuario usu1=new Usuario();
+    	usu1 =ejbUsuarioFacade.buscarid(correoo1);
+    	int idd=usu1.getId();
+    	*/
+    	
+    	System.out.println("---nombres---"+nombre);
+    	System.out.println("----apellidos---" +apellidos);
+    	System.out.println("---telefono--"+telefono);
+    	System.out.println("---cedula--"+cedula);
+    	System.out.println("---correo--"+correo);
+    	System.out.println("---contraseña--"+contrasena);
+    	
+    	/*
+    	Usuario usu2=new Usuario();
+        usu2.setId(idd);
+        usu2.setNombre(nombre);
+        usu2.setApellido(apellidos);
+    	usu2.setTelefono(telefono);
+    	usu2.setCedula(cedula);
+    	usu2.setCorreo(correo);
+    	usu2.setContraseña(contrasena);
+    	usu2.setEstado("A");
+    	
+    	Rol rol3=new Rol();
+	    rol3.setNombre("cliente");
+	    
+	    usu2.setRoles(rol3);
+    	
+    	ejbUsuarioFacade.edit(usu2);
+    	*/
+    	
+    	return Response.ok(true)
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
+    
+    @POST
+    @Path("/actualizar/{correop}")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response actualiza(@PathParam("correop") String co2,@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
+    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+          throws IOException{
+    	System.out.println("Metodo crear");
+
+    	System.out.println("co id " + co2);
+    	System.out.println("Nombre " + nombre);
+    	System.out.println("Apellido " + apellidos);
+    	System.out.println("Telefono " + telefono);
+    	System.out.println("Cedula " + cedula);
+    	System.out.println("Correo " + correo);
+    	System.out.println("Contrasena " + contrasena);
+    	
+    	Usuario usu=new Usuario();
+    	usu.setCorreo(co2);
+    	String correoo1=usu.getCorreo();
+    	
+    	
+    	Usuario usu1=new Usuario();
+    	usu1 =ejbUsuarioFacade.buscarid(correoo1);
+    	int idd=usu1.getId();
+    	
+    	System.out.println(idd);
+    	
+    	
+    	
+    	Usuario usu2=new Usuario();
+        usu2.setId(idd);
+        usu2.setNombre(nombre);
+        usu2.setApellido(apellidos);
+    	usu2.setTelefono(telefono);
+    	usu2.setCedula(cedula);
+    	usu2.setCorreo(correo);
+    	usu2.setContraseña(contrasena);
+    	usu2.setEstado("A");
+    	
+    	Rol rol3=new Rol();
+	    rol3.setNombre("cliente");
+	    
+	    usu2.setRoles(rol3);
+    	System.out.println(usu2);
+    	ejbUsuarioFacade.edit(usu2);
+      	System.out.println("pasoooo");
+
+    	return Response.ok("Creado")
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
+
+
+
+  
 
   }    
