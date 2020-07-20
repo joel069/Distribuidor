@@ -13,6 +13,7 @@ import javax.inject.Named;
 public class PedidoCabeceraBeans implements Serializable {
 
 
+	
 
 	private static final long serialVersionUID = 1L;
 	@EJB private PedidoCabeceraBeans ejbCabeceraBeans;
