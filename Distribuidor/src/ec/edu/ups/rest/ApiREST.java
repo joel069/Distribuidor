@@ -61,6 +61,7 @@ public class ApiREST {
 	private PedidosCabecera pedidoCabecera;
 	private static double total;
 	private static String correo;
+	private static String cedula;
 	private static double subtotal;
 	
 	@EJB
@@ -357,7 +358,7 @@ public class ApiREST {
     	
     	for (Roww row : list) {
 			Producto producto = ejbProductoFacade.nombreProducto(row.getNombre1());
-			PedidoDetalle detalle = new PedidoDetalle(row.getCantidad(),subtotal,0.0,cabecera,producto);
+			PedidoDetalle detalle = new PedidoDetalle(row.getCantidad(),subtotal,cabecera,producto);
 			System.out.println(detalle);
 			ejbPedidosDetallesFacade.create(detalle);
     		
@@ -391,6 +392,30 @@ public class ApiREST {
           throws IOException{
     	System.out.println("Metodo crear");
     	System.out.println("Correo " + correo);
+    	
+    	Usuario us=new Usuario();
+    	us =ejbUsuarioFacade.buscarid(correo);
+    	System.out.println("idd--------------------------");
+    	System.out.println(us.getId());
+    	int id=us.getId();
+    	System.out.println(id);
+    	
+    	System.out.println("Elimina");
+    	ejbUsuarioFacade.elimina(id);
+    	return Response.ok(true)
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
+    
+    @POST
+    @Path("/eliminarfactura/{cedula}")
+    @Consumes(MediaType.APPLICATION_JSON)
+   // @Produces(MediaType.TEXT_PLAIN)
+    public Response eliminarfactura(@PathParam("cedula") String cedula)
+          throws IOException{
+    	System.out.println("Metodo eliminar");
+    	System.out.println("Correo " + cedula);
     	
     	Usuario us=new Usuario();
     	us =ejbUsuarioFacade.buscarid(correo);
@@ -516,10 +541,7 @@ public class ApiREST {
     	usu1 =ejbUsuarioFacade.buscarid(correoo1);
     	int idd=usu1.getId();
     	
-    	System.out.println(idd);
-    	
-    	
-    	
+    	System.out.println(idd); 	
     	Usuario usu2=new Usuario();
         usu2.setId(idd);
         usu2.setNombre(nombre);

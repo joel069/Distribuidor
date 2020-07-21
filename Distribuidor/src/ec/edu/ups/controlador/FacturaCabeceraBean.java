@@ -55,7 +55,7 @@ public class FacturaCabeceraBean implements Serializable{
 	public void init() {
 		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
-		listaFacturaCabe= ejbFacturaCabeceraFacade.findAll();
+		//listaFacturaCabe= ejbFacturaCabeceraFacade.findAll();
 		personalist = new ArrayList<Usuario>();	
 		buscar();
 	}
