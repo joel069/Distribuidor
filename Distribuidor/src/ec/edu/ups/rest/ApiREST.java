@@ -178,8 +178,8 @@ public class ApiREST {
     @Path("/personas")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response post(@FormParam("cedula") int ced,@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
-    		@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+    public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
+    		@FormParam("cedula") int ced,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	System.out.println("Metodo crear");
 
