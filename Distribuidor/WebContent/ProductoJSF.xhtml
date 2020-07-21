@@ -49,44 +49,45 @@
 </style>
 </h:head>
 <h:body>
-	
-	
-	<header>
-        <h1>Bienvenidos a Distribuidora UPS.</h1>
-        <br></br>
-        <h:form>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">ADMINISTRADOR</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-      	<h:link  class="nav-link" value="Pagina Principal"  outcome="productoAdmin"></h:link>
-      </li>
-      <li class="nav-item">
-        <h:link class="nav-link" value="Registrar distribuidora"  outcome="productoDistribuidora"></h:link>
-      </li>
-      <li>
-     	 <h:link class="nav-link" value="Crear Factura"  outcome="productoFactura"></h:link>
-      </li>
-      <li>
-      	<h:link class="nav-link" value="Registro Usuario"  outcome="productoRegistro"></h:link>	
-      </li>
-      <li>
-      	<h:link  class="nav-link" value="Crear Rol"  outcome="productoRol"></h:link>
-      	
-      </li>
-    </ul>
-    </div>
-</nav>
-        </h:form>
-    </header>
-	
-		
+
+	<header>
+	<div class="blockquote text-center">
+	<h1 class="display-4" >Bienvenidos a Distribuidora UPS.</h1>
+	<br></br>
+	</div>
 	<h:form>
+		<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;"> <a
+			class="navbar-brand" href="#">ADMINISTRADOR</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul  class="nav justify-content-center">
+				<li class="nav-item active"><h:link class="nav-link"
+						value="Pagina Principal" outcome="productoAdmin"></h:link></li>
+				<li class="nav-item"><h:link class="nav-link"
+						value="Registrar distribuidora" outcome="productoDistribuidora"></h:link>
+				</li>
+				<li><h:link class="nav-link" value="Crear Factura"
+						outcome="productoFactura"></h:link></li>
+				<li><h:link class="nav-link" value="Registro Usuario"
+						outcome="productoRegistro"></h:link></li>
+				<li><h:link class="nav-link" value="Crear Rol"
+						outcome="productoRol"></h:link></li>
+			</ul>
+		</div>
+		</nav>
+	</h:form> </header>
+	<br></br><br></br>
+
+
+	<h:form>
+
 		<h:dataTable value="#{productoBean.listaProductos}" var="p"
 			styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar"
 			class="table table-hover">
@@ -134,60 +135,73 @@
 					rendered="#{ p.editable}" />
 			</h:column>
 		</h:dataTable>
-		<div class="container">
-			<div class="row justify-content-center pt-5 mt-5 mr-1">
-				<div class="col-md-2 formulario">
-					<div class="form-group mx-sm-4 pt-3">
-
-						
-							<label class="form-group"> Nombre:<br></br> <h:inputText
-									size="10" value="#{productoBean.nombre}" /></label>
-						</div>
-
-						<div class="form-group mx-sm-4 pt-3">
-							<label class="form-group"> Descripcion: <br></br> <h:inputText
-									size="10" value="#{productoBean.descripcion}" /></label>
-						</div>
-
-						<div class="form-group mx-sm-4 pt-3">
-							<label class="form-group"> Precio Unitario :<br></br> <h:inputText
-									size="10" value="#{productoBean.preciounitario}" /></label>
-						</div>
-						<div class="form-group mx-sm-4 pt-3">
-
-							<label class="form-group"> Precio Publico: <br></br> <h:inputText
-									size="10" value="#{productoBean.preciopublico}" /></label>
-						</div>
-
-						<div class="form-group mx-sm-4 pt-3">
-							<label class="form-group"> Stock:
-							<br></br> 
-							<h:inputText
-									size="10" value="#{productoBean.stock}" /></label>
-						</div>
-
-						<div class="form-group mx-sm-4 pt-3">
-							<label class="form-group"> Categoria:<br></br> <h:selectOneMenu
-									value="#{productoBean.categoria}">
-									<f:selectItems value="#{categoriaBeans.listaCategorias}" />
-								</h:selectOneMenu>
-							</label>
-						</div>
-						<div class="form-group mx-sm-4 pt-3">
-							<label class="form-group"> Bodega:<br></br> <h:selectOneMenu
-									value="#{productoBean.bodega}">
-									<f:selectItems value="#{bodegaBeans.listaBodega}" />
-								</h:selectOneMenu>
-							</label>
-						
-
-							<h:commandButton value="Registrar" action="#{productoBean.add}"
-								class="btn btn-danger btn block" />
-						</div>
-					</div>
-				</div>
-	</div>
-		
 	</h:form>
+<div class="abs-center">
+	<h:form class="login" >
+
+		<div class="form-group">
+			<label class="col-lg-6 control-label"> Nombre:<br></br>
+			<div class="col-lg-6">
+			 <h:inputText
+					size="10" value="#{productoBean.nombre}" class="form-control" /></div></label>
+			
+		</div>
+		<div class="form-group">
+			<label class="col-lg-6 control-label"> Descripcion: <br></br> 
+			<div class="col-lg-6">
+			<h:inputText
+					size="10" value="#{productoBean.descripcion}" class="form-control" /></div></label>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-6 control-label"> Precio Unitario :<br></br> 
+			<div class="col-lg-6">
+			<h:inputText
+					size="10" value="#{productoBean.preciounitario}"
+					class="form-control" /></div></label>
+
+		</div>
+		<div class="form-group">
+			<label class="col-lg-6 control-label"> Precio Publico: <br></br> 
+			<div class="col-lg-6">
+			<h:inputText
+					size="10" value="#{productoBean.preciopublico}"
+					class="form-control" /></div></label>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-6 control-label"> Stock: <br></br>
+			<div class="col-lg-6"> <h:inputText
+					size="10" value="#{productoBean.stock}" class="form-control" />	</div></label>
+
+		</div>
+		<div class="form-group">
+			<label class="col-lg-6 control-label"> Categoria:<br></br> 
+			<div class="col-lg-6">
+			<h:selectOneMenu
+					value="#{productoBean.categoria}" class="form-control">
+					<f:selectItems value="#{categoriaBeans.listaCategorias}"
+						class="form-control" />
+				</h:selectOneMenu></div>
+			</label>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-6 control-label"> Bodega:<br></br> 
+			<div class="col-lg-6">
+			<h:selectOneMenu
+					value="#{productoBean.bodega}" class="form-control" >
+					<f:selectItems value="#{bodegaBeans.listaBodega}"
+						class="form-control" />
+				</h:selectOneMenu></div>
+			</label>
+
+		</div>
+		<div class="col-lg-9">
+		<h:commandButton value="Registrar" action="#{productoBean.add}"
+			class="btn btn-danger btn block" />
+	</div>
+
+
+
+	</h:form>
+		</div>
 </h:body>
 </html>
