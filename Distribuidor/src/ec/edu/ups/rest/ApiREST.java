@@ -177,15 +177,15 @@ public class ApiREST {
     @Path("/personas")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
-    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+    public Response post(@FormParam("cedula") int ced,@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
+    		@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	System.out.println("Metodo crear");
 
     	System.out.println("Nombre " + nombre);
     	System.out.println("Apellido " + apellidos);
     	System.out.println("Telefono " + telefono);
-    	System.out.println("Cedula " + cedula);
+    	System.out.println("Cedula " + ced);
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
@@ -194,7 +194,7 @@ public class ApiREST {
     	Rol rol3=new Rol();
 	    rol3.setNombre("cliente");
 
-    	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3,usu3.getEstado());
+    	usu=new Usuario(ced,nombre,apellidos,telefono,correo,contrasena,rol3,usu3.getEstado());
     	System.out.println("Usuario tipo Usuario-------------------->"+usu.toString());
     	ejbUsuarioFacade.create(usu);
 
@@ -446,7 +446,7 @@ public class ApiREST {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
    // @Produces(MediaType.TEXT_PLAIN)
     public Response actualizar(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
-    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+    		@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	
     	/*
@@ -463,7 +463,6 @@ public class ApiREST {
     	System.out.println("---nombres---"+nombre);
     	System.out.println("----apellidos---" +apellidos);
     	System.out.println("---telefono--"+telefono);
-    	System.out.println("---cedula--"+cedula);
     	System.out.println("---correo--"+correo);
     	System.out.println("---contraseña--"+contrasena);
     	
@@ -497,7 +496,7 @@ public class ApiREST {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response actualiza(@PathParam("correop") String co2,@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
-    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+    		@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	System.out.println("Metodo crear");
 
@@ -505,7 +504,6 @@ public class ApiREST {
     	System.out.println("Nombre " + nombre);
     	System.out.println("Apellido " + apellidos);
     	System.out.println("Telefono " + telefono);
-    	System.out.println("Cedula " + cedula);
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
@@ -527,7 +525,6 @@ public class ApiREST {
         usu2.setNombre(nombre);
         usu2.setApellido(apellidos);
     	usu2.setTelefono(telefono);
-    	usu2.setCedula(cedula);
     	usu2.setCorreo(correo);
     	usu2.setContraseña(contrasena);
     	usu2.setEstado("A");

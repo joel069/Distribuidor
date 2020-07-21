@@ -39,12 +39,6 @@
 				<h:outputText value="#{c.telefono}" rendered="#{not c.editable}" />
 			</h:column>	
 			
-			<h:column>
-				<f:facet name="header">Cedula</f:facet>
-				<h:inputText value="#{c.cedula}" size="10"
-					rendered="#{c.editable}" class="form-control"/>
-				<h:outputText value="#{c.cedula}" rendered="#{not c.editable}" />
-			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Correo</f:facet>
@@ -90,7 +84,7 @@
 		
 		<div class="form-group text-center" >
 		
-			<label class="form-group">Cedula:<h:inputText  value="#{usuarioBean.cedula}"/></label>
+			<label class="form-group">Cedula:<h:inputText  value="#{usuarioBean.id}"/></label>
 		
 		</div>
 		
