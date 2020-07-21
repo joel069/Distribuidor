@@ -67,8 +67,8 @@ System.out.println(usuario);
 		
 	}
 	
-	public Usuario BUscarBycedula(String cedula) {
-		String sql = "SELECT p FROM Usuario p where  p.cedula='"+cedula+"'";
+	public Usuario BUscarBycedula(int cedula) {
+		String sql = "SELECT p FROM Usuario p where  p.cedula="+cedula+"";
 		System.out.println(sql);
 
 		Usuario usuario = new Usuario();

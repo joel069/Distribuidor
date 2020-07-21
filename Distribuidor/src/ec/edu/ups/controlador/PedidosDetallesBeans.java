@@ -149,10 +149,11 @@ public class PedidosDetallesBeans implements Serializable {
 		System.out.println("Fecha"+pedidoDetalle.getPedidosCabID().getFecha());
 		System.out.println("TOtal"+pedidoDetalle.getPedidosCabID().getTotal());
 		System.out.println("CantidadProducto"+pedidoDetalle.getCantidad());
-		System.out.println("Cliente cedula "+pedidoDetalle.getPedidosCabID().getCliente().getCedula());
+		System.out.println("Cliente cedula "+pedidoDetalle.getPedidosCabID().getCliente().getId());
+		
 	
 		
-		Usuario usuario = ejbPedidosDetallesFacade.BUscarBycedula(pedidoDetalle.getPedidosCabID().getCliente().getCedula());
+		Usuario usuario = ejbPedidosDetallesFacade.BUscarBycedula(pedidoDetalle.getPedidosCabID().getCliente().getId());
 		Producto producto =  ejbProductoFacade.find(pedidoDetalle.getProid().getId());
 		
 		NombreCliente=usuario.getNombre();
