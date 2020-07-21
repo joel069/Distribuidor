@@ -68,7 +68,7 @@ System.out.println(usuario);
 	}
 	
 	public Usuario BUscarBycedula(int cedula) {
-		String sql = "SELECT p FROM Usuario p where  p.cedula="+cedula+"";
+		String sql = "SELECT p FROM Usuario p where  p.id="+cedula+"";
 		System.out.println(sql);
 
 		Usuario usuario = new Usuario();
@@ -82,7 +82,17 @@ System.out.println(usuario);
 		
 		PedidosCabecera cabecera = new PedidosCabecera();
 		cabecera=(PedidosCabecera)em.createQuery(sql).getSingleResult();
-		return cabecera;
+		return cabecera;	
+	}
+	
+	
+	public List<PedidosCabecera>   PedidosPorFacturar() {
+		String sql = "SELECT p FROM PedidosCabecera p where  p.estadoPedido='Recibido'";
+		System.out.println(sql);
+		
+		List<PedidosCabecera> list = em.createQuery(sql).getResultList();
+		
+		return list;
 		
 	}
 	

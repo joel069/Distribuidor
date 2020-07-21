@@ -59,7 +59,7 @@ public class PedidosDetallesBeans implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		listPedidosDetalles=ejbPedidosDetallesFacade.findAll();
+		listPeidodsCabeceras=ejbPedidosDetallesFacade.PedidosPorFacturar();
 	}
 
 	public int getCantidad() {
@@ -155,6 +155,7 @@ public class PedidosDetallesBeans implements Serializable {
 		
 		Usuario usuario = ejbPedidosDetallesFacade.BUscarBycedula(pedidoDetalle.getPedidosCabID().getCliente().getId());
 		Producto producto =  ejbProductoFacade.find(pedidoDetalle.getProid().getId());
+		System.out.println("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU---->"+usuario);
 		
 		NombreCliente=usuario.getNombre();
 		System.out.println("Nombre del cliente******"+NombreCliente);
@@ -171,6 +172,16 @@ public class PedidosDetallesBeans implements Serializable {
 		//Se procede Persistir en la BD
 		ejbFacturaCabeceraFacade.create(cabecera);
 		ejbFacturaDetalleFacade.create(detalle);
+		
+		
+		PedidosCabecera pedido= new PedidosCabecera();
+		pedido=pedidoDetalle.getPedidosCabID();
+		pedido.setEstadoPedido("Facturado");
+		ejbPedidoCabeceraFacade.edit(pedido);
+		
+		
+		listPeidodsCabeceras=ejbPedidosDetallesFacade.PedidosPorFacturar();
+
 		
 	}
 		
