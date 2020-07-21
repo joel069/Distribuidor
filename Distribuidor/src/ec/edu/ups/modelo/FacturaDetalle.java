@@ -53,6 +53,18 @@ public class FacturaDetalle implements Serializable {
 		this.descuento = descuento;
 		this.proid = proid;
 	}
+	
+	//Creacion de constructor
+	public FacturaDetalle(int cantidad, double subtotal, double total, double descuento,
+			FacturaCabecera faccabeid,Producto proid) {
+		super();
+		this.cantidad = cantidad;
+		this.subtotal = subtotal;
+		this.total = total;
+		this.descuento = descuento;
+		this.faccabeid=faccabeid;
+		this.proid = proid;
+	}
 
 	
 
