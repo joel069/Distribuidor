@@ -91,5 +91,27 @@ public class PedidosDetallesBeans implements Serializable {
 		this.listPeidodsCabeceras = listPeidodsCabeceras;
 	}
 	
-
+//Metodos para agregar, listar, modificar y Eliminar
+	
+	public String remove(PedidoDetalle pd) {
+		ejbPedidosDetallesFacade.remove(pd);
+		listPedidosDetalles=ejbPedidosDetallesFacade.findAll();
+		return null;
+	}
+	
+	public String edit(PedidoDetalle pd) {
+		pd.setEditable(true);
+		return null;
+	}
+	
+	public String save(PedidoDetalle pd) {
+		ejbPedidosDetallesFacade.edit(pd);
+		pd.setEditable(false);
+		return null;
+	}
+	
+	public String Facturar() {
+		System.out.println("Se procede a facturar el pedido");
+		return "funciona";
+	}
 }

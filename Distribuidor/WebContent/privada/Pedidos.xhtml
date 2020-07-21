@@ -41,64 +41,34 @@
 <h:body>
 	<h3>Pedidos Registrados.</h3>
 	<h:form>
-		<h:dataTable value="#{productoBean.listaProductos}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar" class="table table-hover">
+		<h:dataTable value="#{pedidosDetallesBeans.listPedidosDetalles}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar" class="table table-hover">
 		<h:column>
 		<f:facet name="header">Codigo</f:facet>#{p.id}</h:column>
 		<h:column>
-			<f:facet name="header">Nombre</f:facet>
-			<h:inputText value="#{p.nombre}" size="10" rendered="#{p.editable}"/>
-			<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
+			<f:facet name="header">Cantidad</f:facet>
+			<h:inputText value="#{p.cantidad}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.cantidad}" rendered="#{not p.editable}" />
 		</h:column>
 		<h:column>
-			<f:facet name="header">Descripcion</f:facet>
-			<h:inputText value="#{p.descripcion}" size="10" rendered="#{p.editable}"/>
-			<h:outputText value="#{p.descripcion}" rendered="#{not p.editable}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Stock</f:facet>
-			<h:inputText value="#{p.stock}" size="10" rendered="#{p.editable}"/>
-			<h:outputText value="#{p.stock}" rendered="#{not p.editable}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">PrecioU</f:facet>
-			<h:inputText value="#{p.preciounitario}" size="10" rendered="#{p.editable}"/>
-			<h:outputText value="#{p.preciounitario}" rendered="#{not p.editable}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">PrecioP</f:facet>
-			<h:inputText value="#{p.preciopublico}" size="10" rendered="#{p.editable}"/>
-			<h:outputText value="#{p.preciopublico}" rendered="#{not p.editable}" />
+			<f:facet name="header">Subtotal</f:facet>
+			<h:inputText value="#{p.subtotalDetalle}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.subtotalDetalle}" rendered="#{not p.editable}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Accion</f:facet>
-			<h:commandLink value="Remove" action="#{productoBean.remove(p)}"/>
+			<h:commandLink value="Remove" action="#{pedidosDetallesBeans.remove(p)}"/>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Accion</f:facet>
-			<h:commandLink value="Edit" action="#{productoBean.edit(p)}" rendered="#{not p.editable}"/>
-			<h:commandLink value="Save" action="#{productoBean.save(p)}" rendered="#{ p.editable}"/>
+			<h:commandLink value="Edit" action="#{pedidosDetallesBeans.edit(p)}" rendered="#{not p.editable}"/>
+			<h:commandLink value="Save" action="#{pedidosDetallesBeans.save(p)}" rendered="#{ p.editable}"/>
+		</h:column>
+				<h:column>
+			<f:facet name="header">Facturar</f:facet>
+			<h:commandLink value="Facturar Pedido" action="#{pedidosDetallesBeans.Facturar}"/>
 		</h:column>
 		</h:dataTable>
-		<ul >
-			<li>Nombre: <h:inputText size="10" value="#{productoBean.nombre}"/></li>
-			<li>Descripcion: <h:inputText size="10" value="#{productoBean.descripcion}"/></li>
-			<li>PrecioU: <h:inputText size="10" value="#{productoBean.preciounitario}"/></li>
-			<li>PrecioP: <h:inputText size="10" value="#{productoBean.preciopublico}"/></li>
-			<li>Stock: <h:inputText size="10" value="#{productoBean.stock}"/></li>
-			<li>Categoria:
-		<h:selectOneMenu value="#{productoBean.categoria}">
-			<f:selectItems value="#{categoriaBeans.listaCategorias}" />
-		</h:selectOneMenu>
-		</li>
-		<li>Bodegas:
-		<h:selectOneMenu value="#{productoBean.bodega}">
-			<f:selectItems value="#{bodegaBeans.listaBodega}" />
-		</h:selectOneMenu>
-		</li>
-		</ul>
-		
-		<h:commandButton value="Registrar" action="#{productoBean.add}" class="btn btn-danger btn block" />
-		<h:commandButton value="Buscar Bodega" action="#{productoBean.buscarBr}"/>
+
 	</h:form>
 </h:body>
 </html>
