@@ -25,10 +25,10 @@ public class UsuarioBean implements Serializable{
 	private RolFacade ejbRolFacade;
 	private List<Usuario> list;
 	private Rol rol;
+	private int id;
 	private String nombre;
 	private String apellido;
 	private String telefono;
-	private String cedula;
 	private String correo;
 	private String contrasena;
 	private String direccion;
@@ -58,7 +58,7 @@ public class UsuarioBean implements Serializable{
 	 
 	 public String add() {
 		 this.estado="A";
-		 ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,this.contrasena,buscar(),this.estado));
+		 ejbUsuarioFacade.create(new Usuario(this.id,this.nombre,this.apellido,this.telefono,this.correo,this.contrasena,buscar(),this.estado));
 			list = ejbUsuarioFacade.findAll();
 			return null;
 		    }
@@ -110,16 +110,18 @@ public class UsuarioBean implements Serializable{
 				return telefono;
 			}
 
+			
+			
+			public int getId() {
+				return id;
+			}
+
+			public void setId(int id) {
+				this.id = id;
+			}
+
 			public void setTelefono(String telefono) {
 				this.telefono = telefono;
-			}
-
-			public String getCedula() {
-				return cedula;
-			}
-
-			public void setCedula(String cedula) {
-				this.cedula = cedula;
 			}
 
 			public String getCorreo() {

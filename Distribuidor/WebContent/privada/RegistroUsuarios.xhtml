@@ -23,8 +23,13 @@
 
 </h:head>
 <h:body>
+
 	<h3 class="row justify-content-center align-items-center">Registro
 		Usuarios</h3>
+
+
+    <a href="http://localhost:8080/Distribuidor/privada/VistaAdministrador.jsf">Volver</a>
+	<h3 class="row justify-content-center align-items-center">Registro Usuarios</h3>
 
 	<h:form>
 		<h:dataTable value="#{usuarioBean.list}" var="c" styleClass="tabla"
@@ -51,6 +56,7 @@
 				<h:inputText value="#{c.telefono}" size="10"
 					rendered="#{c.editable}" class="form-control" />
 				<h:outputText value="#{c.telefono}" rendered="#{not c.editable}" />
+
 			</h:column>
 
 			<h:column>
@@ -59,6 +65,11 @@
 					class="form-control" />
 				<h:outputText value="#{c.cedula}" rendered="#{not c.editable}" />
 			</h:column>
+
+
+			</h:column>	
+			
+			
 
 			<h:column>
 				<f:facet name="header">Correo</f:facet>
@@ -89,6 +100,7 @@
 					rendered="#{c.editable}" />
 			</h:column>
 		</h:dataTable>
+
 
 		<div class="container">
 			<div class="row justify-content-center pt-5 mt-5 mr-1">
@@ -142,6 +154,49 @@
 
 				
 			</div>
+
+		
+		<div class="form-group text-center" >
+		
+			<label class="form-group">Nombre:<h:inputText value="#{usuarioBean.nombre}"/></label>
+		</div>
+		
+		<div class="form-group text-center" >
+			<label class="form-group">Apellido:<h:inputText value="#{usuarioBean.apellido}"/></label>
+		</div>
+		
+		<div class="form-group text-center" >
+			<label class="form-group">Telefono:<h:inputText  value="#{usuarioBean.telefono}"/></label>
+		</div>
+		
+		<div class="form-group text-center" >
+		
+			<label class="form-group">Cedula:<h:inputText  value="#{usuarioBean.id}"/></label>
+		
+		</div>
+		
+		<div class="form-group text-center" >
+		
+			<label class="form-group">Correo:<h:inputText  value="#{usuarioBean.correo}"  /></label>
+		</div>
+		
+		<div class="form-group text-center" >
+		
+			<label class="form-group">Contraseña:<h:inputText  value="#{usuarioBean.contrasena}" type="password" /></label>
+		
+		</div>
+		
+		<div class="form-group text-center">
+		<h:selectOneMenu value="#{usuarioBean.rool}">
+			<f:selectItems value="#{rolBean.list}" />
+		</h:selectOneMenu>
+		
+	 	<h:commandButton value="listar" action="#{usuarioBean.buscar}" class="btn btn-danger btn block  text-center form-group"/>
+	 	</div>
+	 	
+	<div class="form-group text-center">
+		<h:commandButton value="Add" action="#{usuarioBean.add}" class="btn btn-danger btn block  text-center form-group"/>
+
 		</div>
 	</h:form>
 

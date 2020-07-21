@@ -61,6 +61,7 @@ public class ApiREST {
 	private PedidosCabecera pedidoCabecera;
 	private static double total;
 	private static String correo;
+	private static String cedula;
 	private static double subtotal;
 	
 	@EJB
@@ -178,14 +179,14 @@ public class ApiREST {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response post(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
-    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+    		@FormParam("cedula") int ced,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	System.out.println("Metodo crear");
 
     	System.out.println("Nombre " + nombre);
     	System.out.println("Apellido " + apellidos);
     	System.out.println("Telefono " + telefono);
-    	System.out.println("Cedula " + cedula);
+    	System.out.println("Cedula " + ced);
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
@@ -194,7 +195,7 @@ public class ApiREST {
     	Rol rol3=new Rol();
 	    rol3.setNombre("cliente");
 
-    	usu=new Usuario(nombre,apellidos,telefono,cedula,correo,contrasena,rol3,usu3.getEstado());
+    	usu=new Usuario(ced,nombre,apellidos,telefono,correo,contrasena,rol3,usu3.getEstado());
     	System.out.println("Usuario tipo Usuario-------------------->"+usu.toString());
     	ejbUsuarioFacade.create(usu);
 
@@ -407,6 +408,30 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
     
+    @POST
+    @Path("/eliminarfactura/{cedula}")
+    @Consumes(MediaType.APPLICATION_JSON)
+   // @Produces(MediaType.TEXT_PLAIN)
+    public Response eliminarfactura(@PathParam("cedula") String cedula)
+          throws IOException{
+    	System.out.println("Metodo eliminar");
+    	System.out.println("Correo " + cedula);
+    	
+    	Usuario us=new Usuario();
+    	us =ejbUsuarioFacade.buscarid(correo);
+    	System.out.println("idd--------------------------");
+    	System.out.println(us.getId());
+    	int id=us.getId();
+    	System.out.println(id);
+    	
+    	System.out.println("Elimina");
+    	ejbUsuarioFacade.elimina(id);
+    	return Response.ok(true)
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
+    
     //metodo activar cuenta
     @POST
     @Path("/activar")
@@ -446,7 +471,7 @@ public class ApiREST {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
    // @Produces(MediaType.TEXT_PLAIN)
     public Response actualizar(@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
-    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+    		@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	
     	/*
@@ -463,7 +488,6 @@ public class ApiREST {
     	System.out.println("---nombres---"+nombre);
     	System.out.println("----apellidos---" +apellidos);
     	System.out.println("---telefono--"+telefono);
-    	System.out.println("---cedula--"+cedula);
     	System.out.println("---correo--"+correo);
     	System.out.println("---contraseña--"+contrasena);
     	
@@ -497,7 +521,7 @@ public class ApiREST {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response actualiza(@PathParam("correop") String co2,@FormParam("nombres") String nombre,@FormParam("apellidos") String apellidos,@FormParam("telefono") String telefono,
-    		@FormParam("cedula") String cedula,@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
+    		@FormParam("correo") String correo,@FormParam("contrasena") String contrasena)
           throws IOException{
     	System.out.println("Metodo crear");
 
@@ -505,7 +529,6 @@ public class ApiREST {
     	System.out.println("Nombre " + nombre);
     	System.out.println("Apellido " + apellidos);
     	System.out.println("Telefono " + telefono);
-    	System.out.println("Cedula " + cedula);
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
@@ -524,7 +547,6 @@ public class ApiREST {
         usu2.setNombre(nombre);
         usu2.setApellido(apellidos);
     	usu2.setTelefono(telefono);
-    	usu2.setCedula(cedula);
     	usu2.setCorreo(correo);
     	usu2.setContraseña(contrasena);
     	usu2.setEstado("A");

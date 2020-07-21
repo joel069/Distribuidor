@@ -24,9 +24,9 @@ public class Usuario1Bean implements Serializable{
 	private List<Usuario> list;
 	private Rol rol;
 	private String nombre;
+	private int id;
 	private String apellido;
 	private String telefono;
-	private String cedula;
 	private String correo;
 	private String contrasena;
 	private String direccion;
@@ -62,11 +62,11 @@ public class Usuario1Bean implements Serializable{
 		 Usuario usuario=new Usuario();
 		    rol3.setNombre("cliente");
 		    System.out.println(rol3.getNombre());
-			usuario.setContraseña("no tiene");
+			usuario.setContraseña("12");
 			System.out.println(usuario.getContraseña());
 			this.estado="A";
-		    ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.telefono,this.cedula,this.correo,usuario.getContraseña(),rol3,this.estado));
-			list = ejbUsuarioFacade.findAll();
+		    ejbUsuarioFacade.create(new Usuario(this.id,this.nombre,this.apellido,this.telefono,this.correo,usuario.getContraseña(),rol3,this.estado));
+			list = ejbUsuarioFacade.muestraClientes();
 			return null;
 		    }
 
@@ -101,6 +101,15 @@ public class Usuario1Bean implements Serializable{
 				return nombre;
 			}
 
+			
+			public int getId() {
+				return id;
+			}
+
+			public void setId(int id) {
+				this.id = id;
+			}
+
 			public void setNombre(String nombre) {
 				this.nombre = nombre;
 			}
@@ -121,13 +130,6 @@ public class Usuario1Bean implements Serializable{
 				this.telefono = telefono;
 			}
 
-			public String getCedula() {
-				return cedula;
-			}
-
-			public void setCedula(String cedula) {
-				this.cedula = cedula;
-			}
 
 			public String getCorreo() {
 				return correo;
