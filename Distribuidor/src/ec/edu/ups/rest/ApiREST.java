@@ -190,6 +190,7 @@ public class ApiREST {
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
+    	Usuario usu4=new Usuario();
     	Usuario usu3=new Usuario();
     	usu3.setEstado("A");
     	Rol rol3=new Rol();
