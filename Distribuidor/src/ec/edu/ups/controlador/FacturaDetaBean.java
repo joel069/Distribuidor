@@ -368,14 +368,23 @@ public class FacturaDetaBean implements Serializable{
 	//Calcular Subtotal
 	public double calcularTotalParcial(){
 		
+
+		if(this.cantidad > 1) {
+
 		if(this.cantidad  != 0) {
+
 			
 			this.subtotal = prod.getPreciounitario() * this.cantidad;
+
+			System.out.println(subtotal);	
+
 			System.out.println(this.subtotal);	
+
 		}
 		
-		return subtotal;
-	}  
+		return this.subtotal;
+	} 
+	  
 	
 	//Calcular Iva
 	public double calcularIva() {
@@ -384,10 +393,14 @@ public class FacturaDetaBean implements Serializable{
 			
 			this.iva = 0.12 * this.subtotal;
 			
+
+			System.out.println("Subtotal mas Iva es:" + this.iva);
+
 			System.out.println(" Iva es:" + this.iva);
+
 		}
 		
-		return iva;
+		return this.iva;
 	}
 	
 	//Calcular Total
@@ -395,23 +408,20 @@ public class FacturaDetaBean implements Serializable{
 		
 		double aux =0;
 		
+
+		this.total = this.subtotal + this.iva;
+		System.out.println("El total a pagar es: " + total);
+
 		for (Roww lis : lista) {
 			
 			System.out.println("Hola " + lis.getSubtotal());
 			aux = aux + lis.getSubtotal();
 			calcularIva();
 		}
-		
-	
-		aux = aux + this.iva;
-		System.out.println("*************************************");
-		System.out.println( this.iva= this.iva + calcularIva());
-		
-		System.out.println("El total es :" + aux);
-		//System.out.println("El iva es :" + iva);
-	
-		return aux;
-	}
+
+		return this.total;
+	}  
+
 	
 	//Anadir nueva fila 
 	public void agregar() {
@@ -427,15 +437,31 @@ public class FacturaDetaBean implements Serializable{
 		stock = prod.getStock();
 		subtotal= calcularTotalParcial();
 		
+
+		this.nombre1 =prod.getNombre();
+		this.descripcion = prod.getDescripcion();
+		this.pun = prod.getPreciounitario();
+		this.ppu = prod.getPreciopublico();
+		this.stock = prod.getStock();		
+
 		calcularTotalParcial();
 		calcularIva();
 		calculartotalFinal();
+
 		if (this.cantidad<=this.stock ) {
+
+		System.out.println("Holaaaaaaaa");
+		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad));		
+
 	    System.out.println("Holaaaaaaaa");
 	    this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad,subtotal));
 		System.out.println();
+
 		prod.setStock(this.stock-this.cantidad);
 		ejbProductoFacade.edit(prod);
+		calcularTotalParcial();
+		calculartotalFinal();
+		calcularIva();
 		}else
 		{
 			System.out.println("No hay suficientes productos");
