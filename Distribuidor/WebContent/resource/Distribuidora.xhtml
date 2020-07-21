@@ -25,6 +25,42 @@
 </h:head>
 <h:body>
 	<h3 class="row justify-content-center align-items-center">Registro Bodegas</h3>
+	
+	<header>
+        <h1>Bienvenidos a Distribuidora UPS.</h1>
+        <br></br>
+        <h:form>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">ADMINISTRADOR</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      	<h:link  class="nav-link" value="Pagina Principal"  outcome="distribuidoraPrincipal"></h:link>
+      </li>
+      <li class="nav-item">
+        <h:link class="nav-link" value="Registrar Producto"  outcome="distribuidoraP"></h:link>
+      </li>
+      <li>
+     	 <h:link class="nav-link" value="Crear Factura"  outcome="distribuidoraF"></h:link>
+      </li>
+      <li>
+      	<h:link class="nav-link" value="Registro Usuario"  outcome="distribuidoraU"></h:link>	
+      </li>
+      <li>
+      	<h:link  class="nav-link" value="Crear Rol"  outcome="distribuidoraR"></h:link>
+      	
+      </li>
+    </ul>
+    </div>
+</nav>
+        </h:form>
+    </header>
+	
+	
 	<h:form>
 		<h:dataTable value="#{bodegaBeans.listaBodega}" var="p"
 			styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar"
