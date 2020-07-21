@@ -75,7 +75,7 @@ public class StockBean implements Serializable{
 	public List<Stock>listabo(){
 		listStock=ejbStcokFacade.listaInventario(bode() );
 		System.out.println("Lista booodea invenentario");
-	//	System.out.println(listStock);
+		System.out.println(listStock);
 		return listStock;
 	}
 }
