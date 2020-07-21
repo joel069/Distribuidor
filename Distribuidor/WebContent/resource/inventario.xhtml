@@ -5,6 +5,13 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>Listar Inventario:</title>
+	
+	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
 		<style>
 		.tabla {
 			border-collapse: collapse;
@@ -37,7 +44,7 @@
 			<f:selectItems value="#{bodegaBeans.listaBodega}" />
 		</h:selectOneMenu>
 		</li>	
-		<h:dataTable value="#{stockBean.listStock}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
+		<h:dataTable value="#{stockBean.listStock}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar" class="table table-hover">
 		<h:column>
 			<f:facet name="header">Nombre Bodega</f:facet>
 				<h:outputText value="#{p.getBodega().getNombre()}" />
@@ -75,8 +82,11 @@
 		</h:column>
 		
 		</h:dataTable>
+		
+	<li>Nombre: <h:inputText size="10" value="#{pedidosDetallesBeans.correo}" /></li>
 	<h3>Listado de Inventario.</h3>
-	<h:commandButton value="Buscar Inventario." action="#{stockBean.listabo}"/>
+	<h:commandButton value="Buscar Inventario." action="#{stockBean.listabo}" class="btn btn-danger btn block"/>
+	<h:commandButton value="Buscar PEdido" action="#{pedidosDetallesBeans.prueba}" class="btn btn-danger btn block"/>
 </h:form>
 </h:body>
 </html>

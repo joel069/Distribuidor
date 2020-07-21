@@ -74,8 +74,7 @@ public class FacturaDetaBean implements Serializable{
 		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
 		//facdetalle = ejbFacturaDetalleFacade.findAll();
-		//faccabecera= ejbFacturaCabeceraFacade.findAll();
-		
+		//faccabecera= ejbFacturaCabeceraFacade.findAll();		
 		this.prod = new Producto();
 		this.faccabe = new FacturaCabecera();
 		this.facdeta = new FacturaDetalle();
@@ -415,7 +414,7 @@ public class FacturaDetaBean implements Serializable{
 		
 		if (this.cantidad<=this.stock ) {
 	System.out.println("Holaaaaaaaa");
-		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock));
+		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,cantidad));
 		System.out.println();
 		prod.setStock(this.stock-this.cantidad);
 		ejbProductoFacade.edit(prod);

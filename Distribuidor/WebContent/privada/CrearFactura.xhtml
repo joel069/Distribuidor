@@ -44,19 +44,13 @@
 		<h:selectOneMenu value="#{facturaDetaBean.persona}">
 			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
 		</h:selectOneMenu>
-		
-		
-			
-		
+
 	<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
-								
-								
+
 	
 			Cantidad: <h:inputText size="10" value="#{facturaDetaBean.cantidad}"/>
 			Descripcion: <h:inputText size="10" value="#{facturaDetaBean.producto}"/>
 	
-		
-		
 		<h:dataTable value="#{facturaDetaBean.lista}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		
 		<h:column>
@@ -105,7 +99,7 @@
 			<!-- <h:commandButton value="Iva" action="#{facturaDetaBean.calcularIva()}" />
 			
 			<h:commandButton value="total" action="#{facturaDetaBean.calculartotalFinal()}" />
-				 -->
+-->
 	</h:form>
 </h:body>
 </html>

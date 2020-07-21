@@ -358,7 +358,7 @@ public class ApiREST {
     	
     	for (Roww row : list) {
 			Producto producto = ejbProductoFacade.nombreProducto(row.getNombre1());
-			PedidoDetalle detalle = new PedidoDetalle(row.getCantidad(),subtotal,0.0,cabecera,producto);
+			PedidoDetalle detalle = new PedidoDetalle(row.getCantidad(),subtotal,cabecera,producto);
 			System.out.println(detalle);
 			ejbPedidosDetallesFacade.create(detalle);
     		
@@ -543,10 +543,7 @@ public class ApiREST {
     	usu1 =ejbUsuarioFacade.buscarid(correoo1);
     	int idd=usu1.getId();
     	
-    	System.out.println(idd);
-    	
-    	
-    	
+    	System.out.println(idd); 	
     	Usuario usu2=new Usuario();
         usu2.setId(idd);
         usu2.setNombre(nombre);
