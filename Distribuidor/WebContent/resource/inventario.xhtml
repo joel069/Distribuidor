@@ -60,60 +60,59 @@
 
 </h:form>  
 </header>
-
-	
+<h3 class="row justify-content-center align-items-center">Listado de Productos por Bodegas</h3>
+	<br></br>
 	<h:form>
 		<h:dataTable value="#{stockBean.listStock}" var="p" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaImpar"
 			class="table table-hover">
 			<h:column>
 				<f:facet name="header">Nombre Bodega</f:facet>
-				<h:outputText value="#{p.getBodega().getNombre()}"
-					class="form-control" />
+				<h:outputText value="#{p.getBodega().getNombre()}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Direccion Bodega</f:facet>
 				<h:outputText value="#{p.getBodega().getCiudad().getNombre()}"
-					class="form-control" />
+					/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Nombre Producto</f:facet>
 				<h:outputText value="#{p.getProducto().getNombre()}"
-					class="form-control" />
+					 />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Descripcionn Producto</f:facet>
 				<h:outputText value="#{p.getProducto().getDescripcion()}"
-					class="form-control" />
+				 />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Precio Publico</f:facet>
 				<h:outputText value="#{p.getProducto().getPreciopublico()}"
-					class="form-control" />
+					/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Precio Unitario</f:facet>
 				<h:outputText value="#{p.getProducto().getPreciounitario()}"
-					class="form-control" />
+				 />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Stock</f:facet>
 				<h:outputText value="#{p.getProducto().getStock()}"
-					class="form-control" />
+					 />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Categoria</f:facet>
 				<h:outputText value="#{p.getProducto().getCategoria().getNombre()}"
-					class="form-control" />
+					/>
 			</h:column>
 		</h:dataTable>
 
 		<li>Bodegas: <h:selectOneMenu value="#{stockBean.bodega}">
 				<f:selectItems value="#{bodegaBeans.listaBodega}"
-					class="form-control" />
+					 />
 			</h:selectOneMenu>
 		</li>
 		<br></br>
