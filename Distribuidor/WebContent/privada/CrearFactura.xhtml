@@ -44,24 +44,17 @@
 		<h:selectOneMenu value="#{facturaDetaBean.persona}">
 			<f:selectItems value="#{facturaCabeceraBean.personalist}" />
 		</h:selectOneMenu>
-		
-		
-			
-		
+
 	<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
-								
-								
+	
 	
 			Cantidad: <h:inputText size="10" value="#{facturaDetaBean.cantidad}"/>
 			Descripcion: <h:inputText size="10" value="#{facturaDetaBean.producto}"/>
-	
-		
-		
-		<h:dataTable value="#{facturaDetaBean.lista}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
-		
+
+	<h:dataTable value="#{facturaDetaBean.lista}" var="fd" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar">
 		<h:column>
 			<f:facet name="header">Cantidad</f:facet>
-			<h:outputText value="#{facturaDetaBean.cantidad}" size="10" />
+			<h:outputText value="#{fd.cantidad}" size="10" />
 		</h:column>
 			
 		
@@ -78,34 +71,36 @@
 		
 		<h:column>
 			<f:facet name="header">Subtotal</f:facet>
-			<h:outputText value="#{facturaDetaBean.calcularTotalParcial()}" size="10"  />
+			<h:outputText value="#{fd.subtotal}" size="10"  />
 		</h:column>
-		
+		<!-- 
 		<h:column>
 			<f:facet name="header">Subtotal Productos</f:facet>
-			<h:outputText value="#{facturaDetaBean.calcularTotalParcial()}" size="10"  />
+			<h:outputText value="#{facturaDetaBean.calculartotalFinal()}" size="10"  />
 		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Iva 12 %</f:facet>
-			<h:outputText value="#{facturaDetaBean.iva}" size="10"  />
-		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Total</f:facet>
-			<h:outputText value="#{facturaDetaBean.total}" size="10"  />
-		</h:column>
-		
+		 -->
 	</h:dataTable>
+	
+	
+	        <ul>
+			<f:facet name="header">Iva 12 %</f:facet>
+			<li><h:outputText label="Iva 12%"  value="#{facturaDetaBean.calcularIva()}" size="10"  /></li>
+		    </ul>
+		
+		    <ul>
+			<f:facet name="header">Total</f:facet>
+			<li><h:outputText label="Total" value="#{facturaDetaBean.calculartotalFinal()}" size="10"  /></li>
+		    </ul>
+	
 			
-			<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar}" />
+			<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar()}" />
 		
 			<h:commandButton value="Anadir" action="#{facturaDetaBean.add}" />
 			
-			<h:commandButton value="Iva" action="#{facturaDetaBean.calcularIva()}" />
-			
+			<!-- <h:commandButton value="Iva" action="#{facturaDetaBean.calcularIva()}" />
+			-->
 			<h:commandButton value="total" action="#{facturaDetaBean.calculartotalFinal()}" />
-				
+
 	</h:form>
 </h:body>
 </html>

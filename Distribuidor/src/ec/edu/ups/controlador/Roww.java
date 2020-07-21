@@ -17,6 +17,7 @@ public class Roww implements Serializable{
 	private double ppu;
 	private int stock;
 	private int cantidad;
+	private double subtotal;
 	
 	
 	public Roww() {
@@ -45,6 +46,20 @@ public class Roww implements Serializable{
 	}
 	
 	
+	
+	
+	public Roww(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad, double subtotal) {
+		super();
+		this.nombre1 = nombre1;
+		this.descripcion = descripcion;
+		this.pun = pun;
+		this.ppu = ppu;
+		this.stock = stock;
+		this.cantidad = cantidad;
+		this.subtotal = subtotal;
+	}
+
+
 	public String getNombre1() {
 		return nombre1;
 	}
@@ -82,6 +97,15 @@ public class Roww implements Serializable{
 
 	public void setPpu(double ppu) {
 		this.ppu = ppu;
+	}
+
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
 	}
 
 
@@ -122,8 +146,11 @@ public class Roww implements Serializable{
 	@Override
 	public String toString() {
 		return "Roww [nombre1=" + nombre1 + ", descripcion=" + descripcion + ", pun=" + pun + ", ppu=" + ppu
-				+ ", stock=" + stock + ", cantidad=" + cantidad + "]";
+				+ ", stock=" + stock + ", cantidad=" + cantidad + ", subtotal=" + subtotal + "]";
 	}
+
+
+	
 
 
 

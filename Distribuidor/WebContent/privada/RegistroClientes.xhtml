@@ -13,12 +13,14 @@
 	
 </h:head>
 <h:body>
+    <a href="http://localhost:8080/Distribuidor/privada/VistaEmpleado.jsf">Volver</a>
 	<h3 class="row justify-content-center align-items-center">Registro Clientes</h3>
+	
 	<h:form>
 		<h:dataTable value="#{usuario1Bean.list}" var="c" styleClass="tabla"
 			headerClass="cabeceraTabla"   rowClasses="filaImpar"  class="table table-hover">
 			<h:column>
-				<f:facet name="header">Codigo</f:facet>#{c.id}</h:column>
+				<f:facet name="header">Cedula</f:facet>#{c.id}</h:column>
 			<h:column>
 				<f:facet name="header">Nombre</f:facet>
 				<h:inputText value="#{c.nombre}" 
@@ -40,12 +42,6 @@
 				<h:outputText value="#{c.telefono}" rendered="#{not c.editable}" />
 			</h:column>	
 			
-			<h:column>
-				<f:facet name="header">Cedula</f:facet>
-				<h:inputText value="#{c.cedula}" size="10"
-					rendered="#{c.editable}" class="form-control"/>
-				<h:outputText value="#{c.cedula}" rendered="#{not c.editable}" />
-			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Correo</f:facet>
@@ -95,7 +91,7 @@
 		<div class="form-group text-center">
 		
 		
-			<label class="form-group">Cedula:<h:inputText value="#{usuario1Bean.cedula}" placeholder="Ej:019.."/></label>
+			<label class="form-group">Cedula:<h:inputText value="#{usuario1Bean.id}" placeholder="Ej:019.."/></label>
 	
 		
 		</div>

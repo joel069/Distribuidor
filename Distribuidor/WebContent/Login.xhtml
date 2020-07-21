@@ -9,6 +9,32 @@
 <link rel="stylesheet" href="css/estilos.css"></link>
 </head>
 <body>
+
+
+<header>
+<h:form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+       <h:link  class="nav-link"  value = "Pagina Principal" outcome = "loginIndex" />
+      </li>
+      <li class="nav-item">
+       <h:link   class="nav-link"  value = "Bodega " outcome = "loginIn" />
+       </li> 
+        <li class="nav-item">
+       <h:link  class="nav-link"  value = "Categoria" outcome = "loginP" />
+	 </li>
+	</ul>   
+  </div>
+</nav>
+
+</h:form>  
+</header>
+   
 <h:form class="Login" >
 	<div class="container">
     	<div class="row justify-content-center pt-5 mt-5 mr-1">

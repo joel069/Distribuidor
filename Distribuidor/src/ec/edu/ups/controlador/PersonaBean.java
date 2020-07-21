@@ -21,6 +21,7 @@ public class PersonaBean implements Serializable{
 	private PersonaFacade ejbPersonaFacade;
 	private List<Persona> list;
     private String nombre;
+    private int id;
     private String apellido;
     private String telefono;
     private String cedula;
@@ -49,7 +50,7 @@ public class PersonaBean implements Serializable{
 	    }
 
 	    public String add() {
-	    ejbPersonaFacade.create(new Persona(this.nombre,this.apellido,this.telefono,this.cedula));
+	    ejbPersonaFacade.create(new Persona(this.id,this.nombre,this.apellido,this.telefono));
 		list = ejbPersonaFacade.findAll();
 		return null;
 	    }
@@ -97,12 +98,14 @@ public class PersonaBean implements Serializable{
 			this.telefono = telefono;
 		}
 
-		public String getCedula() {
-			return cedula;
+		
+
+		public int getId() {
+			return id;
 		}
 
-		public void setCedula(String cedula) {
-			this.cedula = cedula;
+		public void setId(int id) {
+			this.id = id;
 		}
 
 		public UsuarioBean getEjbUsuarioBean() {

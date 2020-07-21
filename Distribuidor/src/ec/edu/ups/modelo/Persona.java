@@ -16,12 +16,10 @@ public class Persona implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nombre;
 	private String apellido;
 	private String telefono;
-	private String cedula;
 	
 	@OneToMany(mappedBy = "facturacab")
 	private Set<FacturaCabecera> listFacturasCab;
@@ -37,15 +35,18 @@ public class Persona implements Serializable {
 	}
 	
 
-	public Persona(String nombre, String apellido, String telefono, String cedula) {
+	
+
+	public Persona(int id, String nombre, String apellido, String telefono) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
-		this.cedula = cedula;
-		
-		
 	}
+
+
+
 
 	public int getId() {
 		return id;
@@ -77,14 +78,6 @@ public class Persona implements Serializable {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-	public String getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
 	}
 
 	public Set<FacturaCabecera> getListFacturasCab() {

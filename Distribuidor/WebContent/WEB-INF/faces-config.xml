@@ -62,11 +62,108 @@
 			<to-view-id>/privada/RegistroClientes.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
-
-
-
-
-
-
+	<navigation-rule>
+		<display-name>Index.xhtml</display-name>
+		<from-view-id>/Index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>loguin</from-outcome>
+			<to-view-id>/Login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Index.xhtml</display-name>
+		<from-view-id>/Index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listaPRoducto</from-outcome>
+			<to-view-id>/ListarProductosJSF.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Index.xhtml</display-name>
+		<from-view-id>/Index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inventario</from-outcome>
+			<to-view-id>/resource/inventario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>resource/inventario.xhtml</display-name>
+		<from-view-id>/resource/inventario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inventarioI</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ListarProductosJSF.xhtml</display-name>
+		<from-view-id>/ListarProductosJSF.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>productoI</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Login.xhtml</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>loginI</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>resource/inventario.xhtml</display-name>
+		<from-view-id>/resource/inventario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inventarioP</from-outcome>
+			<to-view-id>/ListarProductosJSF.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>resource/inventario.xhtml</display-name>
+		<from-view-id>/resource/inventario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inventarioL</from-outcome>
+			<to-view-id>/Login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ListarProductosJSF.xhtml</display-name>
+		<from-view-id>/ListarProductosJSF.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>productoInve</from-outcome>
+			<to-view-id>/resource/inventario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ListarProductosJSF.xhtml</display-name>
+		<from-view-id>/ListarProductosJSF.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>productoL</from-outcome>
+			<to-view-id>/Login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Login.xhtml</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>loginIndex</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Login.xhtml</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>loginP</from-outcome>
+			<to-view-id>/ListarProductosJSF.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Login.xhtml</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>loginIn</from-outcome>
+			<to-view-id>/resource/inventario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

@@ -61,6 +61,7 @@ public class FacturaDetaBean implements Serializable{
 	private String fecha;
 	private Set<Producto> listproducto = new  HashSet<Producto>();
 	private Set<Roww> lista = new  HashSet<Roww>();
+	
 	private List<FacturaDetalle> facdetalle;
 	private List<FacturaCabecera> faccabecera;
 	
@@ -74,13 +75,12 @@ public class FacturaDetaBean implements Serializable{
 		//ejbProductoFacade.create(new Producto("Papel","Scot",1.35,1.12));
 		//ejbProductoFacade.create(new Producto("Deja","Ariel",2.49,1.89));
 		//facdetalle = ejbFacturaDetalleFacade.findAll();
-		//faccabecera= ejbFacturaCabeceraFacade.findAll();
-		
+		//faccabecera= ejbFacturaCabeceraFacade.findAll();		
 		this.prod = new Producto();
 		this.faccabe = new FacturaCabecera();
 		this.facdeta = new FacturaDetalle();
-		
-		
+	
+				
 	}
 	
  /*
@@ -92,8 +92,7 @@ public class FacturaDetaBean implements Serializable{
 		this.ejbFacturaDetalleFacade = ejbFacturaDetalleFacade;
 	}
 */
-	
-	
+
 	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
@@ -311,7 +310,7 @@ public class FacturaDetaBean implements Serializable{
 		faccabe.setFecha(this.fecha);
 		faccabe.setFacturacab(buscarPersonanombre());;
 		faccabe.setEstado("activo");
-		faccabe.setTotal(50);
+		//faccabe.setTotal(50);
 		
 		ejbFacturaCabeceraFacade.create(faccabe);
 		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,this.subtotal, this.total,0,buscarpro()));
@@ -342,11 +341,11 @@ public class FacturaDetaBean implements Serializable{
 		String nombre = prod.getNombre();
 		listproducto.add(prod);
 		System.out.println("EL nombre es:" +nombre);
-		
 		return prod;	
 		
 	}
 	
+	//Buscar la persona por nombre
 	public Usuario buscarPersonanombre() {
     
 		System.out.println("recupero la person" + persona);
@@ -366,64 +365,108 @@ public class FacturaDetaBean implements Serializable{
 		this.prod = prod;
 	}
 
-	
+	//Calcular Subtotal
 	public double calcularTotalParcial(){
 		
-		if(cantidad > 1) {
+
+		if(this.cantidad > 1) {
+
+		if(this.cantidad  != 0) {
+
 			
-			subtotal = prod.getPreciounitario() * cantidad;
+			this.subtotal = prod.getPreciounitario() * this.cantidad;
+
 			System.out.println(subtotal);	
+
+			System.out.println(this.subtotal);	
+
 		}
 		
-		return subtotal;
-	}  
+		return this.subtotal;
+	} 
+	  
 	
-	
+	//Calcular Iva
 	public double calcularIva() {
 		
-		if (subtotal != 0) {
+		if (this.subtotal != 0) {
 			
-			iva = 0.12 * subtotal;
+			this.iva = 0.12 * this.subtotal;
 			
-			System.out.println("Subtotal mas Iva es:" + iva);
+
+			System.out.println("Subtotal mas Iva es:" + this.iva);
+
+			System.out.println(" Iva es:" + this.iva);
+
 		}
 		
-		return iva;
+		return this.iva;
 	}
 	
+	//Calcular Total
 	public double calculartotalFinal() {
 		
+		double aux =0;
 		
-		total = subtotal + iva;
+
+		this.total = this.subtotal + this.iva;
 		System.out.println("El total a pagar es: " + total);
-		
-		return total;
-	}
+
+		for (Roww lis : lista) {
+			
+			System.out.println("Hola " + lis.getSubtotal());
+			aux = aux + lis.getSubtotal();
+			calcularIva();
+		}
+
+		return this.total;
+	}  
+
 	
+	//Anadir nueva fila 
 	public void agregar() {
 		
 		System.out.println(producto);
 		prod=ejbFacturaDetalleFacade.buscarProductos(producto);
 		String nombre = prod.getNombre();
 		System.out.println("EL nombre es:" +nombre);
+		nombre1 =prod.getNombre();
+		descripcion = prod.getDescripcion();
+		pun = prod.getPreciounitario();
+		ppu = prod.getPreciopublico();
+		stock = prod.getStock();
+		subtotal= calcularTotalParcial();
 		
+
 		this.nombre1 =prod.getNombre();
 		this.descripcion = prod.getDescripcion();
 		this.pun = prod.getPreciounitario();
 		this.ppu = prod.getPreciopublico();
-		this.stock = prod.getStock();
-		
+		this.stock = prod.getStock();		
+
+		calcularTotalParcial();
+		calcularIva();
+		calculartotalFinal();
+
 		if (this.cantidad<=this.stock ) {
-	System.out.println("Holaaaaaaaa");
-		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock));
+
+		System.out.println("Holaaaaaaaa");
+		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad));		
+
+	    System.out.println("Holaaaaaaaa");
+	    this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad,subtotal));
 		System.out.println();
+
 		prod.setStock(this.stock-this.cantidad);
 		ejbProductoFacade.edit(prod);
+		calcularTotalParcial();
+		calculartotalFinal();
+		calcularIva();
 		}else
 		{
-			System.out.println("no hay suficientes pr");
+			System.out.println("No hay suficientes productos");
 		}
-		System.out.println("la Lista" +lista);
+		System.out.println("La Lista de productos es: " +lista);
 		
 	}	
 	
