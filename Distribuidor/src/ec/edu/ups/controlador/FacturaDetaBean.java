@@ -382,6 +382,7 @@ public class FacturaDetaBean implements Serializable{
 
 		}
 		
+		}
 		return this.subtotal;
 	} 
 	  
