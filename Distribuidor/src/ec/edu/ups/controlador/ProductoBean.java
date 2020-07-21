@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -41,7 +42,8 @@ public class ProductoBean implements Serializable{
 	private Stock stock1;
 	private int stock;
 	private String bodega;
-	
+	private Roww roww;
+	private List<Roww> list;
 	public ProductoBean() {
 		
 	}
@@ -53,6 +55,7 @@ public class ProductoBean implements Serializable{
 		this.producto=new Producto();
 		this.stock1= new Stock();
 		listaProductos = ejbProductoFacade.findAll();
+		this.list=new  ArrayList<>();
 	}
 
 //Getters and Setters.
@@ -64,6 +67,14 @@ public class ProductoBean implements Serializable{
 	}
 
 	
+
+	public Roww getRoww() {
+		return roww;
+	}
+
+	public void setRoww(Roww roww) {
+		this.roww = roww;
+	}
 
 	public Stock getStock1() {
 		return stock1;
@@ -146,21 +157,20 @@ public class ProductoBean implements Serializable{
 	//Metodos para agregar, listar, modificar y Eliminar
 	public String add() {
 		try {
-				
-				producto.setNombre(this.nombre);
-				producto.setDescripcion(this.descripcion);
-				producto.setPreciounitario(this.preciounitario);
-				producto.setPreciopublico(this.preciopublico);
-				producto.setCategoria(buscar());
-				producto.setStock(this.stock);
-				ejbProductoFacade.create(producto);
+			
+				//Roww ro= new Roww(this.nombre,this.descripcion,this.preciounitario,this.preciopublico,this.stock);
+				//System.out.println("Row creado0"+ro);
+			Producto pro= new Producto(this.nombre,this.descripcion,this.preciounitario,this.preciopublico, buscar(),this.stock);
+			System.out.println(pro);
+			ejbProductoFacade.create(pro);
 				
 			listaProductos = ejbProductoFacade.findAll();
-			stock1.setBodega(bode());
-			stock1.setProducto(producto);
-			ejbStockFacade.create(stock1);
-			producto = new Producto();
-		} catch (Exception e) {
+			Stock sto= new Stock(bode(), pro);
+			//stock1.setBodega(bode());
+			//stock1.setProducto(pro);
+			ejbStockFacade.create(sto);
+		listaProductos = ejbProductoFacade.findAll();
+			} catch (Exception e) {
 			// TODO: handle exception
 		}
 		
@@ -184,6 +194,22 @@ public class ProductoBean implements Serializable{
 		return null;
 	}
 	
+	public List<Producto> getListaProductos1() {
+		return listaProductos1;
+	}
+
+	public void setListaProductos1(List<Producto> listaProductos1) {
+		this.listaProductos1 = listaProductos1;
+	}
+
+	public List<Roww> getList() {
+		return list;
+	}
+
+	public void setList(List<Roww> list) {
+		this.list = list;
+	}
+
 	public Categoria buscar() {
 		System.out.println(categoria);
 		Categoria ca = new Categoria();

@@ -11,9 +11,12 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.PedidoCabeceraFacade;
 import ec.edu.ups.ejb.PedidosDetallesFacade;
+import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.modelo.PedidoDetalle;
 import ec.edu.ups.modelo.PedidosCabecera;
+import ec.edu.ups.modelo.Persona;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Usuario;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -24,7 +27,7 @@ public class PedidosDetallesBeans implements Serializable {
 	
 	@EJB PedidosDetallesFacade ejbPedidosDetallesFacade;
 	@EJB PedidoCabeceraFacade  ejbPedidoCabeceraFacade;
-	
+	@EJB UsuarioFacade  ejbUsuarioFacade;
 	
 	private int cantidad;
 	private double subtotalDetalle;
@@ -32,6 +35,7 @@ public class PedidosDetallesBeans implements Serializable {
 	private List<Producto> listProductos;
 	private List<PedidoDetalle> listPedidosDetalles;
 	private List<PedidosCabecera> listPeidodsCabeceras;
+	private String correo;
 	
 
 	public PedidosDetallesBeans() {
@@ -90,7 +94,16 @@ public class PedidosDetallesBeans implements Serializable {
 	public void setListPeidodsCabeceras(List<PedidosCabecera> listPeidodsCabeceras) {
 		this.listPeidodsCabeceras = listPeidodsCabeceras;
 	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
 	
+
 //Metodos para agregar, listar, modificar y Eliminar
 	
 	public String remove(PedidoDetalle pd) {
@@ -114,4 +127,20 @@ public class PedidosDetallesBeans implements Serializable {
 		System.out.println("Se procede a facturar el pedido");
 		return "funciona";
 	}
+
+	public String prueba() {
+		List<PedidoDetalle> lista= ejbPedidosDetallesFacade.pedidosDetalle(usu());
+		System.out.println("coreo entrante");
+		System.out.println(correo);
+		System.out.println("kjdfnldkjfg Listaaaaaa de pedidos por correo");
+		System.out.println(lista);
+		return null;
+		
+	}
+	public Usuario usu() {
+		Usuario u= ejbUsuarioFacade.buscarid(correo);
+		return u;
+	}
+
+
 }
