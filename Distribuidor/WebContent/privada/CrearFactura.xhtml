@@ -88,24 +88,24 @@
 		
 		<h:column>
 			<f:facet name="header">Iva 12 %</f:facet>
-			<h:outputText value="#{facturaDetaBean.iva}" size="10"  />
+			<h:outputText value="#{facturaDetaBean.calcularIva()}" size="10"  />
 		</h:column>
 		
 		<h:column>
 			<f:facet name="header">Total</f:facet>
-			<h:outputText value="#{facturaDetaBean.total}" size="10"  />
+			<h:outputText value="#{facturaDetaBean.calculartotalFinal()}" size="10"  />
 		</h:column>
 		
 	</h:dataTable>
 			
-			<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar}" />
+			<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar()}" />
 		
 			<h:commandButton value="Anadir" action="#{facturaDetaBean.add}" />
 			
-			<h:commandButton value="Iva" action="#{facturaDetaBean.calcularIva()}" />
+			<!-- <h:commandButton value="Iva" action="#{facturaDetaBean.calcularIva()}" />
 			
 			<h:commandButton value="total" action="#{facturaDetaBean.calculartotalFinal()}" />
-				
+				 -->
 	</h:form>
 </h:body>
 </html>

@@ -61,6 +61,7 @@ public class ApiREST {
 	private PedidosCabecera pedidoCabecera;
 	private static double total;
 	private static String correo;
+	private static String cedula;
 	private static double subtotal;
 	
 	@EJB
@@ -391,6 +392,30 @@ public class ApiREST {
           throws IOException{
     	System.out.println("Metodo crear");
     	System.out.println("Correo " + correo);
+    	
+    	Usuario us=new Usuario();
+    	us =ejbUsuarioFacade.buscarid(correo);
+    	System.out.println("idd--------------------------");
+    	System.out.println(us.getId());
+    	int id=us.getId();
+    	System.out.println(id);
+    	
+    	System.out.println("Elimina");
+    	ejbUsuarioFacade.elimina(id);
+    	return Response.ok(true)
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    }
+    
+    @POST
+    @Path("/eliminarfactura/{cedula}")
+    @Consumes(MediaType.APPLICATION_JSON)
+   // @Produces(MediaType.TEXT_PLAIN)
+    public Response eliminarfactura(@PathParam("cedula") String cedula)
+          throws IOException{
+    	System.out.println("Metodo eliminar");
+    	System.out.println("Correo " + cedula);
     	
     	Usuario us=new Usuario();
     	us =ejbUsuarioFacade.buscarid(correo);
