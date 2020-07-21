@@ -368,35 +368,35 @@ public class FacturaDetaBean implements Serializable{
 	
 	public double calcularTotalParcial(){
 		
-		if(cantidad > 1) {
+		if(this.cantidad > 1) {
 			
-			subtotal = prod.getPreciounitario() * cantidad;
+			this.subtotal = prod.getPreciounitario() * this.cantidad;
 			System.out.println(subtotal);	
 		}
 		
-		return subtotal;
+		return this.subtotal;
 	}  
 	
 	
 	public double calcularIva() {
 		
-		if (subtotal != 0) {
+		if (this.subtotal != 0) {
 			
-			iva = 0.12 * subtotal;
+			this.iva = 0.12 * this.subtotal;
 			
-			System.out.println("Subtotal mas Iva es:" + iva);
+			System.out.println("Subtotal mas Iva es:" + this.iva);
 		}
 		
-		return iva;
+		return this.iva;
 	}
 	
 	public double calculartotalFinal() {
 		
 		
-		total = subtotal + iva;
+		this.total = this.subtotal + this.iva;
 		System.out.println("El total a pagar es: " + total);
 		
-		return total;
+		return this.total;
 	}
 	
 	public void agregar() {
@@ -410,14 +410,15 @@ public class FacturaDetaBean implements Serializable{
 		this.descripcion = prod.getDescripcion();
 		this.pun = prod.getPreciounitario();
 		this.ppu = prod.getPreciopublico();
-		this.stock = prod.getStock();
-		
+		this.stock = prod.getStock();		
 		if (this.cantidad<=this.stock ) {
-	System.out.println("Holaaaaaaaa");
-		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,cantidad));
-		System.out.println();
+		System.out.println("Holaaaaaaaa");
+		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad));		
 		prod.setStock(this.stock-this.cantidad);
 		ejbProductoFacade.edit(prod);
+		calcularTotalParcial();
+		calculartotalFinal();
+		calcularIva();
 		}else
 		{
 			System.out.println("no hay suficientes pr");

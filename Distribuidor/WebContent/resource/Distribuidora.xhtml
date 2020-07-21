@@ -24,13 +24,7 @@
 
 </h:head>
 <h:body>
-	<nav> 
-	<h:link value="inventario" outcome="inventario.xhtml">
-		<f:param name="inventario" value="inventario" />
-	</h:link> 
-	</nav>
-
-
+	<h3 class="row justify-content-center align-items-center">Registro Bodegas</h3>
 	<h:form>
 		<h:dataTable value="#{bodegaBeans.listaBodega}" var="p"
 			styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar"
@@ -60,8 +54,9 @@
 					rendered="#{ p.editable}" />
 			</h:column>
 		</h:dataTable>
-		<li>Nombre: <h:inputText size="10" value="#{bodegaBeans.nombre}" /></li>
-		
+		<div class="form-group text-center" >
+		<li>Nombre: <h:inputText size="10" value="#{bodegaBeans.nombre}" /></li></div>
+		<div class="form-group text-center" >
 		<p>Pais</p>
 		<h:selectOneMenu value="#{bodegaBeans.pais}">
 			<f:selectItems name="item" value="#{paisBean.listaPais}"
@@ -69,6 +64,8 @@
 			<f:ajax event="change" listener="#{bodegaBeans.cargarProvincia}"
 				render="idList2 idList3" execute="@this" />
 		</h:selectOneMenu>
+		</div>
+		<div class="form-group text-center" >
 		<p>Provincia</p>
 		<h:selectOneMenu id="idList2" value="#{bodegaBeans.provincia}">
 			<f:selectItems value="#{bodegaBeans.listaProvincia}"
@@ -76,14 +73,18 @@
 			<f:ajax event="change" listener="#{bodegaBeans.cargarCiudades}"
 				render="idList3" execute="@this" />
 		</h:selectOneMenu>
+		</div>
+		<div class="form-group text-center" >
 		<p>Ciudad</p>
 		<h:selectOneMenu value="#{bodegaBeans.ciudad}" id="idList3">
 			<f:selectItems value="#{bodegaBeans.listaCiudad}"
 				class="form-control" />
 		</h:selectOneMenu>
-		
+		</div>
+		<div class="form-group text-center" >
 		<h:commandLink value="submit" type="submit"
 			action="#{bodegaBeans.add}" class="btn btn-danger btn block" />
+	</div>
 	</h:form>
 </h:body>
 </html>
