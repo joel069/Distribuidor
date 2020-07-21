@@ -60,7 +60,7 @@ public class Usuario extends Persona implements Serializable {
 		this.roles = roles;
 	}
 
-
+//usuario
 	
 
 	public boolean isEditable() {

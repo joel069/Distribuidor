@@ -54,6 +54,7 @@ public class Usuario1Bean implements Serializable{
 	
 	
 	public void setList(List<Usuario> list) {
+		
 		this.list = list;
 	}
 	 
