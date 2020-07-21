@@ -23,82 +23,80 @@
 		crossorigin="anonymous"></script>
 
 	<style>
-		.tabla {
-			border-collapse: collapse;
-		}
-		
-		.cabeceraTabla {
-			text-align: center;
-			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 1px solid #BBBBBB;
-			padding: 8px;
-		}
-		
-		.filaPar {
-			text-align: center;
-			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 1px solid #BBBBBB;
-		}
-		
-		.filaImpar {
-			text-align: center;
-			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 1px solid #BBBBBB;
-		}
-	</style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+</style>
 </h:head>
 <h:body>
-	
-	<header>
-        <h1>Bienvenidos a Distribuidora UPS.</h1>
-        <h:form>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">ADMINISTRADOR</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-      	<h:link  class="nav-link" value="Pagina Principal"  outcome="rolP"></h:link>
-      </li>
-      <li class="nav-item">
-        <h:link class="nav-link" value="Registrar distribuidora"  outcome="rolD"></h:link>
-      </li>
-      <li>
-     	 <h:link class="nav-link" value="Crear Factura"  outcome="rolF"></h:link>
-      </li>
-      <li>
-      	<h:link class="nav-link" value="Registro Usuario"  outcome="rolU"></h:link>	
-      </li>
-      <li>
-      	<h:link  class="nav-link" value="Registrar Producto"  outcome="rolPp"></h:link>
-      	
-      </li>
-    </ul>
-    </div>
-</nav>
-        </h:form>
-    </header>
-	
+	<header>
+	<div class="blockquote text-center">
+		<h1 class="display-4">Bienvenidos a Distribuidora UPS.</h1>
+		<br></br>
+	</div>
+	<h:form>
+		<nav class="navbar navbar-expand-lg navbar-light navbar-light "
+			style="background-color: #e3f2fd;"> <a
+			class="navbar-brand" href="#">ADMINISTRADOR</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><h:link class="nav-link"
+						value="Pagina Principal" outcome="rolP"></h:link></li>
+				<li class="nav-item"><h:link class="nav-link"
+						value="Registrar distribuidora" outcome="rolD"></h:link></li>
+				<li><h:link class="nav-link" value="Crear Factura"
+						outcome="rolF"></h:link></li>
+				<li><h:link class="nav-link" value="Registro Usuario"
+						outcome="rolU"></h:link></li>
+				<li><h:link class="nav-link" value="Registrar Producto"
+						outcome="rolPp"></h:link></li>
+			</ul>
+		</div>
+		</nav>
+	</h:form> </header>
+
 	<h:form>
 		<h:dataTable value="#{rolBean.list}" var="c" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 			<h:column>
 				<f:facet name="header">Nombre del Rol</f:facet>
-				<h:inputText value="#{c.nombre}"
-					rendered="#{c.editable}" />
+				<h:inputText value="#{c.nombre}" rendered="#{c.editable}" />
 				<h:outputText value="#{c.nombre}" rendered="#{not c.editable}" />
-			</h:column>	
-			
+			</h:column>
+
 			<h:column>
 				<f:facet name="header">Descripcion del Rol</f:facet>
-				<h:inputText value="#{c.descripcion}" 
-					rendered="#{c.editable}" />
+				<h:inputText value="#{c.descripcion}" rendered="#{c.editable}" />
 				<h:outputText value="#{c.descripcion}" rendered="#{not c.editable}" />
-			</h:column>	
-							
+			</h:column>
+
 			<h:column>
 				<f:facet name="header">Accion</f:facet>
 				<h:commandLink value="Delete" action="#{rolBean.delete(c)}" />
@@ -111,15 +109,18 @@
 					rendered="#{c.editable}" />
 			</h:column>
 		</h:dataTable>
-		
-			<li>Nombre:<br></br><h:inputText  value="#{rolBean.nombre}"/></li>
-		
-		
-	
-			<li>Descripcion:<br></br><h:inputText  value="#{rolBean.descripcion}"/></li>
-		
-		
-		<h:commandButton value="Add" action="#{rolBean.add}" class="btn btn-danger btn block"  />
+
+		<li>Nombre:<br></br>
+		<h:inputText value="#{rolBean.nombre}" /></li>
+
+
+
+		<li>Descripcion:<br></br>
+		<h:inputText value="#{rolBean.descripcion}" /></li>
+
+
+		<h:commandButton value="Add" action="#{rolBean.add}"
+			class="btn btn-danger btn block" />
 	</h:form>
 </h:body>
 </html>
