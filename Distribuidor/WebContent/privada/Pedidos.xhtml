@@ -41,27 +41,23 @@
 <h:body>
 	<h3>Pedidos Registrados.</h3>
 	<h:form>
-		<h:dataTable value="#{pedidosDetallesBeans.listPedidosDetalles}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar" class="table table-hover">
+		<h:dataTable value="#{pedidosDetallesBeans.listPeidodsCabeceras}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar" class="table table-hover">
 		<h:column>
 		<f:facet name="header">Codigo</f:facet>#{p.id}</h:column>
 		<h:column>
-			<f:facet name="header">Cantidad</f:facet>
-			<h:inputText value="#{p.cantidad}" size="10" rendered="#{p.editable}"/>
-			<h:outputText value="#{p.cantidad}" rendered="#{not p.editable}" />
+			<f:facet name="header">Fecha</f:facet>
+			<h:inputText value="#{p.fecha}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.fecha}" rendered="#{not p.editable}" />
 		</h:column>
 		<h:column>
-			<f:facet name="header">Subtotal</f:facet>
-			<h:inputText value="#{p.subtotalDetalle}" size="10" rendered="#{p.editable}"/>
-			<h:outputText value="#{p.subtotalDetalle}" rendered="#{not p.editable}" />
+			<f:facet name="header">Total</f:facet>
+			<h:inputText value="#{p.total}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.total}" rendered="#{not p.editable}" />
 		</h:column>
 		<h:column>
-			<f:facet name="header">Accion</f:facet>
-			<h:commandLink value="Remove" action="#{pedidosDetallesBeans.remove(p)}"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Accion</f:facet>
-			<h:commandLink value="Edit" action="#{pedidosDetallesBeans.edit(p)}" rendered="#{not p.editable}"/>
-			<h:commandLink value="Save" action="#{pedidosDetallesBeans.save(p)}" rendered="#{ p.editable}"/>
+			<f:facet name="header">Estado Pedido</f:facet>
+			<h:inputText value="#{p.estadoPedido}" size="10" rendered="#{p.editable}"/>
+			<h:outputText value="#{p.estadoPedido}" rendered="#{not p.editable}" />
 		</h:column>
 				<h:column>
 			<f:facet name="header">Facturar</f:facet>

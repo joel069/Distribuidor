@@ -1,6 +1,9 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -34,7 +37,6 @@ public class PedidoDetalle implements Serializable {
 		super();
 		this.cantidad = cantidad;
 		this.subtotalDetalle = subtotalDetalle;
-	
 		this.pedidosCabID = pedidosCabID;
 		this.proid = proid;
 	}
@@ -142,9 +144,29 @@ public class PedidoDetalle implements Serializable {
 			return false;
 		return true;
 	}
-
-
-
+	
+	private static PedidoDetalle pedidoDetalle;
+	private static PedidosCabecera pedidoCabecera;
+	private static Producto producto2;
+	
+	private static List<PedidosCabecera> pedidosCabeceraList = new ArrayList<>();
+	private static List<Producto> productosList = new ArrayList<>();
+	public static List<PedidoDetalle> serializePedidoDetalles(List<PedidoDetalle> Detalles) {
+		List<PedidoDetalle> PedidoDetalleList = new ArrayList<>();
+		
+		Detalles.forEach(
+				d->{
+					pedidoCabecera = new PedidosCabecera(d.getPedidosCabID().getId(),d.getPedidosCabID().getFecha(),d.getPedidosCabID().getTotal(),d.getPedidosCabID().getEstadoPedido());
+					producto2 = new Producto(d.getProid().getId(),d.getProid().getNombre(),d.getProid().getDescripcion(),d.getProid().getPreciounitario(),d.getProid().getPreciopublico(),d.getProid().getStock());
+					pedidoDetalle = new PedidoDetalle(d.getCantidad(),d.getSubtotalDetalle(),pedidoCabecera,producto2);
+					PedidoDetalleList.add(pedidoDetalle);
+				}
+				
+				);
+		
+		return PedidoDetalleList;
+	}
+	
 	@Override
 	public String toString() {
 		return "PedidoDetalle [id=" + id + ", cantidad=" + cantidad + ", subtotalDetalle=" + subtotalDetalle  + ", pedidosCabID=" + pedidosCabID + ", proid=" + proid

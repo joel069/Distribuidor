@@ -381,10 +381,11 @@ public class FacturaDetaBean implements Serializable{
 			System.out.println(this.subtotal);	
 
 		}
-		
 		}
+		
 		return this.subtotal;
 	} 
+
 	  
 	
 	//Calcular Iva

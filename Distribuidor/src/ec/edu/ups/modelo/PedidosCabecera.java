@@ -36,6 +36,13 @@ public class PedidosCabecera implements Serializable {
 		this.estadoPedido=estadoPedido;
 		this.cliente=usuario;
 	}
+	
+	//Se crea un nuevo constructor
+	public PedidosCabecera(int id,String fecha,double total,String estadoPedido) {
+		this.fecha=fecha;
+		this.total=total;
+		this.estadoPedido=estadoPedido;
+	}
 
 	public PedidosCabecera() {
 		super();
@@ -126,5 +133,4 @@ public class PedidosCabecera implements Serializable {
 				+ "]";
 	}
 	
-   
 }

@@ -190,6 +190,7 @@ public class ApiREST {
     	System.out.println("Correo " + correo);
     	System.out.println("Contrasena " + contrasena);
     	
+    	Usuario usu4=new Usuario();
     	Usuario usu3=new Usuario();
     	usu3.setEstado("A");
     	Rol rol3=new Rol();
@@ -565,8 +566,33 @@ public class ApiREST {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
 
-
-
+    
+    @GET
+    @Path("/ListarPedidos/{correoP}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ListarPedidos(@PathParam("correoP")String correoP)  throws IOException{
+    	System.out.println("Correo en el metodo listar pedidos."+correoP);
+    	
+    	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	System.out.println("THIS IS THE EMAIL"+correoP);
+    	Usuario usuario = new Usuario();
+    	usuario=ejbUsuarioFacade.buscarid(correoP);
+    	System.out.println("Usuario Recolectado---------------------------->"+usuario);
+    	//System.out.println(ejbPedidosDetallesFacade.pedidosDetalle(usuario));
+    	
+    	List<PedidoDetalle> ListarPedidos = new ArrayList<PedidoDetalle>();
+    	
+    	ListarPedidos=PedidoDetalle.serializePedidoDetalles(ejbPedidosDetallesFacade.pedidosDetalle(usuario));
+		System.out.println("LISTA DE PEDIDOS-------------------------------->"+ListarPedidos);
+		
+    	return Response.ok(jsonb.toJson(ListarPedidos))
+    			.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+    	
+    }
   
 
   }    
