@@ -216,7 +216,7 @@ public class UsuarioBean implements Serializable{
 				rol2.setNombre("empleado");
 				Usuario usu1=new Usuario();
 				usu.setRoles(rol2);
-				
+				//
 				System.out.println(us.getRoles().equals(rol1));
 					if (us != null && us.getRoles().equals(rol1)) {
 						FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("admin", us);
