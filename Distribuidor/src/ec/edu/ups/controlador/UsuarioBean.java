@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.RolFacade;
@@ -217,8 +219,12 @@ public class UsuarioBean implements Serializable{
 				
 				System.out.println(us.getRoles().equals(rol1));
 					if (us != null && us.getRoles().equals(rol1)) {
+						FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("admin", us);
+						System.out.println("Usuario bennn");
 						return "exito";
 					} else if(us != null && us.getRoles().equals(rol2)) {
+						FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("emple", us);
+						
 						return "exitoEmple";
 					} else {
 						return "fallo";

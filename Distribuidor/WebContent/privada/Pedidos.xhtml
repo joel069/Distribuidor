@@ -37,7 +37,9 @@
 			border-top: 1px solid #BBBBBB;
 		}
 	</style>
+	<f:event type="preRenderView" listener="#{sesion.verificar()}" />
 </h:head>
+
 <h:body>
 	<h3>Pedidos Registrados.</h3>
 	<h:form>
