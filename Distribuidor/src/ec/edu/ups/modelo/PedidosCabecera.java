@@ -132,5 +132,6 @@ public class PedidosCabecera implements Serializable {
 				+ ", editable=" + editable + ", listPedidosDetalles=" + listPedidosDetalles + ", cliente=" + cliente
 				+ "]";
 	}
+	//Debe Funcionar
 	
 }
