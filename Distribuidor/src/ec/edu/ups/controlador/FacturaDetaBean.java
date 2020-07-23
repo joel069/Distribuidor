@@ -356,7 +356,6 @@ public class FacturaDetaBean implements Serializable{
 	public double calcularTotalParcial(){
 		
 
-		if(this.cantidad > 1) {
 
 		if(this.cantidad  != 0) {
 
@@ -368,9 +367,9 @@ public class FacturaDetaBean implements Serializable{
 			System.out.println(this.subtotal);	
 
 		}
-		}
 		
-		return this.subtotal;
+		
+		return subtotal;
 	} 
 
 	  
@@ -397,16 +396,18 @@ public class FacturaDetaBean implements Serializable{
 		
 		double aux =0;
 		
-
-		this.total = this.subtotal + this.iva;
-		System.out.println("El total a pagar es: " + total);
-
 		for (Roww lis : lista) {
 			
 			System.out.println("Hola " + lis.getSubtotal());
 			aux = aux + lis.getSubtotal();
 			calcularIva();
+			this.total = aux + this.iva;
+			
 		}
+		
+
+		System.out.println("El total a pagar es: " + total);
+
 
 		return this.total;
 	}  

@@ -98,13 +98,6 @@
 				<h:outputText value="#{c.correo}" rendered="#{not c.editable}" />
 			</h:column>
 
-			<h:column>
-				<f:facet name="header">Contraseña</f:facet>
-				<h:inputText value="#{usuarioBean.contrasena}"
-					rendered="#{c.editable}" type="password" class="form-control" />
-				<h:outputText value="#{usuarioBean.contrasena}"
-					rendered="#{not c.editable}" />
-			</h:column>
 
 
 			<h:column>

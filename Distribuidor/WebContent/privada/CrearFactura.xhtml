@@ -48,6 +48,8 @@
 }
 </style>
 
+<f:event type="preRenderView" listener="#{sesion.verificar()}" />
+
 </h:head>
 <h:body>
 
@@ -96,6 +98,8 @@
 					<h:inputText size="10" value="#{facturaDetaBean.fecha}"
 						class="form-control" />
 				</div>
+				&nbsp;
+				&nbsp;
 			</div>
 			<div class="form-group mx-sm-3 mb-2">
 				<div class="col-lg-4">
@@ -107,6 +111,8 @@
 					</h:selectOneMenu>
 				</div>
 			</div>
+			&nbsp;
+			&nbsp;
 			<!-- /////////////////////////////////  Factura Detalle  /////////////////////////////////////////-->
 			<div class="form-group mx-sm-3 mb-2">
 				<div class="col-lg-2">
@@ -115,6 +121,8 @@
 						class="form-control" />
 				</div>
 			</div>
+			&nbsp;
+			&nbsp;
 			<div class="form-group mx-sm-3 mb-2">
 				<div class="col-lg-2">
 					Descripcion:
@@ -123,7 +131,8 @@
 				</div>
 			</div>
 		</div>
-	
+	&nbsp;
+	&nbsp;
 	
 		<h:dataTable value="#{facturaDetaBean.lista}" var="fd"
 			styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar"
@@ -170,15 +179,13 @@
 					value="#{facturaDetaBean.calculartotalFinal()}" size="10" /></label>
 		</ul>
 
+<br></br>
 
-		<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar()}" class="btn btn-danger btn block"/>
 
-		<h:commandButton value="Anadir" action="#{facturaDetaBean.add}" class="btn btn-danger btn block"/>
+		<h:commandButton value="Facturar" action="#{facturaDetaBean.add}" class="btn btn-danger btn block"/>
 
 		<!-- <h:commandButton value="Iva" action="#{facturaDetaBean.calcularIva()}" />
 			-->
-		<h:commandButton value="total"
-			action="#{facturaDetaBean.calculartotalFinal()}" class="btn btn-danger btn block"/>
 
 	</h:form>
 </h:body>
