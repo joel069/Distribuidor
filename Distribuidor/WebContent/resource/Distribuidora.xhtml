@@ -77,12 +77,12 @@
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Remove" action="#{bodegaBeans.remove(p)}" />
+				<f:facet name="header">Eliminar</f:facet>
+				<h:commandLink value="Eliminar" action="#{bodegaBeans.remove(p)}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{bodegaBeans.edit(p)}"
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink value="Editar" action="#{bodegaBeans.edit(p)}"
 					rendered="#{not p.editable}" />
 				<h:commandLink value="Save" action="#{bodegaBeans.save(p)}"
 					rendered="#{ p.editable}" />

@@ -108,12 +108,12 @@
 
 
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Delete" action="#{usuarioBean.delete(c)}" />
+				<f:facet name="header">Eliminar</f:facet>
+				<h:commandLink value="Eliminar" action="#{usuarioBean.delete(c)}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{usuarioBean.edit(c)}"
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink value="Editar" action="#{usuarioBean.edit(c)}"
 					rendered="#{not c.editable}" />
 				<h:commandLink value="Save" action="#{usuarioBean.save(c)}"
 					rendered="#{c.editable}" />
@@ -124,46 +124,69 @@
 		
 
 		
-		<div class="form-group text-center" >
+		<div class="form-group">
 		
-			<label class="form-group">Nombre:<h:inputText value="#{usuarioBean.nombre}"/></label>
-		</div>
-		
-		<div class="form-group text-center" >
-			<label class="form-group">Apellido:<h:inputText value="#{usuarioBean.apellido}"/></label>
-		</div>
-		
-		<div class="form-group text-center" >
-			<label class="form-group">Telefono:<h:inputText  value="#{usuarioBean.telefono}"/></label>
-		</div>
-		
-		<div class="form-group text-center" >
-		
-			<label class="form-group">Cedula:<h:inputText  value="#{usuarioBean.id}"/></label>
+			<label class="col-lg-6 control-label">Nombre:
+			<div class="col-lg-6">
+			
+			<h:inputText value="#{usuarioBean.nombre}"/></div></label>
 		
 		</div>
 		
-		<div class="form-group text-center" >
-		
-			<label class="form-group">Correo:<h:inputText  value="#{usuarioBean.correo}"  /></label>
+		<div class="form-group">
+			<label class="col-lg-6 control-label">Apellido:
+				<div class="col-lg-6">
+			<h:inputText value="#{usuarioBean.apellido}"/></div></label>
 		</div>
 		
-		<div class="form-group text-center" >
+		<div class="form-group">
+			<label class="col-lg-6 control-label">Telefono:
+				<div class="col-lg-6">
+			
+			
+			<h:inputText  value="#{usuarioBean.telefono}"/></div></label>
+		</div>
 		
-			<label class="form-group">Contraseña:<h:inputText  value="#{usuarioBean.contrasena}" type="password" /></label>
+		<div class="form-group">
+		
+			<label class="col-lg-6 control-label">Cedula:
+				<div class="col-lg-6">
+			
+			<h:inputText  value="#{usuarioBean.id}"/></div></label>
 		
 		</div>
 		
-		<div class="form-group text-center">
-		<h:selectOneMenu value="#{usuarioBean.rool}">
-			<f:selectItems value="#{rolBean.list}" />
-		</h:selectOneMenu>
+		<div class="form-group">
 		
-	 	<h:commandButton value="listar" action="#{usuarioBean.buscar}" class="btn btn-danger btn block  text-center form-group"/>
-	 	</div>
-	 	
-	<div class="form-group text-center">
-		<h:commandButton value="Add" action="#{usuarioBean.add}" class="btn btn-danger btn block  text-center form-group"/>
+			<label class="col-lg-6 control-label">Correo:
+				<div class="col-lg-6">
+			
+			<h:inputText  value="#{usuarioBean.correo}"  /></div></label>
+		</div>
+		
+		<div class="form-group">
+		
+			<label class="col-lg-6 control-label">Contraseña:
+				<div class="col-lg-6">
+			
+			<h:inputText  value="#{usuarioBean.contrasena}" type="password" /></div></label>
+		
+		</div>
+
+		<div class="form-group">
+			<label class="col-lg-5 control-label"> Rol:<br></br>
+				<div class="col-lg-5">
+					<h:selectOneMenu value="#{usuarioBean.rool}" class="form-control">
+						<f:selectItems value="#{rolBean.list}" class="form-control" />
+					</h:selectOneMenu>	</div></label>
+		</div>
+		<div class="col-lg-9">
+			<h:commandButton value="listar" action="#{usuarioBean.buscar}"
+				class="btn btn-danger btn block  text-center form-group" />
+		</div>
+
+		<div class="col-lg-9">
+		<h:commandButton value="Agregar" action="#{usuarioBean.add}" class="btn btn-danger btn block  text-center form-group"/>
 
 		</div>
 	</h:form>

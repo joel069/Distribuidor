@@ -160,25 +160,25 @@
 
 		<ul>
 			<f:facet name="header">Iva 12 %</f:facet>
-			<li><h:outputText label="Iva 12%"
-					value="#{facturaDetaBean.calcularIva()}" size="10" /></li>
+			<label class="col-lg-6 control-label"> Iva 12%: <h:outputText label="Iva 12%"
+					value="#{facturaDetaBean.calcularIva()}" size="10" /></label>
 		</ul>
 
 		<ul>
 			<f:facet name="header">Total</f:facet>
-			<li><h:outputText label="Total"
-					value="#{facturaDetaBean.calculartotalFinal()}" size="10" /></li>
+			<label class="col-lg-6 control-label"> Total:<h:outputText label="Total"
+					value="#{facturaDetaBean.calculartotalFinal()}" size="10" /></label>
 		</ul>
 
 
-		<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar()}" />
+		<h:commandButton value="Buscar" action="#{facturaDetaBean.agregar()}" class="btn btn-danger btn block"/>
 
-		<h:commandButton value="Anadir" action="#{facturaDetaBean.add}" />
+		<h:commandButton value="Anadir" action="#{facturaDetaBean.add}" class="btn btn-danger btn block"/>
 
 		<!-- <h:commandButton value="Iva" action="#{facturaDetaBean.calcularIva()}" />
 			-->
 		<h:commandButton value="total"
-			action="#{facturaDetaBean.calculartotalFinal()}" />
+			action="#{facturaDetaBean.calculartotalFinal()}" class="btn btn-danger btn block"/>
 
 	</h:form>
 </h:body>

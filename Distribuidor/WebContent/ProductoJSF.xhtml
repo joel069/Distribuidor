@@ -123,12 +123,12 @@
 					rendered="#{not p.editable}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Remove" action="#{productoBean.remove(p)}" />
+				<f:facet name="header">Eliminar</f:facet>
+				<h:commandLink value="Eliminar" action="#{productoBean.remove(p)}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{productoBean.edit(p)}"
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink value="Editar" action="#{productoBean.edit(p)}"
 					rendered="#{not p.editable}" />
 				<h:commandLink value="Save" action="#{productoBean.save(p)}"
 					rendered="#{ p.editable}" />
@@ -142,34 +142,50 @@
 			<label class="col-lg-6 control-label"> Nombre:<br></br>
 			<div class="col-lg-6">
 			 <h:inputText
-					size="10" value="#{productoBean.nombre}" class="form-control" /></div></label>
+					size="10" value="#{productoBean.nombre}" class="form-control" 
+					required="true" requiredMessage="Campo Obligatorio"/>
+				<h:message for="id" style="color:red" />	
+					
+		</div></label>
 			
 		</div>
 		<div class="form-group">
 			<label class="col-lg-6 control-label"> Descripcion: <br></br> 
 			<div class="col-lg-6">
 			<h:inputText
-					size="10" value="#{productoBean.descripcion}" class="form-control" /></div></label>
+					 value="#{productoBean.descripcion}" class="form-control"
+					 required="true" requiredMessage="Campo Obligatorio"/>
+					<h:message for="id" style="color:red" />
+					</div></label>
 		</div>
 		<div class="form-group">
 			<label class="col-lg-6 control-label"> Precio Unitario :<br></br> 
 			<div class="col-lg-6">
 			<h:inputText
-					size="10" value="#{productoBean.preciounitario}"
-					class="form-control" /></div></label>
+					 value="#{productoBean.preciounitario}"
+					class="form-control" required="true" requiredMessage="Campo Obligatorio" />
+					<h:message for="id" style="color:red" />
+					</div></label>
 
 		</div>
 		<div class="form-group">
 			<label class="col-lg-6 control-label"> Precio Publico: <br></br> 
 			<div class="col-lg-6">
 			<h:inputText
-					size="10" value="#{productoBean.preciopublico}"
-					class="form-control" /></div></label>
+				value="#{productoBean.preciopublico}"
+					class="form-control" required="true" requiredMessage="Campo Obligatorio"/>
+					
+					<h:message for="id" style="color:red" />
+					</div></label>
 		</div>
 		<div class="form-group">
 			<label class="col-lg-6 control-label"> Stock: <br></br>
 			<div class="col-lg-6"> <h:inputText
-					size="10" value="#{productoBean.stock}" class="form-control" />	</div></label>
+					 value="#{productoBean.stock}" class="form-control" 
+					 required="true" requiredMessage="Campo Obligatorio"/>	
+					
+					<h:message for="id" style="color:red" />
+					</div></label>
 
 		</div>
 		<div class="form-group">
@@ -185,12 +201,10 @@
 		<div class="form-group">
 			<label class="col-lg-6 control-label"> Bodega:<br></br> 
 			<div class="col-lg-6">
-			<h:selectOneMenu
-					value="#{productoBean.bodega}" class="form-control" >
+			<h:selectOneMenu value="#{productoBean.bodega}" class="form-control" >
 					<f:selectItems value="#{bodegaBeans.listaBodega}"
 						class="form-control" />
-				</h:selectOneMenu></div>
-			</label>
+				</h:selectOneMenu></div></label>
 
 		</div>
 		<div class="col-lg-9">

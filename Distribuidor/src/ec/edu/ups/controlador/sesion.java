@@ -72,8 +72,7 @@ public void verificar2() {
 		Usuario usuario=(Usuario)context.getCurrentInstance().getExternalContext().getSessionMap().get("emple");
 	if (usuario== null) {
 		System.out.println("Nooooooooooooo");
-		FacesContext.getCurrentInstance().getExternalContext().redirect("../Login.xhtml");
-		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../Login.xhtml");		
 	}
 	
 	} catch (Exception e) {

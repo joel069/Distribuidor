@@ -45,11 +45,13 @@
                 	</div>
                 	<div class="form-group mx-sm-4 pt-3">
                 		<label>USUARIO:</label>
-                		<h:inputText  value="#{usuarioBean.corr}" type="text" class="form-control" />
+                		<h:inputText  value="#{usuarioBean.corr}" type="text" class="form-control" required="true" requiredMessage="Campo Obligatorio" />
+                		<h:message for="id" style="color:red" />
                 	</div>
                 	<div class="form-group mx-sm-4 pb-3">
                 	<label>CONTRASEÑA:</label>
-                	<h:inputSecret value="#{usuarioBean.contra}" type="password" class="form-control"/>
+                	<h:inputSecret value="#{usuarioBean.contra}" type="password" class="form-control" required="true" requiredMessage="Campo Obligatorio"/>
+                	<h:message for="id" style="color:red" />
                 	</div>
                 	<div class="form-group mx-sm-4 pb-5">
                 		<h:commandButton value="INGRESAR" action="#{usuarioBean.inicio}" class="btn btn-block ingresar"/>
