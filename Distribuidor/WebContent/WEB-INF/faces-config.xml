@@ -393,38 +393,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>privada/VistaEmpleado.xhtml</display-name>
-		<from-view-id>/privada/VistaEmpleado.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>empleadoF</from-outcome>
-			<to-view-id>/privada/CrearFactura2.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>privada/CrearFactura2.xhtml</display-name>
-		<from-view-id>/privada/CrearFactura2.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>facturaP</from-outcome>
-			<to-view-id>/privada/VistaEmpleado.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>privada/CrearFactura2.xhtml</display-name>
-		<from-view-id>/privada/CrearFactura2.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>facturaR</from-outcome>
-			<to-view-id>/privada/RegistroClientes.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>privada/RegistroClientes.xhtml</display-name>
-		<from-view-id>/privada/RegistroClientes.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>registroE</from-outcome>
-			<to-view-id>/privada/CrearFactura2.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>privada/VistaAdministrador.xhtml</display-name>
 		<from-view-id>/privada/VistaAdministrador.xhtml</from-view-id>
 		<navigation-case>
@@ -478,6 +446,38 @@
 		<navigation-case>
 			<from-outcome>pedidoF</from-outcome>
 			<to-view-id>/resource/Distribuidora.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>privada/CrearFactura2.xhtml</display-name>
+		<from-view-id>/privada/CrearFactura2.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>facturaRrr</from-outcome>
+			<to-view-id>/privada/RegistroClientes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>privada/RegistroClientes.xhtml</display-name>
+		<from-view-id>/privada/RegistroClientes.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>facturaRr</from-outcome>
+			<to-view-id>/privada/CrearFactura2.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>privada/VistaEmpleado.xhtml</display-name>
+		<from-view-id>/privada/VistaEmpleado.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>empleadoF</from-outcome>
+			<to-view-id>/privada/CrearFactura2.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>privada/CrearFactura2.xhtml</display-name>
+		<from-view-id>/privada/CrearFactura2.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>facturaP</from-outcome>
+			<to-view-id>/privada/VistaEmpleado.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
