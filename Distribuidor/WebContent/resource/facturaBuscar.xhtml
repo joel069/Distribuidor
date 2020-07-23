@@ -9,8 +9,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-	<title>Listar Productos:</title>
+<link rel="stylesheet" href="css/estilos.css"></link>
+	<title>Listar Inventario:</title>
 		<style>
 		.tabla {
 			border-collapse: collapse;
@@ -37,7 +37,6 @@
 	</style>
 </h:head>
 <h:body>
-
 <header>
 <h:form>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,61 +46,65 @@
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-       <h:link  class="nav-link" value = "Pagina Principal" outcome = "productoI"/>
+       <h:link  class="nav-link"  value = "Pagina Principal" outcome = "facI" />
       </li>
       <li class="nav-item">
-       <h:link   class="nav-link"  value = "Bodega " outcome = "productoInve" />
+       <h:link   class="nav-link"  value = "Categoria " outcome = "facPro" />
        </li> 
         <li class="nav-item">
-       <h:link  class="nav-link" value = "Iniciar Sesion" outcome = "productoL"  />
+       <h:link   class="nav-link"  value = "Bodega " outcome = "facBo" />
+       </li> 
+        <li class="nav-item">
+       <h:link  class="nav-link"  value = "Iniciar Sesion" outcome = "facL" />
 	 </li>
-	 
-	 <li class="nav-item">
-			<h:link class="nav-link" value="Factura"	outcome="proFac"></h:link>
-			</li>
-	 
 	</ul>   
   </div>
 </nav>
 
 </h:form>  
 </header>
-
-	
-	<h3 class="row justify-content-center align-items-center">Listado de Productos por Categoria</h3>
+<h3 class="row justify-content-center align-items-center">Listado de Productos por Bodegas</h3>
+	<br></br>
 	<h:form>
-	
-	<br></br>
-	<h:dataTable value="#{productoBean.listaProductos}" var="p" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar" class="table table-hover">
-		<h:column>
-			<f:facet name="header">Codigo.</f:facet>#{p.id}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Nombre.</f:facet>
-			<h:outputText value="#{p.nombre}"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Descripcion.</f:facet>
-			<h:outputText value="#{p.descripcion}"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">PrecioU.</f:facet>	
-			<h:outputText value="#{p.preciounitario}"/>	
-		</h:column>
-		<h:column>
-			<f:facet name="header">PrecioP</f:facet>
-			<h:outputText value="#{p.preciopublico}"/>
-		</h:column>
-	</h:dataTable>
-	<ul>
-	<li>CATEGORIAS:<br></br>
-		<h:selectOneMenu value="#{productoBean.categoria}">
-			<f:selectItems value="#{categoriaBeans.listaCategorias}" />
-		</h:selectOneMenu>
-	</li>
-	</ul>
-	<h:commandButton value="Buscar Productos." action="#{productoBean.buscarProductos}" class="btn btn-danger btn block"/>
-	<br></br>
+		
+		
+		<h:dataTable value="#{buscarFact.lista}" var="p" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaImpar"
+			class="table table-hover">
+			<h:column>
+				<f:facet name="header">Nombre cliente</f:facet>
+				<h:outputText value="#{p.getFaccabeid().getFacturacab().getNombre()}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Cantidad</f:facet>
+				<h:outputText value="#{p.getCantidad()}"
+					/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Fecha</f:facet>
+				<h:outputText value="#{p.getFaccabeid().getFecha()}"
+					 />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Total Factura</f:facet>
+				<h:outputText value="#{p.getTotal()}"
+				 />
+			</h:column>
+			
+			
+		</h:dataTable>
+		
+		
+		
+		<li>Usuarios: <h:selectOneMenu value="#{buscarFact.fact}"
+						class="form-control"  >
+						<f:selectItems value="#{facturaCabeceraBean.personalist}"
+							class="form-control" />
+					</h:selectOneMenu>
+		</li>
+		<br></br>
+		<h:commandButton value="Buscar Factura"
+			action="#{buscarFact.add}" class="btn btn-danger btn block" />
 	</h:form>
 </h:body>
 </html>

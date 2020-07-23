@@ -58,4 +58,24 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle> {
 		
 		return usu;
  }
+	
+	   public List<FacturaDetalle> factura( String usuario) {
+	    	
+			String sql="SELECT u FROM FacturaDetalle u where u.faccabeid.facturacab.nombre='"+usuario+"'";
+			System.out.println(sql);
+			List<FacturaDetalle> list = em.createQuery(sql).getResultList();
+			System.out.println("Factura Cabecera:" + list);
+
+			for (FacturaDetalle p : list) {
+				p.getCantidad();
+				p.getFaccabeid().getFecha();
+				p.getFaccabeid().getFacturacab().getNombre();
+				p.getTotal();	
+			}
+			
+			return list;
+		
+	}
+	
+	
 }
