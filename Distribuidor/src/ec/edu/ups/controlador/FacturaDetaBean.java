@@ -305,22 +305,6 @@ public class FacturaDetaBean implements Serializable{
 	
 	//Metodos de CRUD
 	
-	public String add() {
-		
-		faccabe.setFecha(this.fecha);
-		faccabe.setFacturacab(buscarPersonanombre());;
-		faccabe.setEstado("activo");
-		//faccabe.setTotal(50);
-		
-		ejbFacturaCabeceraFacade.create(faccabe);
-		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,this.subtotal, this.total,0,buscarpro()));
-		
-		//listproducto = ejbProductoFacade.findAll();
-		faccabe.addFacturaDetalle(facdeta);
-		
-		
-		return null;
-	}
 	
 	public String edit(Producto p) {
 		p.setEditable(true);
@@ -336,7 +320,7 @@ public class FacturaDetaBean implements Serializable{
 	
 	public Producto buscarpro() {
 		
-		System.out.println(producto);
+		System.out.println("Producto Recivido------------------->"+producto);
 		prod=ejbFacturaDetalleFacade.buscarProductos(producto);
 		String nombre = prod.getNombre();
 		listproducto.add(prod);
@@ -450,10 +434,7 @@ public class FacturaDetaBean implements Serializable{
 		calcularIva();
 		calculartotalFinal();
 
-		if (this.cantidad<=this.stock ) {
-
-		System.out.println("Holaaaaaaaa");
-		this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad));		
+		if (this.cantidad<=this.stock ) {	
 
 	    System.out.println("Holaaaaaaaa");
 	    this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad,subtotal));
@@ -471,6 +452,23 @@ public class FacturaDetaBean implements Serializable{
 		System.out.println("La Lista de productos es: " +lista);
 		
 	}	
+public String add() {
+		
+		FacturaCabecera  cab= new FacturaCabecera(this.fecha,calculartotalFinal(),"A",buscarPersonanombre());
+		//faccabe.setTotal(50);
+		
+		ejbFacturaCabeceraFacade.create(cab);
+			//listproducto = ejbProductoFacade.findAll();
+		faccabe.addFacturaDetalle(facdeta);
+		for (Roww roww : lista) {
+			FacturaDetalle det= new FacturaDetalle(roww.getCantidad(),calcularTotalParcial(),
+					0,0,cab,prod);
+	ejbFacturaDetalleFacade.create(det);
+			
+		}
+		
+		return null;
+	}
 	
 	
 }

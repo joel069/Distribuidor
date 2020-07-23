@@ -47,7 +47,7 @@
 	border-topro: 1px solid #BBBBBB;
 }
 </style>
-<f:event type="preRenderView" listener="#{sesion.verificar()}" />
+
 </h:head>
 <h:body>
 
@@ -123,8 +123,8 @@
 				</div>
 			</div>
 		</div>
-	</h:form>
-	<h:form>
+	
+	
 		<h:dataTable value="#{facturaDetaBean.lista}" var="fd"
 			styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaImpar"
 			class="table table-hover">
