@@ -29,19 +29,18 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle> {
    
 	
 	public Producto buscarProductos(String nombre){
-		Producto p = new Producto();
-		
+		System.out.println("El nombre que llega a las base es" +nombre);
+		Producto pro = new Producto();
 		try {
-		
-		String sql="SELECT p FROM Producto p where p.nombre='"+nombre+"'";
-		Query qu = em.createQuery(sql);
-		System.out.println("El query es" + qu);
-		p =(Producto) qu.getSingleResult();
-		System.out.println("Recupero :" + nombre);
-		}catch(Exception e) {
-			System.out.println("Producto : "+e.getMessage());
-		}
-		return p;
+		String sql = "SELECT u FROM Producto u where u.nombre= '"+nombre+"'";
+		System.out.println(sql);
+		Query query = em.createQuery(sql);
+		pro= (Producto) query.getSingleResult();
+		System.out.println("recupere : " +nombre);
+	}catch(Exception e) {
+		System.out.println("Usuario" + e.getMessage());
+	}
+		return pro;
 	}
 	
 	public Usuario buscarpersona(String nombre) {
@@ -54,7 +53,7 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle> {
 		usu= (Usuario) query.getSingleResult();
 		System.out.println("recupere : " +nombre);
 	}catch(Exception e) {
-		System.out.println("Usuario" + e.getMessage());
+		System.out.println("Producto" + e.getMessage());
 	}
 		
 		return usu;

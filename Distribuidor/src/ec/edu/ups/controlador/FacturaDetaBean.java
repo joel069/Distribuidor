@@ -306,6 +306,8 @@ public class FacturaDetaBean implements Serializable{
 	//Metodos de CRUD
 	
 
+
+
 	
 	public String edit(Producto p) {
 		p.setEditable(true);
@@ -439,6 +441,8 @@ public class FacturaDetaBean implements Serializable{
 
 				
 
+
+
 	    System.out.println("Holaaaaaaaa");
 	    this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad,subtotal));
 		System.out.println();
@@ -455,23 +459,22 @@ public class FacturaDetaBean implements Serializable{
 		System.out.println("La Lista de productos es: " +lista);
 		
 	}	
-	
-	public String add() {
+public String add() {
 		
-		faccabe.setFecha(this.fecha);
-		faccabe.setFacturacab(buscarPersonanombre());;
-		faccabe.setEstado("activo");
+		FacturaCabecera  cab= new FacturaCabecera(this.fecha,calculartotalFinal(),"A",buscarPersonanombre());
 		//faccabe.setTotal(50);
 		
-		ejbFacturaCabeceraFacade.create(faccabe);
-		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,this.subtotal, this.total,0,buscarpro()));
-		
-		//listproducto = ejbProductoFacade.findAll();
+		ejbFacturaCabeceraFacade.create(cab);
+			//listproducto = ejbProductoFacade.findAll();
 		faccabe.addFacturaDetalle(facdeta);
-		
+		for (Roww roww : lista) {
+			FacturaDetalle det= new FacturaDetalle(roww.getCantidad(),calcularTotalParcial(),
+					0,0,cab,prod);
+	ejbFacturaDetalleFacade.create(det);
+			
+		}
 		
 		return null;
-	}
-	
+	}	
 	
 }
