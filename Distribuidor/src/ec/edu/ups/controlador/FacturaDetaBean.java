@@ -305,6 +305,9 @@ public class FacturaDetaBean implements Serializable{
 	
 	//Metodos de CRUD
 	
+
+
+
 	
 	public String edit(Producto p) {
 		p.setEditable(true);
@@ -434,7 +437,11 @@ public class FacturaDetaBean implements Serializable{
 		calcularIva();
 		calculartotalFinal();
 
-		if (this.cantidad<=this.stock ) {	
+		if (this.cantidad<=this.stock ) {
+
+				
+
+
 
 	    System.out.println("Holaaaaaaaa");
 	    this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad,subtotal));
@@ -468,7 +475,6 @@ public String add() {
 		}
 		
 		return null;
-	}
-	
+	}	
 	
 }
