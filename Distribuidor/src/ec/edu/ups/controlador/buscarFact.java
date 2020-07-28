@@ -32,7 +32,7 @@ public class buscarFact implements Serializable {
 		lista= ejbBodegaFacade.findAll();
 
 	}
-	
+	//
 	public FacturaDetalleFacade getEjbBodegaFacade() {
 		return ejbBodegaFacade;
 	}

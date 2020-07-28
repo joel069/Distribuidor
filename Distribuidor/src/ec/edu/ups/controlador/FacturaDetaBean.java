@@ -439,11 +439,6 @@ public class FacturaDetaBean implements Serializable{
 		calculartotalFinal();
 
 		if (this.cantidad<=this.stock ) {
-
-				
-
-
-
 	    System.out.println("Holaaaaaaaa");
 	    this.lista.add(new Roww(nombre1,descripcion,pun,ppu,stock,this.cantidad,subtotal));
 		System.out.println();

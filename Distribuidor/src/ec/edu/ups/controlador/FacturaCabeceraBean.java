@@ -1,8 +1,10 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -36,7 +38,7 @@ public class FacturaCabeceraBean implements Serializable{
 	private String estado;
 	private String persona;
 	private List<Usuario> personalist;
-	private List<FacturaCabecera> listaFacturaCabe;
+	private Set<FacturaCabecera> listaFacturaCabe;
 	
 	
 	public String getPersona() {
@@ -100,11 +102,11 @@ public class FacturaCabeceraBean implements Serializable{
 		this.estado = estado;
 	}
 
-	public List<FacturaCabecera> getListaFacturaCabe() {
-		return listaFacturaCabe;
+	public FacturaCabecera[] getListaFacturaCabe() {
+		return listaFacturaCabe.toArray(new FacturaCabecera[0]);
 	}
 
-	public void setListaFacturaCabe(List<FacturaCabecera> listaFacturaCabe) {
+	public void setListaFacturaCabe(Set<FacturaCabecera> listaFacturaCabe) {
 		this.listaFacturaCabe = listaFacturaCabe;
 	}
 	public List<Usuario> getPersonalist() {
@@ -120,14 +122,14 @@ public class FacturaCabeceraBean implements Serializable{
 	
 	
 	//ejbFacturaCabeceraFacade.create(new FacturaCabecera(this.fecha,this.total,this.estado,buscar()));								
-	listaFacturaCabe= ejbFacturaCabeceraFacade.findAll();
+	//listaFacturaCabe= ejbFacturaCabeceraFacade.findAll();
 		
 	return null;
 	}
 	
 	public String remove(FacturaCabecera fc) {
 		ejbFacturaCabeceraFacade.remove(fc);
-		listaFacturaCabe = ejbFacturaCabeceraFacade.findAll();
+		//listaFacturaCabe = ejbFacturaCabeceraFacade.findAll();
 		return null;
 	}
 	

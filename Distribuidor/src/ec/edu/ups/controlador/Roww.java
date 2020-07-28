@@ -149,13 +149,4 @@ public class Roww implements Serializable{
 				+ ", stock=" + stock + ", cantidad=" + cantidad + ", subtotal=" + subtotal + "]";
 	}
 
-
-	
-
-
-
-	
-	
-	
-	
 }

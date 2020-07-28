@@ -33,6 +33,7 @@ public class Producto implements Serializable {
 	private boolean editable;	
 	@OneToMany(mappedBy = "producto")
 	private Collection<Stock>listStock;	
+	
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "proid")
 	private Set<FacturaDetalle>facturaDetalle;	
 	@ManyToOne
